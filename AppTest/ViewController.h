@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-
+@property (weak, nonatomic) IBOutlet UIButton *oneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *twoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *threeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fourBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fiveBtn;
+@property (weak, nonatomic) IBOutlet UIButton *sixBtn;
+@property (weak, nonatomic) IBOutlet UIButton *sevenBtn;
+@property (weak, nonatomic) IBOutlet UIButton *eightBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nineBtn;
+@property (weak, nonatomic) IBOutlet UIButton *tenBtn;
+@property (weak, nonatomic) IBOutlet UIButton *clearBtn;
+@property (weak, nonatomic) IBOutlet UITextField *passTxt;
 @end
 
