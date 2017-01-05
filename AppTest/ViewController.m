@@ -17,6 +17,7 @@ NSString *string;;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     // Do any additional setup after loading the view, typically from a nib.
     [_oneBtn addTarget:self action:@selector(onButtonPressed:)
      forControlEvents:UIControlEventTouchUpInside];

@@ -55,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45572A6F1E1DE17C00CDA25A /* Corbel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Corbel.ttf; sourceTree = "<group>"; };
+		45572A701E1DE17C00CDA25A /* HelveticaLTStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaLTStd-Light.otf"; sourceTree = "<group>"; };
 		4560AFE61D8BA50E00E341CD /* OffersCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersCollectionViewController.h; sourceTree = "<group>"; };
 		4560AFE71D8BA50E00E341CD /* OffersCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersCollectionViewController.m; sourceTree = "<group>"; };
 		459F00CD1D90E47A0078736F /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
@@ -122,6 +124,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45572A711E1DE18200CDA25A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				45572A6F1E1DE17C00CDA25A /* Corbel.ttf */,
+				45572A701E1DE17C00CDA25A /* HelveticaLTStd-Light.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		45A267F21D764D1C008C8FFB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +210,7 @@
 		45F26EAB1D7526AA006C6D9E /* AppTest */ = {
 			isa = PBXGroup;
 			children = (
+				45572A711E1DE18200CDA25A /* Fonts */,
 				45A415FD1D767FE90038CD4D /* Images */,
 				45A267F41D764D39008C8FFB /* Cells */,
 				45A267F31D764D33008C8FFB /* Model */,
