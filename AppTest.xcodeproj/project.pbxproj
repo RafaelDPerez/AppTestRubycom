@@ -37,6 +37,7 @@
 		45F26EBC1D7526AA006C6D9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F26EBA1D7526AA006C6D9E /* LaunchScreen.storyboard */; };
 		45F26EC71D7526AA006C6D9E /* AppTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EC61D7526AA006C6D9E /* AppTestTests.m */; };
 		45F26ED21D7526AA006C6D9E /* AppTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26ED11D7526AA006C6D9E /* AppTestUITests.m */; };
+		45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F4740F1E3048A400DD3C47 /* Register2ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		45F26ECD1D7526AA006C6D9E /* AppTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F26ED11D7526AA006C6D9E /* AppTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTestUITests.m; sourceTree = "<group>"; };
 		45F26ED31D7526AA006C6D9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45F4740E1E3048A400DD3C47 /* Register2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register2ViewController.h; sourceTree = "<group>"; };
+		45F4740F1E3048A400DD3C47 /* Register2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register2ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 				459F00D11D90E5E70078736F /* OfferViewController.m */,
 				45D4F25D1E2EE1DC00619E7F /* Register1ViewController.h */,
 				45D4F25E1E2EE1DC00619E7F /* Register1ViewController.m */,
+				45F4740E1E3048A400DD3C47 /* Register2ViewController.h */,
+				45F4740F1E3048A400DD3C47 /* Register2ViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -412,6 +417,7 @@
 				45D4F25F1E2EE1DC00619E7F /* Register1ViewController.m in Sources */,
 				45D4F2651E2EE39E00619E7F /* User.m in Sources */,
 				45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */,
+				45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */,
 				459F00D21D90E5E70078736F /* OfferViewController.m in Sources */,
 				45F26EB11D7526AA006C6D9E /* AppDelegate.m in Sources */,
 				4560AFE81D8BA50E00E341CD /* OffersCollectionViewController.m in Sources */,

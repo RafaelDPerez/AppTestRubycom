@@ -13,10 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtNombre;
 @property (weak, nonatomic) IBOutlet UITextField *txtEdad;
 @property (weak, nonatomic) IBOutlet UITextField *txtSexo;
-@property (weak, nonatomic) IBOutlet UITextField *txtMovil;
-@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtPasswordConfirm;
-@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 
 
 @end
