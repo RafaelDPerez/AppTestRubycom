@@ -10,10 +10,7 @@
 #import "User.h"
 @interface Register2ViewController : UIViewController
 @property (strong, nonatomic) User *user;
-@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
-@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtConfirmPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtMobile;
+
 
 //-(IBAction)RegisterUser:(id)sender;
 @end

@@ -38,6 +38,8 @@
 		45F26EC71D7526AA006C6D9E /* AppTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EC61D7526AA006C6D9E /* AppTestTests.m */; };
 		45F26ED21D7526AA006C6D9E /* AppTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26ED11D7526AA006C6D9E /* AppTestUITests.m */; };
 		45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F4740F1E3048A400DD3C47 /* Register2ViewController.m */; };
+		45F7A2791E396F0800A3235D /* BienvenidoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7A2781E396F0800A3235D /* BienvenidoViewController.m */; };
+		45F7A27D1E3972FF00A3235D /* ACFloatingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,10 @@
 		45F26ED31D7526AA006C6D9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45F4740E1E3048A400DD3C47 /* Register2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register2ViewController.h; sourceTree = "<group>"; };
 		45F4740F1E3048A400DD3C47 /* Register2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register2ViewController.m; sourceTree = "<group>"; };
+		45F7A2771E396F0800A3235D /* BienvenidoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BienvenidoViewController.h; sourceTree = "<group>"; };
+		45F7A2781E396F0800A3235D /* BienvenidoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BienvenidoViewController.m; sourceTree = "<group>"; };
+		45F7A27B1E3972FF00A3235D /* ACFloatingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACFloatingTextField.h; sourceTree = "<group>"; };
+		45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACFloatingTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,8 @@
 				45D4F25E1E2EE1DC00619E7F /* Register1ViewController.m */,
 				45F4740E1E3048A400DD3C47 /* Register2ViewController.h */,
 				45F4740F1E3048A400DD3C47 /* Register2ViewController.m */,
+				45F7A2771E396F0800A3235D /* BienvenidoViewController.h */,
+				45F7A2781E396F0800A3235D /* BienvenidoViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 		45F26EAB1D7526AA006C6D9E /* AppTest */ = {
 			isa = PBXGroup;
 			children = (
+				45F7A27A1E3972ED00A3235D /* TF */,
 				45572A711E1DE18200CDA25A /* Fonts */,
 				45A415FD1D767FE90038CD4D /* Images */,
 				45A267F41D764D39008C8FFB /* Cells */,
@@ -265,6 +274,15 @@
 				45F26ED31D7526AA006C6D9E /* Info.plist */,
 			);
 			path = AppTestUITests;
+			sourceTree = "<group>";
+		};
+		45F7A27A1E3972ED00A3235D /* TF */ = {
+			isa = PBXGroup;
+			children = (
+				45F7A27B1E3972FF00A3235D /* ACFloatingTextField.h */,
+				45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */,
+			);
+			name = TF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				459F00CF1D90E47A0078736F /* Offer.m in Sources */,
+				45F7A27D1E3972FF00A3235D /* ACFloatingTextField.m in Sources */,
 				45D4F25F1E2EE1DC00619E7F /* Register1ViewController.m in Sources */,
 				45D4F2651E2EE39E00619E7F /* User.m in Sources */,
 				45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */,
@@ -421,6 +440,7 @@
 				459F00D21D90E5E70078736F /* OfferViewController.m in Sources */,
 				45F26EB11D7526AA006C6D9E /* AppDelegate.m in Sources */,
 				4560AFE81D8BA50E00E341CD /* OffersCollectionViewController.m in Sources */,
+				45F7A2791E396F0800A3235D /* BienvenidoViewController.m in Sources */,
 				45F26EAE1D7526AA006C6D9E /* main.m in Sources */,
 				45A267F11D764B63008C8FFB /* MapsViewController.m in Sources */,
 			);
