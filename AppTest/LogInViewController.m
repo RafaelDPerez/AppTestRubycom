@@ -36,21 +36,74 @@
     [_txtPassword setTextColor:[UIColor whiteColor]];
     _txtPassword.selectedPlaceHolderColor = [UIColor whiteColor];
     _txtPassword.lineColor = [UIColor whiteColor];
+    _txtPassword.secureTextEntry = YES;
+   
     
-    [_txtRegister setTextFieldPlaceholderText:@"¿eres nuevo? regístrate"];
-    _txtRegister.selectedLineColor = [UIColor whiteColor];
-    _txtRegister.placeHolderColor = [UIColor whiteColor];
-    [_txtRegister setTextColor:[UIColor whiteColor]];
-    _txtRegister.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtRegister.lineColor = [UIColor whiteColor];
+
+}
+
+-(IBAction)LogIn:(id)sender{
+  //  **LOGIN**
+    if (_txtEmail.text && _txtEmail.text.length >0 && _txtPassword.text && _txtPassword.text.length >0 ) {
+        
+        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/login/"];
+        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+        [rq setHTTPMethod:@"POST"];
+        
+        NSData *jsonData = [[NSString stringWithFormat: @"{\"email\":\"%@\",\"password\":\"%@\" }", _txtEmail.text, _txtPassword.text] dataUsingEncoding:NSUTF8StringEncoding];
+        [rq setHTTPBody:jsonData];
+        
+        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [NSURLConnection sendAsynchronousRequest:rq
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response,
+                                                   NSData *data, NSError *connectionError)
+         {
+             NSError* error;
+             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                  options:kNilOptions
+                                                                    error:&error];
+             NSArray *result = [json objectForKey:@"sceResponseCode"];
+             
+             NSLog(@"codigo: %@", result);
+         }];
+
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Campo requerido"
+                                                        message:@"Hay uno o más campos requeridos que están vacíos."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     
-    [_txtForgotPassword setTextFieldPlaceholderText:@"¿olvidó su contraseña?"];
-    _txtForgotPassword.selectedLineColor = [UIColor whiteColor];
-    _txtForgotPassword.placeHolderColor = [UIColor whiteColor];
-    [_txtForgotPassword setTextColor:[UIColor whiteColor]];
-    _txtForgotPassword.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtForgotPassword.lineColor = [UIColor whiteColor];
+    }
+
     
+        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/login/"];
+        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+        [rq setHTTPMethod:@"POST"];
+    
+        NSData *jsonData = [[NSString stringWithFormat: @"{\"email\":\"%@\",\"password\":\"%@\" }", _txtEmail.text, _txtPassword.text] dataUsingEncoding:NSUTF8StringEncoding];
+        [rq setHTTPBody:jsonData];
+    
+        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [NSURLConnection sendAsynchronousRequest:rq
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response,
+                                                   NSData *data, NSError *connectionError)
+         {
+             NSError* error;
+             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                  options:kNilOptions
+                                                                    error:&error];
+             NSArray *result = [json objectForKey:@"result"];
+             
+             NSLog(@"codigo: %@", result);
+         }];
+
 
 }
 

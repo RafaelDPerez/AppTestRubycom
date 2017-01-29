@@ -341,7 +341,7 @@
         <scene sceneID="G9P-E4-oBa">
             <objects>
                 <navigationController storyboardIdentifier="OffersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VnJ-UB-sNR" customClass="SlideNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ekC-kg-XSc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ekC-kg-XSc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -410,6 +410,9 @@
                                 <rect key="frame" x="152" y="329" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Forward-50"/>
+                                <connections>
+                                    <action selector="LogIn:" destination="O3q-zx-4gy" eventType="touchUpInside" id="JHu-JH-zjQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqI-Ba-iG9" customClass="UIUnderlinedButton">
                                 <rect key="frame" x="46" y="465" width="289" height="43"/>
