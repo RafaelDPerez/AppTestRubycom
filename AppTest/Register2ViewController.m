@@ -59,11 +59,28 @@
 }
 
 -(IBAction)RegisterUser:(id)sender{
-    self.user.password = _txtPassword.text;
-    self.user.passwordConfirm = _txtConfirmPassword.text;
-    self.user.phone1 = _txtMobile.text;
-    self.user.email = _txtEmail.text;
-    NSLog(@"%@ - %@ -%@ -%@ -%@ -%@ -%@",self.user.password, self.user.passwordConfirm, self.user.gender, self.user.email, self.user.firstName, self.user.age, self.user.phone1);
+    
+    if (_txtEmail.text && _txtEmail.text.length > 0 && _txtMobile.text && _txtMobile.text.length > 0 &&_txtPassword.text && _txtPassword.text.length > 0 && _txtConfirmPassword.text && _txtConfirmPassword.text.length > 0 )
+    {
+        
+        self.user.password = _txtPassword.text;
+        self.user.passwordConfirm = _txtConfirmPassword.text;
+        self.user.phone1 = _txtMobile.text;
+        self.user.email = _txtEmail.text;
+        NSLog(@"%@ - %@ -%@ -%@ -%@ -%@ -%@",self.user.password, self.user.passwordConfirm, self.user.gender, self.user.email, self.user.firstName, self.user.age, self.user.phone1);
+        [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Campo requerido"
+                                                        message:@"Hay uno o más campos requeridos que están vacíos."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+    
+
 
 }
 

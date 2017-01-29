@@ -1,23 +1,32 @@
 //
-//  BienvenidoViewController.m
+//  ForgotPasswordViewController.m
 //  AppTest
 //
-//  Created by Rafael Perez on 1/25/17.
+//  Created by Rafael Perez on 1/29/17.
 //  Copyright © 2017 Rafael Perez. All rights reserved.
 //
 
-#import "BienvenidoViewController.h"
+#import "ForgotPasswordViewController.h"
+#import "ACFloatingTextField.h"
 
-@interface BienvenidoViewController ()
+@interface ForgotPasswordViewController ()
+@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtForgotPassword;
 
 @end
 
-@implementation BienvenidoViewController
+@implementation ForgotPasswordViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
+
     // Do any additional setup after loading the view.
+    [_txtForgotPassword setTextFieldPlaceholderText:@"email"];
+    _txtForgotPassword.selectedLineColor = [UIColor whiteColor];
+    _txtForgotPassword.placeHolderColor = [UIColor whiteColor];
+    [_txtForgotPassword setTextColor:[UIColor whiteColor]];
+    _txtForgotPassword.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtForgotPassword.lineColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,11 +34,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)GoToApp:(id)sender
-{
-   [self performSegueWithIdentifier:@"GoToApp" sender:self];
-
-}
 /*
 #pragma mark - Navigation
 

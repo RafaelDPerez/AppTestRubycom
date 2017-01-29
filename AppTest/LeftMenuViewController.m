@@ -1,22 +1,35 @@
 //
-//  BienvenidoViewController.m
+//  LeftMenuViewController.m
 //  AppTest
 //
-//  Created by Rafael Perez on 1/25/17.
+//  Created by Rafael Perez on 1/26/17.
 //  Copyright © 2017 Rafael Perez. All rights reserved.
 //
 
-#import "BienvenidoViewController.h"
+#import "LeftMenuViewController.h"
+#import "SlideNavigationContorllerAnimatorFade.h"
+#import "SlideNavigationContorllerAnimatorSlide.h"
+#import "SlideNavigationContorllerAnimatorScale.h"
+#import "SlideNavigationContorllerAnimatorScaleAndFade.h"
+#import "SlideNavigationContorllerAnimatorSlideAndFade.h"
 
-@interface BienvenidoViewController ()
+@interface LeftMenuViewController ()
 
 @end
 
-@implementation BienvenidoViewController
+@implementation LeftMenuViewController
+
+#pragma mark - UIViewController Methods -
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self.slideOutAnimationEnabled = YES;
+    
+    return [super initWithCoder:aDecoder];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     // Do any additional setup after loading the view.
 }
 
@@ -25,11 +38,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)GoToApp:(id)sender
-{
-   [self performSegueWithIdentifier:@"GoToApp" sender:self];
-
-}
 /*
 #pragma mark - Navigation
 
