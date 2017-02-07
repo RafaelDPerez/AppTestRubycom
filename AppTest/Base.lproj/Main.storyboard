@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YTd-r1-AJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1050.5" y="-687.5"/>
+            <point key="canvasLocation" x="-1053" y="-479"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5Iu-Lc-HYG">
@@ -344,6 +344,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ekC-kg-XSc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="FJc-dZ-CSP" kind="relationship" relationship="rootViewController" id="HKh-6p-v8X"/>
@@ -351,7 +353,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5b-fC-LBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="-2149"/>
+            <point key="canvasLocation" x="-1046" y="-2134"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="FxS-jR-Cni">
@@ -440,6 +442,7 @@
                     <connections>
                         <outlet property="txtEmail" destination="NFK-Ni-1tb" id="hos-A3-d6i"/>
                         <outlet property="txtPassword" destination="OtO-jQ-GZX" id="0pU-Dq-maL"/>
+                        <segue destination="VnJ-UB-sNR" kind="modal" identifier="callBIXIHome" id="agX-ca-vaW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRr-Tf-3e3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -669,6 +672,9 @@
                                                 <constraint firstAttribute="width" constant="43" id="bWJ-hS-xgP"/>
                                             </constraints>
                                             <state key="normal" image="Like-50"/>
+                                            <connections>
+                                                <action selector="logOut:" destination="FJc-dZ-CSP" eventType="touchUpInside" id="DWd-0W-NCR"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Establecimiento 01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52b-1p-jWF">
                                             <rect key="frame" x="8" y="328" width="319" height="49"/>
@@ -723,10 +729,13 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="O3q-zx-4gy" kind="modal" identifier="backLogIn" id="XsU-ZY-bha"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxp-6F-6jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="-1718"/>
+            <point key="canvasLocation" x="-1052" y="-1268"/>
         </scene>
         <!--Offer View Controller-->
         <scene sceneID="Rbh-KH-0J0">
@@ -842,4 +851,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="agX-ca-vaW"/>
+    </inferredMetricsTieBreakers>
 </document>

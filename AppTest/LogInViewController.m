@@ -8,6 +8,7 @@
 
 #import "LogInViewController.h"
 #import "ACFloatingTextField.h"
+#import "FDKeychain.h"
 
 @interface LogInViewController ()
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtEmail;
@@ -64,9 +65,25 @@
              NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                                   options:kNilOptions
                                                                     error:&error];
-             NSArray *result = [json objectForKey:@"sceResponseCode"];
+            // NSArray *result = [json objectForKey:@"sceResponseCode"];
+             NSString *result = [json objectForKey:@"sceResponseMsg"];
+             NSString *userToken = [json objectForKey:@"sceToken"];
+             if ([result isEqualToString:@"OK"]) {
+                 [FDKeychain saveItem: @"YES"
+                               forKey: @"loggedin"
+                           forService: @"BIXI"
+                                error: nil];
+                 
+                 [FDKeychain saveItem: userToken
+                               forKey: @"usertoken"
+                           forService: @"BIXI"
+                                error: nil];
+                 
+                 
+                 [self performSegueWithIdentifier:@"callBIXIHome" sender:self];
+                 
+             }
              
-             NSLog(@"codigo: %@", result);
          }];
 
     }
@@ -80,32 +97,19 @@
     
     }
 
-    
-        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/login/"];
-        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
-        [rq setHTTPMethod:@"POST"];
-    
-        NSData *jsonData = [[NSString stringWithFormat: @"{\"email\":\"%@\",\"password\":\"%@\" }", _txtEmail.text, _txtPassword.text] dataUsingEncoding:NSUTF8StringEncoding];
-        [rq setHTTPBody:jsonData];
-    
-        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
-        [NSURLConnection sendAsynchronousRequest:rq
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response,
-                                                   NSData *data, NSError *connectionError)
-         {
-             NSError* error;
-             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                                  options:kNilOptions
-                                                                    error:&error];
-             NSArray *result = [json objectForKey:@"result"];
-             
-             NSLog(@"codigo: %@", result);
-         }];
-
-
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"callBIXIHome"]) {
+   //     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        ProfileViewController *leftMenu = (ProfileViewController*)[storyboard instantiateViewControllerWithIdentifier: @"LeftMenuViewController"];
+//        [SlideNavigationController sharedInstance].leftMenu = leftMenu;
+//        [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
+    }
+}
+
+
 
 #pragma mark  UITextfield Delegates
 -(void)textFieldDidBeginEditing:(UITextField *)textField {

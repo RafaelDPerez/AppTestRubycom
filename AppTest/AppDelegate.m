@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     _loggedIn = [FDKeychain itemForKey: @"loggedin"
-                            forService: @"ReviewApp"
+                            forService: @"BIXI"
                                  error: nil];
     if ([_loggedIn isEqualToString:@"YES"]) {
         self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
