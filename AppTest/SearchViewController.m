@@ -7,9 +7,12 @@
 //
 
 #import "SearchViewController.h"
+#import "ACFloatingTextField.h"
 
 @interface SearchViewController ()
-
+@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtCommerceId;
+@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtLocation;
+@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOrderBy;
 @end
 
 @implementation SearchViewController
@@ -19,6 +22,26 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
+    [_txtCommerceId setTextFieldPlaceholderText:@"tipo de establecimiento"];
+    _txtCommerceId.selectedLineColor = [UIColor whiteColor];
+    _txtCommerceId.placeHolderColor = [UIColor whiteColor];
+    [_txtCommerceId setTextColor:[UIColor whiteColor]];
+    _txtCommerceId.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtCommerceId.lineColor = [UIColor whiteColor];
+    
+    [_txtLocation setTextFieldPlaceholderText:@"ubicación"];
+    _txtLocation.selectedLineColor = [UIColor whiteColor];
+    _txtLocation.placeHolderColor = [UIColor whiteColor];
+    [_txtLocation setTextColor:[UIColor whiteColor]];
+    _txtLocation.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtLocation.lineColor = [UIColor whiteColor];
+    
+    [_txtOrderBy setTextFieldPlaceholderText:@"ordenar por:"];
+    _txtOrderBy.selectedLineColor = [UIColor whiteColor];
+    _txtOrderBy.placeHolderColor = [UIColor whiteColor];
+    [_txtOrderBy setTextColor:[UIColor whiteColor]];
+    _txtOrderBy.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtOrderBy.lineColor = [UIColor whiteColor];
     
 }
 

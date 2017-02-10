@@ -353,7 +353,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5b-fC-LBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1046" y="-2134"/>
+            <point key="canvasLocation" x="-1778" y="-913"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="A0s-xS-uWk">
@@ -367,10 +367,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aao-p6-DRf">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aao-p6-DRf">
                                 <rect key="frame" x="0.0" y="82" width="375" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="gOD-ZY-oAm">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gOD-ZY-oAm">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -392,10 +391,99 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-T2-dAh" customClass="ACFloatingTextField">
+                                <rect key="frame" x="28" y="161" width="319" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kGC-T2-dAh" secondAttribute="height" multiplier="319:36" id="umo-su-d7I"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="f0a-KP-znC" id="uiZ-M5-SQf"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYr-c1-6EF" customClass="ACFloatingTextField">
+                                <rect key="frame" x="28" y="305" width="319" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kYr-c1-6EF" secondAttribute="height" multiplier="319:36" id="nRg-mC-fPp"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="f0a-KP-znC" id="pCE-uC-vNN"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLy-IV-XJe" customClass="ACFloatingTextField">
+                                <rect key="frame" x="28" y="233" width="319" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FLy-IV-XJe" secondAttribute="height" multiplier="319:36" id="D2S-ix-wOs"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="f0a-KP-znC" id="Fvq-Da-rNv"/>
+                                </connections>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-n3-Bbl">
+                                <rect key="frame" x="58" y="426" width="291" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rango de BIXIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZw-3E-Jk2">
+                                <rect key="frame" x="30" y="377" width="319" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Corbel" family="Corbel" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ2-Mr-WwO">
+                                <rect key="frame" x="30" y="455" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Corbel" family="Corbel" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="300B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfN-8o-2CB">
+                                <rect key="frame" x="305" y="455" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Corbel" family="Corbel" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3b-b1-xm5">
+                                <rect key="frame" x="152" y="589" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Forward-50"/>
+                                <connections>
+                                    <segue destination="VnJ-UB-sNR" kind="modal" id="LuU-kw-L5U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FLy-IV-XJe" firstAttribute="leading" secondItem="kYr-c1-6EF" secondAttribute="leading" id="9ee-GK-M5n"/>
+                            <constraint firstItem="kYr-c1-6EF" firstAttribute="top" secondItem="FLy-IV-XJe" secondAttribute="bottom" constant="36" id="Bpv-B9-IRG"/>
+                            <constraint firstItem="aao-p6-DRf" firstAttribute="centerX" secondItem="kGC-T2-dAh" secondAttribute="centerX" id="EoS-gc-EBE"/>
+                            <constraint firstItem="aao-p6-DRf" firstAttribute="leading" secondItem="qMu-H9-dQn" secondAttribute="leading" id="Lwy-tl-ex2"/>
+                            <constraint firstItem="FLy-IV-XJe" firstAttribute="height" secondItem="kGC-T2-dAh" secondAttribute="height" id="Rp4-Sn-LUl"/>
+                            <constraint firstAttribute="trailing" secondItem="aao-p6-DRf" secondAttribute="trailing" id="SqG-tM-7OP"/>
+                            <constraint firstItem="kYr-c1-6EF" firstAttribute="width" secondItem="kGC-T2-dAh" secondAttribute="width" id="akS-Hv-RcK"/>
+                            <constraint firstItem="kGC-T2-dAh" firstAttribute="width" secondItem="kGC-T2-dAh" secondAttribute="height" multiplier="319:36" id="cw0-eu-a8t"/>
+                            <constraint firstItem="kYr-c1-6EF" firstAttribute="height" secondItem="kGC-T2-dAh" secondAttribute="height" id="f3T-XM-9j7"/>
+                            <constraint firstItem="kGC-T2-dAh" firstAttribute="top" secondItem="aao-p6-DRf" secondAttribute="bottom" constant="29" id="i9D-hS-EVR"/>
+                            <constraint firstItem="FLy-IV-XJe" firstAttribute="width" secondItem="FLy-IV-XJe" secondAttribute="height" multiplier="319:36" id="kok-h9-OkN"/>
+                            <constraint firstItem="kGC-T2-dAh" firstAttribute="leading" secondItem="qMu-H9-dQn" secondAttribute="leadingMargin" constant="12" id="lex-oU-m1t"/>
+                            <constraint firstItem="aao-p6-DRf" firstAttribute="top" secondItem="zF1-Yq-av5" secondAttribute="bottom" constant="18" id="pAf-hb-fNp"/>
+                            <constraint firstItem="FLy-IV-XJe" firstAttribute="width" secondItem="kGC-T2-dAh" secondAttribute="width" id="rO4-Wf-wIe"/>
+                            <constraint firstItem="kYr-c1-6EF" firstAttribute="width" secondItem="kYr-c1-6EF" secondAttribute="height" multiplier="319:36" id="tmK-h2-J8g"/>
+                            <constraint firstItem="Jiz-jT-6CN" firstAttribute="top" secondItem="kYr-c1-6EF" secondAttribute="bottom" constant="326" id="uMD-2R-Y9L"/>
+                            <constraint firstItem="kGC-T2-dAh" firstAttribute="leading" secondItem="FLy-IV-XJe" secondAttribute="leading" id="xd8-ae-7rH"/>
+                            <constraint firstItem="FLy-IV-XJe" firstAttribute="top" secondItem="kGC-T2-dAh" secondAttribute="bottom" constant="36" id="yST-Md-CGg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5M1-9I-BeB"/>
+                    <connections>
+                        <outlet property="txtCommerceId" destination="kGC-T2-dAh" id="TJH-UQ-6PB"/>
+                        <outlet property="txtLocation" destination="FLy-IV-XJe" id="3FD-M3-Cuy"/>
+                        <outlet property="txtOrderBy" destination="kYr-c1-6EF" id="OoO-JV-aso"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cip-g9-WCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -983,6 +1071,6 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="POv-hS-ffW"/>
+        <segue reference="LuU-kw-L5U"/>
     </inferredMetricsTieBreakers>
 </document>
