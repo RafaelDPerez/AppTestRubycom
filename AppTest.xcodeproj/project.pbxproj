@@ -41,6 +41,19 @@
 		45C2BCCD1E3E6FFA004F1C09 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C2BCCC1E3E6FFA004F1C09 /* ForgotPasswordViewController.m */; };
 		45D4F25F1E2EE1DC00619E7F /* Register1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4F25E1E2EE1DC00619E7F /* Register1ViewController.m */; };
 		45D4F2651E2EE39E00619E7F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4F2641E2EE39E00619E7F /* User.m */; };
+		45E1520B1E4D39F600F5E9EF /* OffersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E1520A1E4D39F600F5E9EF /* OffersTableViewController.m */; };
+		45E1520E1E4D3A3E00F5E9EF /* KITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E1520D1E4D3A3E00F5E9EF /* KITableViewCell.m */; };
+		45E152121E4D3AB400F5E9EF /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E152111E4D3AB400F5E9EF /* KASlideShow.m */; };
+		45E152141E4D3BD100F5E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152131E4D3BD100F5E9EF /* Foundation.framework */; };
+		45E152161E4D3BD700F5E9EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152151E4D3BD700F5E9EF /* CoreGraphics.framework */; };
+		45E152181E4D3BE500F5E9EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152171E4D3BE500F5E9EF /* QuartzCore.framework */; };
+		45E1521A1E4D3BF100F5E9EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152191E4D3BF100F5E9EF /* UIKit.framework */; };
+		45E152211E4D3D8D00F5E9EF /* 336D.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521C1E4D3D8D00F5E9EF /* 336D.jpg */; };
+		45E152221E4D3D8D00F5E9EF /* test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521D1E4D3D8D00F5E9EF /* test_1.jpg */; };
+		45E152231E4D3D8D00F5E9EF /* test_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521E1E4D3D8D00F5E9EF /* test_2.jpg */; };
+		45E152241E4D3D8D00F5E9EF /* test_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521F1E4D3D8D00F5E9EF /* test_3.jpg */; };
+		45E152251E4D3D8D00F5E9EF /* test_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E152201E4D3D8D00F5E9EF /* test_4.jpg */; };
+		45E152281E4D55B200F5E9EF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E152271E4D55B200F5E9EF /* SearchViewController.m */; };
 		45F26EAE1D7526AA006C6D9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EAD1D7526AA006C6D9E /* main.m */; };
 		45F26EB11D7526AA006C6D9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EB01D7526AA006C6D9E /* AppDelegate.m */; };
 		45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EB31D7526AA006C6D9E /* ViewController.m */; };
@@ -131,6 +144,23 @@
 		45D4F25E1E2EE1DC00619E7F /* Register1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register1ViewController.m; sourceTree = "<group>"; };
 		45D4F2631E2EE39E00619E7F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		45D4F2641E2EE39E00619E7F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		45E152091E4D39F600F5E9EF /* OffersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersTableViewController.h; sourceTree = "<group>"; };
+		45E1520A1E4D39F600F5E9EF /* OffersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersTableViewController.m; sourceTree = "<group>"; };
+		45E1520C1E4D3A3E00F5E9EF /* KITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KITableViewCell.h; sourceTree = "<group>"; };
+		45E1520D1E4D3A3E00F5E9EF /* KITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KITableViewCell.m; sourceTree = "<group>"; };
+		45E152101E4D3AB400F5E9EF /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
+		45E152111E4D3AB400F5E9EF /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
+		45E152131E4D3BD100F5E9EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		45E152151E4D3BD700F5E9EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		45E152171E4D3BE500F5E9EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		45E152191E4D3BF100F5E9EF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		45E1521C1E4D3D8D00F5E9EF /* 336D.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 336D.jpg; path = "../../../../Downloads/KIImagePager-master/KIImagePager/336D.jpg"; sourceTree = "<group>"; };
+		45E1521D1E4D3D8D00F5E9EF /* test_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_1.jpg; path = "../../../../Downloads/KIImagePager-master/KIImagePager/test_1.jpg"; sourceTree = "<group>"; };
+		45E1521E1E4D3D8D00F5E9EF /* test_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_2.jpg; path = "../../../../Downloads/KIImagePager-master/KIImagePager/test_2.jpg"; sourceTree = "<group>"; };
+		45E1521F1E4D3D8D00F5E9EF /* test_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_3.jpg; path = "../../../../Downloads/KIImagePager-master/KIImagePager/test_3.jpg"; sourceTree = "<group>"; };
+		45E152201E4D3D8D00F5E9EF /* test_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_4.jpg; path = "../../../../Downloads/KIImagePager-master/KIImagePager/test_4.jpg"; sourceTree = "<group>"; };
+		45E152261E4D55B200F5E9EF /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		45E152271E4D55B200F5E9EF /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		45F26EA91D7526AA006C6D9E /* AppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F26EAD1D7526AA006C6D9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		45F26EAF1D7526AA006C6D9E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -166,6 +196,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E1521A1E4D3BF100F5E9EF /* UIKit.framework in Frameworks */,
+				45E152181E4D3BE500F5E9EF /* QuartzCore.framework in Frameworks */,
+				45E152161E4D3BD700F5E9EF /* CoreGraphics.framework in Frameworks */,
+				45E152141E4D3BD100F5E9EF /* Foundation.framework in Frameworks */,
 				9C0194C4BAECDFFB2FB2204E /* libPods-AppTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +275,10 @@
 				45C2BCC41E3E5E7E004F1C09 /* LogInViewController.m */,
 				45C2BCCB1E3E6FFA004F1C09 /* ForgotPasswordViewController.h */,
 				45C2BCCC1E3E6FFA004F1C09 /* ForgotPasswordViewController.m */,
+				45E152091E4D39F600F5E9EF /* OffersTableViewController.h */,
+				45E1520A1E4D39F600F5E9EF /* OffersTableViewController.m */,
+				45E152261E4D55B200F5E9EF /* SearchViewController.h */,
+				45E152271E4D55B200F5E9EF /* SearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -259,6 +297,8 @@
 		45A267F41D764D39008C8FFB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				45E1520C1E4D3A3E00F5E9EF /* KITableViewCell.h */,
+				45E1520D1E4D3A3E00F5E9EF /* KITableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -297,6 +337,27 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		45E1520F1E4D3A8C00F5E9EF /* KASlideShow */ = {
+			isa = PBXGroup;
+			children = (
+				45E152101E4D3AB400F5E9EF /* KASlideShow.h */,
+				45E152111E4D3AB400F5E9EF /* KASlideShow.m */,
+			);
+			name = KASlideShow;
+			sourceTree = "<group>";
+		};
+		45E1521B1E4D3D7F00F5E9EF /* testImages */ = {
+			isa = PBXGroup;
+			children = (
+				45E1521C1E4D3D8D00F5E9EF /* 336D.jpg */,
+				45E1521D1E4D3D8D00F5E9EF /* test_1.jpg */,
+				45E1521E1E4D3D8D00F5E9EF /* test_2.jpg */,
+				45E1521F1E4D3D8D00F5E9EF /* test_3.jpg */,
+				45E152201E4D3D8D00F5E9EF /* test_4.jpg */,
+			);
+			name = testImages;
+			sourceTree = "<group>";
+		};
 		45F26EA01D7526AA006C6D9E = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +383,8 @@
 		45F26EAB1D7526AA006C6D9E /* AppTest */ = {
 			isa = PBXGroup;
 			children = (
+				45E1521B1E4D3D7F00F5E9EF /* testImages */,
+				45E1520F1E4D3A8C00F5E9EF /* KASlideShow */,
 				45C2BCC61E3E68BC004F1C09 /* Buttons */,
 				4599E0381E3AE63500C5C92C /* Animations */,
 				45F7A27A1E3972ED00A3235D /* TF */,
@@ -392,6 +455,10 @@
 		800FF40AE6CF084E7092823D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45E152191E4D3BF100F5E9EF /* UIKit.framework */,
+				45E152171E4D3BE500F5E9EF /* QuartzCore.framework */,
+				45E152151E4D3BD700F5E9EF /* CoreGraphics.framework */,
+				45E152131E4D3BD100F5E9EF /* Foundation.framework */,
 				252F063C7F2F76F96EEF6D44 /* libPods-AppTest.a */,
 				3CBECB606A5EEAE7E47721D7 /* libPods-AppTestTests.a */,
 				FA71AE2AFB459F655F9A16A8 /* libPods-AppTestUITests.a */,
@@ -469,6 +536,7 @@
 		45F26EA11D7526AA006C6D9E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Rafael Perez";
 				TargetAttributes = {
@@ -512,19 +580,24 @@
 			files = (
 				45A415F01D767FDC0038CD4D /* full_breakfast.jpg in Resources */,
 				45F26EBC1D7526AA006C6D9E /* LaunchScreen.storyboard in Resources */,
+				45E152251E4D3D8D00F5E9EF /* test_4.jpg in Resources */,
 				45A415EE1D767FDC0038CD4D /* creme_brelee.jpg in Resources */,
 				45A415FB1D767FDC0038CD4D /* vegetable_curry.jpg in Resources */,
 				45A415FA1D767FDC0038CD4D /* thai_shrimp_cake.jpg in Resources */,
 				4599E0561E3AF1F100C5C92C /* menu-button_white.png in Resources */,
 				45F26EB91D7526AA006C6D9E /* Assets.xcassets in Resources */,
 				45A415FC1D767FDC0038CD4D /* white_chocolate_donut.jpg in Resources */,
+				45E152221E4D3D8D00F5E9EF /* test_1.jpg in Resources */,
 				45A415F51D767FDC0038CD4D /* instant_noodle_with_egg.jpg in Resources */,
+				45E152231E4D3D8D00F5E9EF /* test_2.jpg in Resources */,
 				45A415F41D767FDC0038CD4D /* hamburger.jpg in Resources */,
 				45A415F81D767FDC0038CD4D /* noodle_with_bbq_pork.jpg in Resources */,
 				45A415ED1D767FDC0038CD4D /* angry_birds_cake.jpg in Resources */,
 				45F26EB71D7526AA006C6D9E /* Main.storyboard in Resources */,
+				45E152211E4D3D8D00F5E9EF /* 336D.jpg in Resources */,
 				45A415F21D767FDC0038CD4D /* ham_and_cheese_panini.jpg in Resources */,
 				45A415F11D767FDC0038CD4D /* green_tea.jpg in Resources */,
+				45E152241E4D3D8D00F5E9EF /* test_3.jpg in Resources */,
 				45A415F71D767FDC0038CD4D /* mushroom_risotto.jpg in Resources */,
 				45A415F91D767FDC0038CD4D /* starbucks_coffee.jpg in Resources */,
 				4599E0541E3AF13D00C5C92C /* menu-button_white@2x.png in Resources */,
@@ -681,6 +754,7 @@
 				45C2BCCD1E3E6FFA004F1C09 /* ForgotPasswordViewController.m in Sources */,
 				459F00CF1D90E47A0078736F /* Offer.m in Sources */,
 				45F7A27D1E3972FF00A3235D /* ACFloatingTextField.m in Sources */,
+				45E1520E1E4D3A3E00F5E9EF /* KITableViewCell.m in Sources */,
 				45D4F25F1E2EE1DC00619E7F /* Register1ViewController.m in Sources */,
 				4599E0441E3AE64000C5C92C /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				4599E0471E3AE64000C5C92C /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
@@ -689,13 +763,16 @@
 				45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */,
 				459F00D21D90E5E70078736F /* OfferViewController.m in Sources */,
 				4599E04B1E3AE6A600C5C92C /* SlideNavigationController.m in Sources */,
+				45E152121E4D3AB400F5E9EF /* KASlideShow.m in Sources */,
 				45F26EB11D7526AA006C6D9E /* AppDelegate.m in Sources */,
+				45E152281E4D55B200F5E9EF /* SearchViewController.m in Sources */,
 				4560AFE81D8BA50E00E341CD /* OffersCollectionViewController.m in Sources */,
 				45C2BCC51E3E5E7E004F1C09 /* LogInViewController.m in Sources */,
 				4599E0461E3AE64000C5C92C /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				45F7A2791E396F0800A3235D /* BienvenidoViewController.m in Sources */,
 				45F26EAE1D7526AA006C6D9E /* main.m in Sources */,
 				45A267F11D764B63008C8FFB /* MapsViewController.m in Sources */,
+				45E1520B1E4D39F600F5E9EF /* OffersTableViewController.m in Sources */,
 				45C2BCC91E3E68E4004F1C09 /* UIUnderlinedButton.m in Sources */,
 				4599E0481E3AE64000C5C92C /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				4599E0451E3AE64000C5C92C /* SlideNavigationContorllerAnimatorScale.m in Sources */,
@@ -847,6 +924,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelperez.AppTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -859,6 +937,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelperez.AppTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
