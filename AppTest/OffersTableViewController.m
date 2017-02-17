@@ -16,7 +16,7 @@
     KASlideShow *slideshow;
     NSArray *imgs;
     KITableViewCell *cell;
-    NSUInteger *index;
+    //NSUInteger *index;
 }
 
 @end
@@ -76,8 +76,9 @@
     if ([segue.identifier isEqualToString:@"ViewOffer"]) {
        // NSIndexPath *indexPaths = [[self.tableView indexPathForSelectedRow]];
         OfferViewController *offerViewController = [segue destinationViewController];
-        NSUInteger *hola = [cell getCurrentIndex];
-        offerViewController.hola= [recipeImages objectAtIndex:hola];
+       // int hola = cell->selectedIndex;
+        KASlideShow *hola = [cell.contentView viewWithTag:1];
+        offerViewController.hola= [recipeImages objectAtIndex:index];
     }
     if ([segue.identifier isEqualToString:@"backLogIn"]) {
         //     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -95,18 +96,16 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return imgs.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   cell = [tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
+   cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
     [cell setSlideShow:@[@"336D.jpg",@"test_1.jpg",@"test_2.jpg",@"test_3.jpg",@"test_4.jpg"]];
     
     //cell.slideshow = slideshow;
@@ -115,10 +114,12 @@
     return cell;
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [self performSegueWithIdentifier:@"ViewOffer" sender:self];
-//}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"ViewOffer" sender:self];
+    KITableViewCell *hola = (KITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
+    
+}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

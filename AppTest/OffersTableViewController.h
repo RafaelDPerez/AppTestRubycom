@@ -10,7 +10,9 @@
 #import "SlideNavigationController.h"
 #import "KASlideShow.h"
 
-@interface OffersTableViewController : UITableViewController<SlideNavigationControllerDelegate,KASlideShowDelegate,KASlideShowDataSource>
+@interface OffersTableViewController : UITableViewController<SlideNavigationControllerDelegate,KASlideShowDelegate,KASlideShowDataSource>{
+@public int index;
+}
 
 -(void)callLogIn;
 @end

@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "KASlideShow.h"
 
-@interface KITableViewCell : UITableViewCell<KASlideShowDelegate,KASlideShowDataSource>
+@interface KITableViewCell : UITableViewCell<KASlideShowDelegate,KASlideShowDataSource>{
+@public int selectedIndex;
+}
 @property(weak, nonatomic) IBOutlet UILabel *txtName;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property (strong,nonatomic) IBOutlet UIButton * btnPrev;
 @property (strong,nonatomic) IBOutlet UIButton * btnNext;
 @property (strong,nonatomic) IBOutlet UIButton * btnLike;
-@property NSUInteger *selectedIndex;
+@property (weak, nonatomic) KASlideShow *hola;
+
 -(void)setSlideShow:(NSString*)img;
 -(NSUInteger*)getCurrentIndex;
 @end

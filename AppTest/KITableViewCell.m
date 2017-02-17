@@ -9,13 +9,20 @@
 #import "KITableViewCell.h"
 #import "FDKeychain.h"
 #import "OffersTableViewController.h"
+#import "OffersTableViewController.h"
 
-@implementation KITableViewCell
+@implementation KITableViewCell{
+    KASlideShow *hola;
+    UITableView *tv;
+    OffersTableViewController *vc;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
+
+
 
 -(void)setSlideShow:(NSArray*)imgs{
     _btnPrev = [(UIButton*) self.contentView viewWithTag:5];
@@ -35,19 +42,40 @@
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addImagesFromResources:imgs]; // Add images from resources
     [_slideshow setTag:1];
+    selectedIndex = 0;
+
     
 }
 
 -(NSUInteger*)getCurrentIndex{
-    return _selectedIndex = _slideshow.currentIndex;
+
+    return selectedIndex;
 }
 
 -(IBAction)NextImg:(id)sender{
-    [[self.contentView viewWithTag:1] next];
+    //KASlideShow *hola = [self.contentView viewWithTag:1];
+    hola = [self.contentView viewWithTag:1];
+    [hola next];
+     //[[self.contentView viewWithTag:1] next];
+   // OffersTableViewController *index = self.contentView.superview;
+    tv = (UITableView *) self.superview.superview;
+  vc = (UITableViewController *) tv.dataSource;
+    vc->index = hola.currentIndex;
+  //  selectedIndex = hola.currentIndex;
+    
+    
 }
 
 -(IBAction)PrevImg:(id)sender{
-    [[self.contentView viewWithTag:1] previous];
+    
+    //[[self.contentView viewWithTag:1] previous];
+    hola = [self.contentView viewWithTag:1];
+    [hola previous];
+    //[[self.contentView viewWithTag:1] next];
+    // OffersTableViewController *index = self.contentView.superview;
+   tv = (UITableView *) self.superview.superview;
+    vc = (UITableViewController *) tv.dataSource;
+    vc->index = hola.currentIndex;
     
 }
 
