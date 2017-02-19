@@ -47,36 +47,29 @@
     
 }
 
--(NSUInteger*)getCurrentIndex{
-
-    return selectedIndex;
+-(void)getCurrentIndex{
+   tv = (UITableView *) self.superview.superview;
+    hola = [self.contentView viewWithTag:1];
+    [hola NextNoNext];
+    tv = (UITableView *) self.superview.superview;
+    vc = (UITableViewController *) tv.dataSource;
+    vc->index = hola.currentIndex;
 }
 
 -(IBAction)NextImg:(id)sender{
-    //KASlideShow *hola = [self.contentView viewWithTag:1];
     hola = [self.contentView viewWithTag:1];
     [hola next];
-     //[[self.contentView viewWithTag:1] next];
-   // OffersTableViewController *index = self.contentView.superview;
     tv = (UITableView *) self.superview.superview;
-  vc = (UITableViewController *) tv.dataSource;
+    vc = (UITableViewController *) tv.dataSource;
     vc->index = hola.currentIndex;
-  //  selectedIndex = hola.currentIndex;
-    
-    
 }
 
 -(IBAction)PrevImg:(id)sender{
-    
-    //[[self.contentView viewWithTag:1] previous];
-    hola = [self.contentView viewWithTag:1];
-    [hola previous];
-    //[[self.contentView viewWithTag:1] next];
-    // OffersTableViewController *index = self.contentView.superview;
+   hola = [self.contentView viewWithTag:1];
+   [hola previous];
    tv = (UITableView *) self.superview.superview;
-    vc = (UITableViewController *) tv.dataSource;
-    vc->index = hola.currentIndex;
-    
+   vc = (UITableViewController *) tv.dataSource;
+   vc->index = hola.currentIndex;
 }
 
 #pragma mark - KASlideShow delegate

@@ -10,6 +10,8 @@
 #import "FDKeychain.h"
 #import "OfferViewController.h"
 #import "KITableViewCell.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface OffersTableViewController (){
     NSArray *recipeImages;
@@ -62,6 +64,10 @@
 -(IBAction)logOut:(id)sender{
     [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
     [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+    
+    [FBSDKAccessToken setCurrentAccessToken:nil];
     [self performSegueWithIdentifier:@"backLogIn" sender:self];
     
     
@@ -74,10 +80,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"ViewOffer"]) {
-       // NSIndexPath *indexPaths = [[self.tableView indexPathForSelectedRow]];
         OfferViewController *offerViewController = [segue destinationViewController];
-       // int hola = cell->selectedIndex;
-        KASlideShow *hola = [cell.contentView viewWithTag:1];
+   //     [cell getCurrentIndex];
         offerViewController.hola= [recipeImages objectAtIndex:index];
     }
     if ([segue.identifier isEqualToString:@"backLogIn"]) {
@@ -107,7 +111,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
     [cell setSlideShow:@[@"336D.jpg",@"test_1.jpg",@"test_2.jpg",@"test_3.jpg",@"test_4.jpg"]];
-    
+
+            
     //cell.slideshow = slideshow;
     cell.txtName.text = [imgs objectAtIndex:indexPath.row];
     
@@ -116,8 +121,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     [self performSegueWithIdentifier:@"ViewOffer" sender:self];
-    KITableViewCell *hola = (KITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
+
     
 }
 

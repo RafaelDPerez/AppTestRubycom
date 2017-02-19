@@ -71,6 +71,8 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 - (void) stop;
 - (void) previous;
 - (void) next;
+- (void) getCurrentIndex;
+-(void) NextNoNext;
 
 @end
 

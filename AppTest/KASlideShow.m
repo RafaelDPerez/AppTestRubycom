@@ -142,7 +142,10 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 {
     if(! _isAnimating && ([self.images count] >1 || self.dataSource)) {
         
-        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowNext:)]) [self.delegate kaSlideShowWillShowNext:self];
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowNext:)])
+        {
+            [self.delegate kaSlideShowWillShowNext:self];
+        }
         
         // Next Image
         if (self.dataSource) {
@@ -174,6 +177,51 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     }
 }
 
+-(void)getCurrentIndex{
+    NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+    _topImageView.image = self.images[_currentIndex];
+    _bottomImageView.image = self.images[nextIndex];
+    _currentIndex = nextIndex;
+}
+
+-(void) NextNoNext{
+    if(! _isAnimating && ([self.images count] >1 || self.dataSource)) {
+        
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowNext:)])
+        {
+            [self.delegate kaSlideShowWillShowNext:self];
+        }
+        
+        // Next Image
+        if (self.dataSource) {
+            _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
+            _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
+        } else {
+            NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+            _topImageView.image = self.images[_currentIndex];
+            _bottomImageView.image = self.images[nextIndex];
+           // _currentIndex = nextIndex;
+        }
+        
+        // Animate
+//        switch (transitionType) {
+//            case KASlideShowTransitionFade:
+//                [self animateFade];
+//                break;
+//                
+//            case KASlideShowTransitionSlide:
+//                [self animateSlide:KASlideShowSlideModeForward];
+//                break;
+//                
+//        }
+        
+        // Call delegate
+//        if([delegate respondsToSelector:@selector(kaSlideShowDidNext:)]){
+//            [delegate kaSlideShowDidNext:self];
+//        }
+    }
+
+}
 
 - (void) previous
 {

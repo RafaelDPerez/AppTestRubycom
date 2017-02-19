@@ -20,5 +20,5 @@
 @property (weak, nonatomic) KASlideShow *hola;
 
 -(void)setSlideShow:(NSString*)img;
--(NSUInteger*)getCurrentIndex;
+-(void)getCurrentIndex;
 @end

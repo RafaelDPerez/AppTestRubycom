@@ -43,6 +43,55 @@
 
 }
 
+-(IBAction)FacebookLogIn:(id)sender{
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login
+     logInWithReadPermissions: @[@"public_profile", @"email", @"user_friends", @"user_posts"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+         if (error) {
+             NSLog(@"Process error");
+         } else if (result.isCancelled) {
+             NSLog(@"Cancelled");
+         } else {
+             [FDKeychain saveItem: @"YES"
+                           forKey: @"loggedin"
+                       forService: @"BIXI"
+                            error: nil];
+             
+             [FDKeychain saveItem: result.token.tokenString
+                           forKey: @"usertoken"
+                       forService: @"BIXI"
+                            error: nil];
+             
+             NSLog(@"%@",result.token.tokenString);
+             [self performSegueWithIdentifier:@"callBIXIHome" sender:self];
+         }
+     }];
+    
+}
+
+//-(IBAction)logOut:(id)sender{
+//    [FDKeychain saveItem: @"NO"
+//                  forKey: @"loggedin"
+//              forService: @"ReviewApp"
+//                   error: nil];
+//    
+//    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//    [loginManager logOut];
+//    
+//    [FBSDKAccessToken setCurrentAccessToken:nil];
+//    
+//    
+//    //[self performSegueWithIdentifier:@"callLogIn" sender:self];
+////    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+////    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+////    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LogIn"];
+////    self.window.rootViewController = vc;
+////    [self.window makeKeyAndVisible];
+//}
+
+
 -(IBAction)LogIn:(id)sender{
   //  **LOGIN**
     if (_txtEmail.text && _txtEmail.text.length >0 && _txtPassword.text && _txtPassword.text.length >0 ) {
