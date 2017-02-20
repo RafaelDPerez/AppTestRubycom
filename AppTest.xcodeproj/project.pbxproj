@@ -13,6 +13,7 @@
 		4515E8991E5A40BB00E3736F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4515E8981E5A40BB00E3736F /* FBSDKCoreKit.framework */; };
 		4515E89B1E5A45C500E3736F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4515E89A1E5A45C500E3736F /* Bolts.framework */; };
 		4515E89D1E5A45E700E3736F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4515E89C1E5A45E700E3736F /* FBSDKShareKit.framework */; };
+		4515E89F1E5A4CC300E3736F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4515E89E1E5A4CC300E3736F /* GoogleService-Info.plist */; };
 		4560AFE81D8BA50E00E341CD /* OffersCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4560AFE71D8BA50E00E341CD /* OffersCollectionViewController.m */; };
 		4599E0441E3AE64000C5C92C /* SlideNavigationContorllerAnimatorFade.m in Sources */ = {isa = PBXBuildFile; fileRef = 4599E03B1E3AE64000C5C92C /* SlideNavigationContorllerAnimatorFade.m */; };
 		4599E0451E3AE64000C5C92C /* SlideNavigationContorllerAnimatorScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 4599E03D1E3AE64000C5C92C /* SlideNavigationContorllerAnimatorScale.m */; };
@@ -103,6 +104,7 @@
 		4515E8981E5A40BB00E3736F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4515E89A1E5A45C500E3736F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		4515E89C1E5A45E700E3736F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		4515E89E1E5A4CC300E3736F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		45572A6F1E1DE17C00CDA25A /* Corbel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Corbel.ttf; sourceTree = "<group>"; };
 		45572A701E1DE17C00CDA25A /* HelveticaLTStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaLTStd-Light.otf"; sourceTree = "<group>"; };
 		4560AFE61D8BA50E00E341CD /* OffersCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersCollectionViewController.h; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				45F26EAF1D7526AA006C6D9E /* AppDelegate.h */,
 				45F26EB01D7526AA006C6D9E /* AppDelegate.m */,
 				45F26EB51D7526AA006C6D9E /* Main.storyboard */,
+				4515E89E1E5A4CC300E3736F /* GoogleService-Info.plist */,
 				45F26EB81D7526AA006C6D9E /* Assets.xcassets */,
 				45F26EBA1D7526AA006C6D9E /* LaunchScreen.storyboard */,
 				45F26EBD1D7526AA006C6D9E /* Info.plist */,
@@ -613,6 +616,7 @@
 				45A415FC1D767FDC0038CD4D /* white_chocolate_donut.jpg in Resources */,
 				45E152221E4D3D8D00F5E9EF /* test_1.jpg in Resources */,
 				45A415F51D767FDC0038CD4D /* instant_noodle_with_egg.jpg in Resources */,
+				4515E89F1E5A4CC300E3736F /* GoogleService-Info.plist in Resources */,
 				45E152231E4D3D8D00F5E9EF /* test_2.jpg in Resources */,
 				45A415F41D767FDC0038CD4D /* hamburger.jpg in Resources */,
 				45A415F81D767FDC0038CD4D /* noodle_with_bbq_pork.jpg in Resources */,

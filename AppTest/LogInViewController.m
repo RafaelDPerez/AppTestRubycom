@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
         self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [_txtEmail setTextFieldPlaceholderText:@"email"];
     _txtEmail.selectedLineColor = [UIColor whiteColor];
@@ -38,8 +37,10 @@
     _txtPassword.selectedPlaceHolderColor = [UIColor whiteColor];
     _txtPassword.lineColor = [UIColor whiteColor];
     _txtPassword.secureTextEntry = YES;
-   
-    
+
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    // Uncomment to automatically sign in the user.
+    //[[GIDSignIn sharedInstance] signInSilently];
 
 }
 
@@ -71,40 +72,40 @@
     
 }
 
-//-(IBAction)logOut:(id)sender{
-//    [FDKeychain saveItem: @"NO"
-//                  forKey: @"loggedin"
-//              forService: @"ReviewApp"
-//                   error: nil];
-//    
-//    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-//    [loginManager logOut];
-//    
-//    [FBSDKAccessToken setCurrentAccessToken:nil];
-//    
-//    
-//    //[self performSegueWithIdentifier:@"callLogIn" sender:self];
-////    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-////    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-////    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LogIn"];
-////    self.window.rootViewController = vc;
-////    [self.window makeKeyAndVisible];
-//}
+- (IBAction)googleButtonTouchUpInside:(id)sender {
+    [[GIDSignIn sharedInstance] signIn];
+}
 
+#pragma mark - Google SignIn Delegate
+- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
+    
+}
+
+- (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController
+{
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    //user signed in
+    //get user data in "user" (GIDGoogleUser object)
+}
 
 -(IBAction)LogIn:(id)sender{
   //  **LOGIN**
     if (_txtEmail.text && _txtEmail.text.length >0 && _txtPassword.text && _txtPassword.text.length >0 ) {
-        
         NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/login/"];
         NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
         [rq setHTTPMethod:@"POST"];
-        
         NSData *jsonData = [[NSString stringWithFormat: @"{\"email\":\"%@\",\"password\":\"%@\" }", _txtEmail.text, _txtPassword.text] dataUsingEncoding:NSUTF8StringEncoding];
         [rq setHTTPBody:jsonData];
-        
         [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [NSURLConnection sendAsynchronousRequest:rq
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response,
@@ -114,7 +115,6 @@
              NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                                   options:kNilOptions
                                                                     error:&error];
-            // NSArray *result = [json objectForKey:@"sceResponseCode"];
              NSString *result = [json objectForKey:@"sceResponseMsg"];
              NSString *userToken = [json objectForKey:@"sceToken"];
              if ([result isEqualToString:@"OK"]) {

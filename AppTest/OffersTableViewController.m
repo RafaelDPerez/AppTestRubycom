@@ -12,6 +12,7 @@
 #import "KITableViewCell.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import GoogleSignIn;
 
 @interface OffersTableViewController (){
     NSArray *recipeImages;
@@ -69,7 +70,7 @@
     
     [FBSDKAccessToken setCurrentAccessToken:nil];
     [self performSegueWithIdentifier:@"backLogIn" sender:self];
-    
+    [[GIDSignIn sharedInstance] signOut];
     
 }
 
