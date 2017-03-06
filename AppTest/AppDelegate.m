@@ -81,6 +81,15 @@ didSignInForUser:(GIDGoogleUser *)user
     NSString *familyName = user.profile.familyName;
     NSString *email = user.profile.email;
     // ...
+    [FDKeychain saveItem: @"YES"
+                  forKey: @"loggedin"
+              forService: @"BIXI"
+                   error: nil];
+    
+    [FDKeychain saveItem: user.authentication.accessToken
+                  forKey: @"usertoken"
+              forService: @"BIXI"
+                   error: nil];
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"OffersViewController"];

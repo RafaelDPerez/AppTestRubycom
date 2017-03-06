@@ -13,6 +13,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "VKSideMenu.h"
+#import "FDKeyChain.h"
 @import GoogleSignIn;
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
@@ -156,6 +157,33 @@
 
 -(void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row ==0) {
+        // **GET PRODUCTS**
+        NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
+        NSLog(@"%@", token);
+        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/search_products/"];
+        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+        [rq setHTTPMethod:@"POST"];
+        NSData *jsonData = [@"" dataUsingEncoding:NSUTF8StringEncoding];
+        [rq setHTTPBody:jsonData];
+        [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+        
+        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        //        [rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [NSURLConnection sendAsynchronousRequest:rq
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response,
+                                                   NSData *data, NSError *connectionError)
+         {
+             NSError* error;
+             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                  options:kNilOptions
+                                                                    error:&error];
+             NSArray *result = [json objectForKey:@"result"];
+             
+             NSLog(@"codigo: %@", result);
+         }];
+    }
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
 }
 

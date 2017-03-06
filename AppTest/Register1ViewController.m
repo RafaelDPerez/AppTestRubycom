@@ -156,6 +156,34 @@ BOOL Registercompletion;
 //             
 //             NSLog(@"codigo: %@", result);
 //         }];
+    
+    
+//   // **GET PRODUCTS**
+//        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/search_products/"];
+//        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+//        [rq setHTTPMethod:@"POST"];
+//        NSData *jsonData = [@"" dataUsingEncoding:NSUTF8StringEncoding];
+//        [rq setHTTPBody:jsonData];
+//        [rq setValue:@"276wed2ItrjPLlp1Z9uKAxbCMcgy8NU7SEf" forHTTPHeaderField:@"X-Request-Id"];
+//    
+//        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+////        [rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+//        [NSURLConnection sendAsynchronousRequest:rq
+//                                           queue:[NSOperationQueue mainQueue]
+//                               completionHandler:^(NSURLResponse *response,
+//                                                   NSData *data, NSError *connectionError)
+//         {
+//             NSError* error;
+//             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+//                                                                  options:kNilOptions
+//                                                                    error:&error];
+//             NSArray *result = [json objectForKey:@"result"];
+//             
+//             NSLog(@"codigo: %@", result);
+//         }];
+    
+    
+    
 
     
     }
