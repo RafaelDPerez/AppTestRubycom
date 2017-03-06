@@ -12,22 +12,30 @@
 #import "KITableViewCell.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "VKSideMenu.h"
 @import GoogleSignIn;
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
-@interface OffersTableViewController (){
+@interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource>{
     NSArray *recipeImages;
     KASlideShow *slideshow;
     NSArray *imgs;
     KITableViewCell *cell;
     //NSUInteger *index;
 }
-
+@property (nonatomic, strong) VKSideMenu *menuLeft;
 @end
 
 @implementation OffersTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
+    self.menuLeft.dataSource = self;
+    self.menuLeft.delegate   = self;
+    [self.menuLeft addSwipeGestureRecognition:self.view];
+    self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     
     NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
     NSString *loggedin = [FDKeychain itemForKey:@"loggedin" forService:@"BIXI" error:nil];
@@ -57,10 +65,143 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(IBAction)buttonMenuLeft:(id)sender
+{
+    [self.menuLeft show:self.navigationController.view];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - VKSideMenuDataSource
+
+-(NSInteger)numberOfSectionsInSideMenu:(VKSideMenu *)sideMenu
+{
+    return (sideMenu == self.menuLeft) ? 1 : 2;
+}
+
+-(NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
+{
+    if (sideMenu == self.menuLeft)
+        return 5;
+    
+    return section == 0 ? 1 : 2;
+}
+
+-(VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // This solution is provided for DEMO propose only
+    // It's beter to store all items in separate arrays like you do it in your UITableView's. Right?
+    VKSideMenuItem *item = [VKSideMenuItem new];
+    
+    if (sideMenu == self.menuLeft) // All LEFT and TOP menu items
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                item.title = @"Inicio";
+                item.icon  = [UIImage imageNamed:@"Home-50"];
+                break;
+                
+            case 1:
+                item.title = @"Mi Perfil";
+                item.icon  = [UIImage imageNamed:@"ic_option_1"];
+                break;
+                
+            case 2:
+                item.title = @"Ofertas que me gustan";
+                item.icon  = [UIImage imageNamed:@"Like-50"];
+                break;
+                
+            case 3:
+                item.title = @"Configuración";
+                item.icon  = [UIImage imageNamed:@"ic_option_4"];
+                break;
+                
+            case 4:
+                item.title = @"Salir";
+                item.icon  = [UIImage imageNamed:@"Exit-50"];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else if (indexPath.section == 0) // RIGHT menu first section items
+    {
+        item.title = @"Login";
+    }
+    else // RIGHT menu second section items
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                item.title = @"Like";
+                break;
+                
+            case 1:
+                item.title = @"Share";
+                break;
+            default:
+                break;
+        }
+    }
+    
+    return item;
+}
+
+#pragma mark - VKSideMenuDelegate
+
+-(void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"SideMenu didSelectRow: %@", indexPath);
+}
+
+-(void)sideMenuDidShow:(VKSideMenu *)sideMenu
+{
+    NSString *menu = @"";
+    
+    if (sideMenu == self.menuLeft)
+        menu = @"LEFT";
+
+    
+    NSLog(@"%@ VKSideMenue did show", menu);
+}
+
+-(void)sideMenuDidHide:(VKSideMenu *)sideMenu
+{
+    NSString *menu = @"";
+    
+    if (sideMenu == self.menuLeft)
+        menu = @"LEFT";
+
+    
+    NSLog(@"%@ VKSideMenue did hide", menu);
+}
+
+-(NSString *)sideMenu:(VKSideMenu *)sideMenu titleForHeaderInSection:(NSInteger)section
+{
+    if (sideMenu == self.menuLeft)
+        return nil;
+    
+    switch (section)
+    {
+        case 0:
+            return @"Profile";
+            break;
+            
+        case 1:
+            return @"Actions";
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
 
 -(IBAction)logOut:(id)sender{
     [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];

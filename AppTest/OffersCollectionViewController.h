@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Offer.h"
-#import "SlideNavigationController.h"
 
-@interface OffersCollectionViewController : UICollectionViewController<SlideNavigationControllerDelegate>
+@interface OffersCollectionViewController : UICollectionViewController
 @property (weak, nonatomic) Offer *selectedOffer;
 @end

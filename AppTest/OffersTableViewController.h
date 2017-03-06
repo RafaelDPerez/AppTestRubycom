@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SlideNavigationController.h"
 #import "KASlideShow.h"
 
-@interface OffersTableViewController : UITableViewController<SlideNavigationControllerDelegate,KASlideShowDelegate,KASlideShowDataSource>{
+@interface OffersTableViewController : UITableViewController<KASlideShowDelegate,KASlideShowDataSource>{
 @public int index;
 }
 

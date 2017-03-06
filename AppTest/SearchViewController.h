@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SlideNavigationController.h"
 
-@interface SearchViewController : UIViewController<SlideNavigationControllerDelegate>
+
+@interface SearchViewController : UIViewController
 
 @end
