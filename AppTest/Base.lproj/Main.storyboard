@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmO-fp-GOA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="485.5" y="477.5"/>
+            <point key="canvasLocation" x="-1686" y="-2343"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="hWo-K6-fsj">
@@ -964,6 +964,7 @@
                     <connections>
                         <segue destination="O3q-zx-4gy" kind="modal" identifier="backLogIn" id="UIj-SX-bu4"/>
                         <segue destination="bm3-4H-ryX" kind="push" identifier="ViewOffer" id="eBk-wv-N18"/>
+                        <segue destination="rKe-D5-Abm" kind="modal" identifier="callMap" id="1AK-KJ-nAH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xhm-3a-1zb" userLabel="First Responder" sceneMemberID="firstResponder"/>

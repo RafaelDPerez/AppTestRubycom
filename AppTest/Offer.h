@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface Offer : NSObject
-@property (strong,nonatomic) NSString *OfferName;
+@property (strong,nonatomic) NSString *OfferExpirationDate;
 @property (strong,nonatomic) NSString *OfferDescription;
-@property (strong,nonatomic) NSString *OfferCost;
-@property (strong,nonatomic) NSString *Points;
 @property (strong,nonatomic) NSString *OfferImage;
+@property (strong,nonatomic) NSString *IsOffer;
+@property (strong,nonatomic) NSString *OfferName;
+@property (strong,nonatomic) NSString *OfferPoints;
+@property (strong,nonatomic) NSString *OfferID;
+@property (strong,nonatomic) NSString *OfferQuantity;
+@property (strong,nonatomic) NSString *OfferStatus;
 @end

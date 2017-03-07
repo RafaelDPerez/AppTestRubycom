@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "KASlideShow.h"
+#import "Commerce.h"
 
 @interface OffersTableViewController : UITableViewController<KASlideShowDelegate,KASlideShowDataSource>{
 @public int index;
 }
+@property (strong,nonatomic) NSMutableArray *commercesArray;
+@property (weak, nonatomic) Commerce *commerceSelected;
 
 -(void)callLogIn;
 @end

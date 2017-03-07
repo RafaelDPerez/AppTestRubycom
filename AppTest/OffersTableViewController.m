@@ -15,6 +15,8 @@
 #import "VKSideMenu.h"
 #import "FDKeyChain.h"
 @import GoogleSignIn;
+#import "Commerce.h"
+#import "Offer.h"
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
 @interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource>{
@@ -24,13 +26,71 @@
     KITableViewCell *cell;
     //NSUInteger *index;
 }
+
 @property (nonatomic, strong) VKSideMenu *menuLeft;
 @end
 
 @implementation OffersTableViewController
-
+@synthesize commercesArray, commerceSelected;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    commercesArray = [[NSMutableArray alloc] init];
+    // **GET PRODUCTS**
+    NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
+    NSLog(@"%@", token);
+    NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/search_products/"];
+    NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+    [rq setHTTPMethod:@"POST"];
+    NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
+    [rq setHTTPBody:jsonData];
+    [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+    
+    [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //        [rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    [NSURLConnection sendAsynchronousRequest:rq
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError)
+     {
+         NSError* error;
+         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:&error];
+         NSArray *result = [json objectForKey:@"result"];
+         for (int i = 0; i<= result.count - 1; i++) {
+             //now let's dig out each and every json object
+             Commerce *commerce = [[Commerce alloc]init];
+             NSDictionary *dict = [result objectAtIndex:i];
+             commerce.CommerceAddress = [dict objectForKey:@"commerce_address"];
+             commerce.CommerceID = [dict objectForKey:@"commerce_id"];
+             commerce.CommerceLat = [dict objectForKey:@"commerce_lat"];
+             commerce.CommerceLng = [dict objectForKey:@"commerce_lng"];
+             commerce.CommerceName = [dict objectForKey:@"commerce_name"];
+             commerce.CommerceOffers = [[NSMutableArray alloc]init];
+             NSArray *offers = [dict objectForKey:@"products"];
+             NSArray *dict2 = [offers objectAtIndex:0];
+             for (int j=0; j<=dict2.count -1; j++) {
+                 Offer *offer = [[Offer alloc]init];
+                 NSDictionary *dict3 = [dict2 objectAtIndex:j];
+                 offer.OfferExpirationDate = [dict3 objectForKey:@"date_expires"];
+                 offer.OfferDescription = [dict3 objectForKey:@"description"];
+                 offer.OfferImage = [dict3 objectForKey:@"images"];
+                 offer.IsOffer = [dict3 objectForKey:@"is_offer"];
+                 offer.OfferName = [dict3 objectForKey:@"name"];
+                 offer.OfferPoints = [dict3 objectForKey:@"points"];
+                 offer.OfferID = [dict3 objectForKey:@"product_id"];
+                 offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
+                 offer.OfferStatus = [dict3 objectForKey:@"status"];
+                 [commerce.CommerceOffers addObject:offer];
+             }
+             [commercesArray addObject:commerce];
+             [self.tableView reloadData];
+             //commerce.CommerceImage = [dict objectForKey:@"image"];
+             
+         }
+         
+         NSLog(@"codigo: %@", result);
+     }];
     
     self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
     self.menuLeft.dataSource = self;
@@ -38,7 +98,7 @@
     [self.menuLeft addSwipeGestureRecognition:self.view];
     self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     
-    NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
+   // NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
     NSString *loggedin = [FDKeychain itemForKey:@"loggedin" forService:@"BIXI" error:nil];
     NSLog(@"token:%@", token);
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
@@ -158,31 +218,10 @@
 -(void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row ==0) {
-        // **GET PRODUCTS**
-        NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
-        NSLog(@"%@", token);
-        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/search_products/"];
-        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
-        [rq setHTTPMethod:@"POST"];
-        NSData *jsonData = [@"" dataUsingEncoding:NSUTF8StringEncoding];
-        [rq setHTTPBody:jsonData];
-        [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
         
-        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        //        [rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
-        [NSURLConnection sendAsynchronousRequest:rq
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response,
-                                                   NSData *data, NSError *connectionError)
-         {
-             NSError* error;
-             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                                  options:kNilOptions
-                                                                    error:&error];
-             NSArray *result = [json objectForKey:@"result"];
-             
-             NSLog(@"codigo: %@", result);
-         }];
+    }
+    if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"callMap" sender:self];
     }
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
 }
@@ -253,12 +292,17 @@
         OfferViewController *offerViewController = [segue destinationViewController];
    //     [cell getCurrentIndex];
         offerViewController.hola= [recipeImages objectAtIndex:index];
+        offerViewController.Offer = [commerceSelected.CommerceOffers objectAtIndex:index];
+        
     }
     if ([segue.identifier isEqualToString:@"backLogIn"]) {
         //     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         //        ProfileViewController *leftMenu = (ProfileViewController*)[storyboard instantiateViewControllerWithIdentifier: @"LeftMenuViewController"];
         //        [SlideNavigationController sharedInstance].leftMenu = leftMenu;
         //        [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
+    }
+    if ([segue.identifier isEqualToString:@"callMap"]) {
+        
     }
     
 }
@@ -274,17 +318,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return imgs.count;
+    return commercesArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
-    [cell setSlideShow:@[@"336D.jpg",@"test_1.jpg",@"test_2.jpg",@"test_3.jpg",@"test_4.jpg"]];
+    [cell setSlideShow:@[@"336D.jpg",@"test_1.jpg",@"test_2.jpg",@"test_3.jpg",@"test_4.jpg",@"336D.jpg",@"test_1.jpg",@"test_2.jpg"]];
 
             
     //cell.slideshow = slideshow;
-    cell.txtName.text = [imgs objectAtIndex:indexPath.row];
+    commerceSelected = [commercesArray objectAtIndex:indexPath.row];
+    cell.txtName.text = commerceSelected.CommerceName;
     
     return cell;
 }
