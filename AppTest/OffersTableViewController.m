@@ -225,6 +225,9 @@
         
     }
     if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"callProfile" sender:self];
+    }
+    if (indexPath.row ==2) {
         [self performSegueWithIdentifier:@"callMap" sender:self];
     }
     if (indexPath.row ==4) {
@@ -337,6 +340,7 @@
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
     cell.txtName.text = commerceSelected.CommerceName;
+    cell.txtAddress.text = commerceSelected.CommerceAddress;
     
     return cell;
 }

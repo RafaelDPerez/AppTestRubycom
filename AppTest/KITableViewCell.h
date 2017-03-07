@@ -13,6 +13,7 @@
 @public int selectedIndex;
 }
 @property(weak, nonatomic) IBOutlet UILabel *txtName;
+@property(weak, nonatomic) IBOutlet UILabel *txtAddress;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property (strong,nonatomic) IBOutlet UIButton * btnPrev;
 @property (strong,nonatomic) IBOutlet UIButton * btnNext;

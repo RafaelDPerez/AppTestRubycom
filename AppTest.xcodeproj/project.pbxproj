@@ -17,6 +17,7 @@
 		451EE6FB1E6CEAF7006CF063 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 451EE6FA1E6CEAF7006CF063 /* VKSideMenu.m */; };
 		4560AFE81D8BA50E00E341CD /* OffersCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4560AFE71D8BA50E00E341CD /* OffersCollectionViewController.m */; };
 		456637A31E6E44680072F477 /* Commerce.m in Sources */ = {isa = PBXBuildFile; fileRef = 456637A21E6E44680072F477 /* Commerce.m */; };
+		456637A61E6E6DC90072F477 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456637A51E6E6DC90072F477 /* ProfileViewController.m */; };
 		4599E0541E3AF13D00C5C92C /* menu-button_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4599E0531E3AF13D00C5C92C /* menu-button_white@2x.png */; };
 		4599E0561E3AF1F100C5C92C /* menu-button_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4599E0551E3AF1F100C5C92C /* menu-button_white.png */; };
 		459F00CF1D90E47A0078736F /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F00CE1D90E47A0078736F /* Offer.m */; };
@@ -108,6 +109,8 @@
 		4560AFE71D8BA50E00E341CD /* OffersCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersCollectionViewController.m; sourceTree = "<group>"; };
 		456637A11E6E44680072F477 /* Commerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commerce.h; sourceTree = "<group>"; };
 		456637A21E6E44680072F477 /* Commerce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commerce.m; sourceTree = "<group>"; };
+		456637A41E6E6DC90072F477 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		456637A51E6E6DC90072F477 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		4599E0531E3AF13D00C5C92C /* menu-button_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button_white@2x.png"; sourceTree = "<group>"; };
 		4599E0551E3AF1F100C5C92C /* menu-button_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button_white.png"; sourceTree = "<group>"; };
 		459F00CD1D90E47A0078736F /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 				45E1520A1E4D39F600F5E9EF /* OffersTableViewController.m */,
 				45E152261E4D55B200F5E9EF /* SearchViewController.h */,
 				45E152271E4D55B200F5E9EF /* SearchViewController.m */,
+				456637A41E6E6DC90072F477 /* ProfileViewController.h */,
+				456637A51E6E6DC90072F477 /* ProfileViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -760,6 +765,7 @@
 				45D4F2651E2EE39E00619E7F /* User.m in Sources */,
 				45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */,
 				45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */,
+				456637A61E6E6DC90072F477 /* ProfileViewController.m in Sources */,
 				459F00D21D90E5E70078736F /* OfferViewController.m in Sources */,
 				456637A31E6E44680072F477 /* Commerce.m in Sources */,
 				45E152121E4D3AB400F5E9EF /* KASlideShow.m in Sources */,

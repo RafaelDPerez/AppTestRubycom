@@ -22,6 +22,8 @@
 //    Offer *offer = [[Offer alloc]init];
 //    offer = self.Offer;
   self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
     _imgOffer.image = [UIImage imageNamed:self.hola];
     _lblPoints.text = [NSString stringWithFormat:@"%@B",self.offer.OfferPoints ];
     _lblOfferName.text = self.offer.OfferName;
