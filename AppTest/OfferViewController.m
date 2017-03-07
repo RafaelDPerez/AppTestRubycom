@@ -7,6 +7,7 @@
 //
 
 #import "OfferViewController.h"
+#import "Offer.h"
 
 
 @interface OfferViewController ()
@@ -18,9 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+//    Offer *offer = [[Offer alloc]init];
+//    offer = self.Offer;
   self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     _imgOffer.image = [UIImage imageNamed:self.hola];
+    _lblPoints.text = [NSString stringWithFormat:@"%@B",self.offer.OfferPoints ];
+    _lblOfferName.text = self.offer.OfferName;
+    _lblOfferDescription.text = self.offer.OfferDescription;
 }
 
 - (void)didReceiveMemoryWarning {

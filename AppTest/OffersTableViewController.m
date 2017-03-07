@@ -56,40 +56,44 @@
          NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                               options:kNilOptions
                                                                 error:&error];
-         NSArray *result = [json objectForKey:@"result"];
-         for (int i = 0; i<= result.count - 1; i++) {
-             //now let's dig out each and every json object
-             Commerce *commerce = [[Commerce alloc]init];
-             NSDictionary *dict = [result objectAtIndex:i];
-             commerce.CommerceAddress = [dict objectForKey:@"commerce_address"];
-             commerce.CommerceID = [dict objectForKey:@"commerce_id"];
-             commerce.CommerceLat = [dict objectForKey:@"commerce_lat"];
-             commerce.CommerceLng = [dict objectForKey:@"commerce_lng"];
-             commerce.CommerceName = [dict objectForKey:@"commerce_name"];
-             commerce.CommerceOffers = [[NSMutableArray alloc]init];
-             NSArray *offers = [dict objectForKey:@"products"];
-             NSArray *dict2 = [offers objectAtIndex:0];
-             for (int j=0; j<=dict2.count -1; j++) {
-                 Offer *offer = [[Offer alloc]init];
-                 NSDictionary *dict3 = [dict2 objectAtIndex:j];
-                 offer.OfferExpirationDate = [dict3 objectForKey:@"date_expires"];
-                 offer.OfferDescription = [dict3 objectForKey:@"description"];
-                 offer.OfferImage = [dict3 objectForKey:@"images"];
-                 offer.IsOffer = [dict3 objectForKey:@"is_offer"];
-                 offer.OfferName = [dict3 objectForKey:@"name"];
-                 offer.OfferPoints = [dict3 objectForKey:@"points"];
-                 offer.OfferID = [dict3 objectForKey:@"product_id"];
-                 offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
-                 offer.OfferStatus = [dict3 objectForKey:@"status"];
-                 [commerce.CommerceOffers addObject:offer];
+         NSString *message = [json objectForKey:@"sceResponseMsg"];
+         if ([message isEqualToString:@"OK"]) {
+             NSArray *result = [json objectForKey:@"result"];
+             for (int i = 0; i<= result.count - 1; i++) {
+                 //now let's dig out each and every json object
+                 Commerce *commerce = [[Commerce alloc]init];
+                 NSDictionary *dict = [result objectAtIndex:i];
+                 commerce.CommerceAddress = [dict objectForKey:@"commerce_address"];
+                 commerce.CommerceID = [dict objectForKey:@"commerce_id"];
+                 commerce.CommerceLat = [dict objectForKey:@"commerce_lat"];
+                 commerce.CommerceLng = [dict objectForKey:@"commerce_lng"];
+                 commerce.CommerceName = [dict objectForKey:@"commerce_name"];
+                 commerce.CommerceOffers = [[NSMutableArray alloc]init];
+                 NSArray *offers = [dict objectForKey:@"products"];
+                 NSArray *dict2 = [offers objectAtIndex:0];
+                 for (int j=0; j<=dict2.count -1; j++) {
+                     Offer *offer = [[Offer alloc]init];
+                     NSDictionary *dict3 = [dict2 objectAtIndex:j];
+                     offer.OfferExpirationDate = [dict3 objectForKey:@"date_expires"];
+                     offer.OfferDescription = [dict3 objectForKey:@"description"];
+                     offer.OfferImage = [dict3 objectForKey:@"images"];
+                     offer.IsOffer = [dict3 objectForKey:@"is_offer"];
+                     offer.OfferName = [dict3 objectForKey:@"name"];
+                     offer.OfferPoints = [dict3 objectForKey:@"points"];
+                     offer.OfferID = [dict3 objectForKey:@"product_id"];
+                     offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
+                     offer.OfferStatus = [dict3 objectForKey:@"status"];
+                     [commerce.CommerceOffers addObject:offer];
+                 }
+                 [commercesArray addObject:commerce];
+                 [self.tableView reloadData];
+                 //commerce.CommerceImage = [dict objectForKey:@"image"];
+                 
              }
-             [commercesArray addObject:commerce];
-             [self.tableView reloadData];
-             //commerce.CommerceImage = [dict objectForKey:@"image"];
              
+             NSLog(@"codigo: %@", result);
          }
          
-         NSLog(@"codigo: %@", result);
      }];
     
     self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
@@ -222,6 +226,9 @@
     }
     if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"callMap" sender:self];
+    }
+    if (indexPath.row ==4) {
+        [self logOut:self];
     }
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
 }

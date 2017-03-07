@@ -10,10 +10,10 @@
 #import "Offer.h"
 
 @interface OfferViewController : ViewController
-@property(weak, nonatomic) Offer *Offer;
+@property(weak, nonatomic) Offer *offer;
 @property(weak, nonatomic) NSString *hola;
 @property (weak, nonatomic) IBOutlet UILabel *lblPoints;
-@property (weak, nonatomic) IBOutlet UILabel *lblPoints;
-@property (weak, nonatomic) IBOutlet UILabel *lblPoints;
+@property (weak, nonatomic) IBOutlet UILabel *lblOfferName;
+@property (weak, nonatomic) IBOutlet UILabel *lblOfferDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOffer;
 @end
