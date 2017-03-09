@@ -16,4 +16,5 @@
 @property (strong,nonatomic) NSString *CommerceName;
 @property (strong,nonatomic) NSString *CommerceImage;
 @property (strong,nonatomic) NSMutableArray *CommerceOffers;
+@property (strong,nonatomic) NSMutableArray *CommerceOffersImages;
 @end

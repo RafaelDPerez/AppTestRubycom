@@ -15,6 +15,9 @@
 }
 @property (strong,nonatomic) NSMutableArray *commercesArray;
 @property (weak, nonatomic) Commerce *commerceSelected;
+@property (weak, nonatomic) Commerce *commerceClicked;
+@property (strong, nonatomic) NSMutableArray *urlArray;
+@property (strong, nonatomic) NSMutableArray *imageArray;
 
 -(void)callLogIn;
 @end

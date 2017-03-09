@@ -17,10 +17,11 @@
 @import GoogleSignIn;
 #import "Commerce.h"
 #import "Offer.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
 @interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource>{
-    NSArray *recipeImages;
+    NSMutableArray *recipeImages;
     KASlideShow *slideshow;
     NSArray *imgs;
     KITableViewCell *cell;
@@ -31,9 +32,13 @@
 @end
 
 @implementation OffersTableViewController
-@synthesize commercesArray, commerceSelected;
+@synthesize commercesArray, commerceSelected, commerceClicked, urlArray, imageArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    recipeImages = [[NSMutableArray alloc]init];
+    recipeImages = [NSMutableArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
+    urlArray =[[NSMutableArray alloc] init];
+    imageArray=[[NSMutableArray alloc] init];
     commercesArray = [[NSMutableArray alloc] init];
     // **GET PRODUCTS**
     NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
@@ -43,7 +48,7 @@
     [rq setHTTPMethod:@"POST"];
     NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
     [rq setHTTPBody:jsonData];
-    [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+   // [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
     
     [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     //        [rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
@@ -57,11 +62,14 @@
                                                               options:kNilOptions
                                                                 error:&error];
          NSString *message = [json objectForKey:@"sceResponseMsg"];
+         NSArray *result = [json objectForKey:@"result"];
+         NSLog(@"%@",result);
          if ([message isEqualToString:@"OK"]) {
              NSArray *result = [json objectForKey:@"result"];
              for (int i = 0; i<= result.count - 1; i++) {
                  //now let's dig out each and every json object
                  Commerce *commerce = [[Commerce alloc]init];
+                 commerce.CommerceOffersImages = [[NSMutableArray alloc]init];
                  NSDictionary *dict = [result objectAtIndex:i];
                  commerce.CommerceAddress = [dict objectForKey:@"commerce_address"];
                  commerce.CommerceID = [dict objectForKey:@"commerce_id"];
@@ -70,10 +78,10 @@
                  commerce.CommerceName = [dict objectForKey:@"commerce_name"];
                  commerce.CommerceOffers = [[NSMutableArray alloc]init];
                  NSArray *offers = [dict objectForKey:@"products"];
-                 NSArray *dict2 = [offers objectAtIndex:0];
-                 for (int j=0; j<=dict2.count -1; j++) {
+               //  NSArray *dict2 = [offers objectAtIndex:0];
+                 for (int j=0; j<=offers.count -1; j++) {
                      Offer *offer = [[Offer alloc]init];
-                     NSDictionary *dict3 = [dict2 objectAtIndex:j];
+                     NSDictionary *dict3 = [offers objectAtIndex:j];
                      offer.OfferExpirationDate = [dict3 objectForKey:@"date_expires"];
                      offer.OfferDescription = [dict3 objectForKey:@"description"];
                      offer.OfferImage = [dict3 objectForKey:@"images"];
@@ -83,9 +91,38 @@
                      offer.OfferID = [dict3 objectForKey:@"product_id"];
                      offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
                      offer.OfferStatus = [dict3 objectForKey:@"status"];
+                     offer.OfferImage = [dict3 objectForKey:@"images"];
                      [commerce.CommerceOffers addObject:offer];
+                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
+                     
+//                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                     
                  }
+
+//                 for (int i =0; i<urlArray.count; i++) {
+//                     NSURL *url = [NSURL URLWithString:[self.urlArray firstObject]];
+//                     SDWebImageManager *manager = [SDWebImageManager sharedManager];
+//                     [manager downloadImageWithURL:url
+//                                           options:0
+//                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//                                              // progression tracking code
+//                                          }
+//                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//                                             if (image) {
+//                                                 [imageArray addObject:image];
+//                                                 //[urlArray removeObjectAtIndex:0];
+//                                                 // [self downloadImage];
+//                                             }
+//                                             else {
+//                                                 //  [self downloadImage]; //try download once again
+//                                             }
+//                                         }];
+//                 }
+//                 commerce.CommerceOffersImages = imageArray;
+                 //[imageArray removeAllObjects];
+                // [urlArray removeAllObjects];
                  [commercesArray addObject:commerce];
+                 
                  [self.tableView reloadData];
                  //commerce.CommerceImage = [dict objectForKey:@"image"];
                  
@@ -120,7 +157,7 @@
              @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png"
              ];
 
-    recipeImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
+  
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -129,6 +166,33 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+
+-(void)downloadImage {
+    for (int i =0; i<urlArray.count; i++) {
+        NSURL *url = [NSURL URLWithString:[self.urlArray firstObject]];
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        [manager downloadImageWithURL:url
+                              options:0
+                             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                 // progression tracking code
+                             }
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                if (image) {
+                                    [imageArray addObject:image];
+                                    //[urlArray removeObjectAtIndex:0];
+                                   // [self downloadImage];
+                                }
+                                else {
+                                  //  [self downloadImage]; //try download once again
+                                }
+                            }];
+    }
+
+    }
+    
+//    if (urlArray.count > 0) {
+//        }
 
 -(IBAction)buttonMenuLeft:(id)sender
 {
@@ -302,7 +366,7 @@
         OfferViewController *offerViewController = [segue destinationViewController];
    //     [cell getCurrentIndex];
         offerViewController.hola= [recipeImages objectAtIndex:index];
-        offerViewController.Offer = [commerceSelected.CommerceOffers objectAtIndex:index];
+        offerViewController.Offer = [commerceClicked.CommerceOffers objectAtIndex:index];
         
     }
     if ([segue.identifier isEqualToString:@"backLogIn"]) {
@@ -334,11 +398,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
-    [cell setSlideShow:@[@"336D.jpg",@"test_1.jpg",@"test_2.jpg",@"test_3.jpg",@"test_4.jpg",@"336D.jpg",@"test_1.jpg",@"test_2.jpg"]];
+    
 
             
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
+    [cell setSlideShow:commerceSelected.CommerceOffersImages];
     cell.txtName.text = commerceSelected.CommerceName;
     cell.txtAddress.text = commerceSelected.CommerceAddress;
     
@@ -347,7 +412,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+     commerceClicked = [commercesArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"ViewOffer" sender:self];
 
     
