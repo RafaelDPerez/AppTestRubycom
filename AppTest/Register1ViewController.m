@@ -11,9 +11,15 @@
 #import "ACFloatingTextField.h"
 
 @interface Register1ViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtNombre;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtEdad;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtSexo;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtFirstName;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtLastName;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtDocumentID;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtDateOfBirth;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtSex;
+@property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong,nonatomic) NSArray *pickerNames;
+
+
 
 @end
 
@@ -23,28 +29,123 @@ BOOL Registercompletion;
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     Registercompletion = NO;
-    [_txtNombre setTextFieldPlaceholderText:@"nombre"];
-    _txtNombre.selectedLineColor = [UIColor whiteColor];
-    _txtNombre.placeHolderColor = [UIColor whiteColor];
-    [_txtNombre setTextColor:[UIColor whiteColor]];
-    _txtNombre.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtNombre.lineColor = [UIColor whiteColor];
+    [_txtFirstName setTextFieldPlaceholderText:@"primer nombre"];
+    _txtFirstName.selectedLineColor = [UIColor whiteColor];
+    _txtFirstName.placeHolderColor = [UIColor whiteColor];
+    [_txtFirstName setTextColor:[UIColor whiteColor]];
+    _txtFirstName.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtFirstName.lineColor = [UIColor whiteColor];
     
-    [_txtEdad setTextFieldPlaceholderText:@"edad"];
-    _txtEdad.selectedLineColor = [UIColor whiteColor];
-    _txtEdad.placeHolderColor = [UIColor whiteColor];
-    [_txtEdad setTextColor:[UIColor whiteColor]];
-    _txtEdad.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtEdad.lineColor = [UIColor whiteColor];
+    [_txtLastName setTextFieldPlaceholderText:@"segundo nombre"];
+    _txtLastName.selectedLineColor = [UIColor whiteColor];
+    _txtLastName.placeHolderColor = [UIColor whiteColor];
+    [_txtLastName setTextColor:[UIColor whiteColor]];
+    _txtLastName.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtLastName.lineColor = [UIColor whiteColor];
     
-    [_txtSexo setTextFieldPlaceholderText:@"sexo"];
-    _txtSexo.selectedLineColor = [UIColor whiteColor];
-    _txtSexo.placeHolderColor = [UIColor whiteColor];
-    [_txtSexo setTextColor:[UIColor whiteColor]];
-    _txtSexo.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtSexo.lineColor = [UIColor whiteColor];
+    [_txtDocumentID setTextFieldPlaceholderText:@"documento de identidad"];
+    _txtDocumentID.selectedLineColor = [UIColor whiteColor];
+    _txtDocumentID.placeHolderColor = [UIColor whiteColor];
+    [_txtDocumentID setTextColor:[UIColor whiteColor]];
+    _txtDocumentID.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtDocumentID.lineColor = [UIColor whiteColor];
     
-    // Do any additional setup after loading the view.
+    [_txtDateOfBirth setTextFieldPlaceholderText:@"fecha de nacimiento"];
+    _txtDateOfBirth.selectedLineColor = [UIColor whiteColor];
+    _txtDateOfBirth.placeHolderColor = [UIColor whiteColor];
+    [_txtDateOfBirth setTextColor:[UIColor whiteColor]];
+    _txtDateOfBirth.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtDateOfBirth.lineColor = [UIColor whiteColor];
+    
+    [_txtSex setTextFieldPlaceholderText:@"sexo"];
+    _txtSex.selectedLineColor = [UIColor whiteColor];
+    _txtSex.placeHolderColor = [UIColor whiteColor];
+    [_txtSex setTextColor:[UIColor whiteColor]];
+    _txtSex.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtSex.lineColor = [UIColor whiteColor];
+    _txtSex.allowsEditingTextAttributes = NO;
+    
+    self.pickerView = [[UIPickerView alloc] init];
+    self.pickerView.delegate = self;     //#2
+    self.pickerView.dataSource = self;   //#2
+    self.pickerNames = @[ @"M", @"F"];
+    _txtSex.inputView = self.pickerView;
+    
+    
+    UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+//    NSString *maxDateString = @"01/01/1996";
+//    // the date formatter used to convert string to date
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    // the specific format to use
+//    dateFormatter.dateFormat = @"dd/MM/yyyy";
+//    // converting string to date
+//    NSDate *theMaximumDate = [dateFormatter dateFromString: maxDateString];
+    
+    // repeat the same logic for theMinimumDate if needed
+    
+    // here you can assign the max and min dates to your datePicker
+    //[datePicker setMaximumDate:theMaximumDate]; //the min age restriction
+    [datePicker setDate:[NSDate date]];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+   
+    [self.txtDateOfBirth setInputView:datePicker];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
+
+}
+
+#pragma mark - UIPickerViewDataSource
+
+// #3
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    if (pickerView == self.pickerView) {
+        return 1;
+    }
+    
+    return 0;
+}
+
+// #4
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    if (pickerView == self.pickerView) {
+        return [self.pickerNames count];
+    }
+    
+    return 0;
+}
+
+#pragma mark - UIPickerViewDelegate
+
+// #5
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (pickerView == self.pickerView) {
+        return self.pickerNames[row];
+    }
+    
+    return nil;
+}
+
+// #6
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (pickerView == self.pickerView) {
+        self.txtSex.text = self.pickerNames[row];
+    }
+}
+
+-(void)dismissKeyboard {
+    [_txtFirstName resignFirstResponder];
+    [_txtLastName resignFirstResponder];
+    [_txtDateOfBirth resignFirstResponder];
+    [_txtSex resignFirstResponder];
+    [_txtDocumentID resignFirstResponder];
+
+    
 }
 
 #pragma mark  UITextfield Delegates
@@ -55,11 +156,27 @@ BOOL Registercompletion;
     
 }
 
+
+
+-(void)updateTextField:(id)sender
+{
+    UIDatePicker *picker = (UIDatePicker*)self.txtDateOfBirth.inputView;
+    //self.txtDateOfBirth.text = [NSString stringWithFormat:@"%@",picker.date];
+    self.txtDateOfBirth.text = [self formatDate:picker.date];
+}
+
+- (NSString *)formatDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    [_txtNombre resignFirstResponder];
-    [_txtEdad resignFirstResponder];
-    [_txtSexo resignFirstResponder];
+    [textField resignFirstResponder];
+
     return YES;
 }
 
@@ -191,7 +308,7 @@ BOOL Registercompletion;
 //token = 276wed2ItrjPLlp1Z9uKAxbCMcgy8NU7SEf
 
 -(IBAction)nextRegister:(id)sender{
-if (_txtNombre.text && _txtNombre.text.length > 0 && _txtSexo.text && _txtSexo.text.length > 0 &&_txtEdad.text && _txtEdad.text.length > 0  )
+if (_txtFirstName.text && _txtFirstName.text.length > 0 && _txtLastName.text && _txtLastName.text.length > 0 &&_txtDocumentID.text && _txtDocumentID.text.length > 0 && _txtSex.text && _txtSex.text.length > 0 && _txtDateOfBirth.text && _txtDateOfBirth.text.length > 0  )
 {
     
      [self performSegueWithIdentifier:@"NextRegister" sender:self];
@@ -214,13 +331,16 @@ else{
     if ([segue.identifier isEqualToString:@"NextRegister"]) {
 
 //        NSIndexPath *indexPaths = [self.tableView indexPathForSelectedRow];
+        NSString *hola = _txtDateOfBirth.text;
         Register2ViewController *register2ViewController = [segue destinationViewController];
         register2ViewController.user = [[User alloc]init];
-        register2ViewController.user.firstName = _txtNombre.text;
-        register2ViewController.user.age = _txtEdad.text;
-        register2ViewController.user.gender = _txtSexo.text;
+        register2ViewController.user.firstName = _txtFirstName.text;
+        register2ViewController.user.lastName = _txtLastName.text;
+        register2ViewController.user.gender = _txtSex.text;
+        register2ViewController.user.documentId = _txtDocumentID.text;
+        register2ViewController.user.birthDate = hola;
         
-        NSLog(_txtNombre.text);
+        NSLog(_txtDateOfBirth.text);
 //        _selectedStation = [stationsArray objectAtIndex:indexPaths.row];
 //        stationViewController.Station = _selectedStation;
 //        [self.tableView deselectRowAtIndexPath:indexPaths animated:NO];

@@ -8,20 +8,28 @@
 
 #import "Register2ViewController.h"
 #import "ACFloatingTextField.h"
+#import "Register1ViewController.h"
 
 
-@interface Register2ViewController ()<UITextFieldDelegate>
+@interface Register2ViewController ()<UITextFieldDelegate>{
+Register1ViewController *hola;
+}
 
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtEmail;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtPassword;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtConfirmPassword;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtMobile;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtPhone1;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtPhone2;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtAddress;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtEmail;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtPassword;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtConfirmPassword;
+
+
 @end
 
 @implementation Register2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    hola = [[Register1ViewController alloc]init];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     // Do any additional setup after loading the view.
     [_txtEmail setTextFieldPlaceholderText:@"correo"];
@@ -45,12 +53,32 @@
     _txtConfirmPassword.selectedPlaceHolderColor = [UIColor whiteColor];
     _txtConfirmPassword.lineColor = [UIColor whiteColor];
     
-    [_txtMobile setTextFieldPlaceholderText:@"movil"];
-    _txtMobile.selectedLineColor = [UIColor whiteColor];
-    _txtMobile.placeHolderColor = [UIColor whiteColor];
-    [_txtMobile setTextColor:[UIColor whiteColor]];
-    _txtMobile.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtMobile.lineColor = [UIColor whiteColor];
+    [_txtPhone1 setTextFieldPlaceholderText:@"telefono 1"];
+    _txtPhone1.selectedLineColor = [UIColor whiteColor];
+    _txtPhone1.placeHolderColor = [UIColor whiteColor];
+    [_txtPhone1 setTextColor:[UIColor whiteColor]];
+    _txtPhone1.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtPhone1.lineColor = [UIColor whiteColor];
+    
+    [_txtPhone2 setTextFieldPlaceholderText:@"telefono 2"];
+    _txtPhone2.selectedLineColor = [UIColor whiteColor];
+    _txtPhone2.placeHolderColor = [UIColor whiteColor];
+    [_txtPhone2 setTextColor:[UIColor whiteColor]];
+    _txtPhone2.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtPhone2.lineColor = [UIColor whiteColor];
+    
+    [_txtAddress setTextFieldPlaceholderText:@"dirección"];
+    _txtAddress.selectedLineColor = [UIColor whiteColor];
+    _txtAddress.placeHolderColor = [UIColor whiteColor];
+    [_txtAddress setTextColor:[UIColor whiteColor]];
+    _txtAddress.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtAddress.lineColor = [UIColor whiteColor];
+    
+    _txtPassword.secureTextEntry = YES;
+    _txtConfirmPassword.secureTextEntry = YES;
+    _txtPhone1.keyboardType = UIKeyboardTypePhonePad;
+    _txtPhone2.keyboardType = UIKeyboardTypePhonePad;
+    _txtEmail.keyboardType = UIKeyboardTypeEmailAddress;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,16 +88,58 @@
 
 -(IBAction)RegisterUser:(id)sender{
     
-    if (_txtEmail.text && _txtEmail.text.length > 0 && _txtMobile.text && _txtMobile.text.length > 0 &&_txtPassword.text && _txtPassword.text.length > 0 && _txtConfirmPassword.text && _txtConfirmPassword.text.length > 0 )
+    if (_txtEmail.text && _txtEmail.text.length > 0 && _txtPhone1.text && _txtPhone1.text.length > 0 &&_txtPassword.text && _txtPassword.text.length > 0 && _txtConfirmPassword.text && _txtConfirmPassword.text.length > 0 && _txtAddress.text && _txtAddress.text.length > 0)
     {
         
         self.user.password = _txtPassword.text;
         self.user.passwordConfirm = _txtConfirmPassword.text;
-        self.user.phone1 = _txtMobile.text;
+        self.user.phone1 = _txtPhone1.text;
+        self.user.phone2 = _txtPhone2.text;
         self.user.email = _txtEmail.text;
-        NSLog(@"%@ - %@ -%@ -%@ -%@ -%@ -%@",self.user.password, self.user.passwordConfirm, self.user.gender, self.user.email, self.user.firstName, self.user.age, self.user.phone1);
-        [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
+        self.user.address = _txtAddress.text;
+        NSLog(@"%@ - %@ -%@ -%@ -%@ -%@ -%@",self.user.firstName, self.user.lastName, self.user.documentId, self.user.phone1, self.user.phone2, self.user.address, self.user.gender, self.user.email, self.user.birthDate,self.user.password, self.user.passwordConfirm);
+        
+        if ([self.user.password isEqualToString:self.user.passwordConfirm]) {
+            //**REGISTER**
+            NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/user/"];
+            NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+            [rq setHTTPMethod:@"PUT"];
+            
+            NSData *jsonData = [[NSString stringWithFormat:@"{\"first_name\":\"%@\",\"last_name\":\"%@\",\"document_id\":\"%@\",\"phone1\":\"%@\",\"phone2\":\"%@\",\"address\":\"%@\",\"gender\":\"%@\",\"email\":\"%@\",\"email_confirm\":\"%@\",\"birth_date\":\"%@\",\"password\":\"%@\",\"password_confirm\":\"%@\" }", self.user.firstName, self.user.lastName, self.user.documentId, self.user.phone1, self.user.phone2, self.user.address, self.user.gender, self.user.email,self.user.email, self.user.birthDate,self.user.password, self.user.passwordConfirm] dataUsingEncoding:NSUTF8StringEncoding];
+            [rq setHTTPBody:jsonData];
+            
+            [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+            [NSURLConnection sendAsynchronousRequest:rq
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:^(NSURLResponse *response,
+                                                       NSData *data, NSError *connectionError)
+             {
+                 NSError* error;
+                 NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                      options:kNilOptions
+                                                                        error:&error];
+                 NSString *sceResponseMsg = [json objectForKey:@"sceResponseMsg"];
+                 
+                 NSLog(@"codigo: %@", sceResponseMsg);
+                 if ([sceResponseMsg isEqualToString:@"OK"]) {
+                      [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
+                 }
+                
+             }];
+            
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Password"
+                                                            message:@"Por favor confirmar password."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        
     }
+    
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Campo requerido"
                                                         message:@"Hay uno o más campos requeridos que están vacíos."

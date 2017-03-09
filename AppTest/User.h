@@ -9,19 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
-@property (weak,nonatomic) NSString *firstName;
-@property (weak,nonatomic) NSString *lastName;
-@property (weak,nonatomic) NSString *documentId;
-@property (weak,nonatomic) NSString *phone1;
-@property (weak,nonatomic) NSString *phone2;
-@property (weak,nonatomic) NSString *address;
-@property (weak,nonatomic) NSString *gender;
-@property (weak,nonatomic) NSString *email;
-@property (weak,nonatomic) NSString *birthDate;
-@property (weak,nonatomic) NSString *age;
-@property (weak,nonatomic) NSString *image;
-@property (weak,nonatomic) NSString *password;
-@property (weak,nonatomic) NSString *passwordConfirm;
+@property (strong,nonatomic) NSString *firstName;
+@property (strong,nonatomic) NSString *lastName;
+@property (strong,nonatomic) NSString *documentId;
+@property (strong,nonatomic) NSString *phone1;
+@property (strong,nonatomic) NSString *phone2;
+@property (strong,nonatomic) NSString *address;
+@property (strong,nonatomic) NSString *gender;
+@property (strong,nonatomic) NSString *email;
+@property (strong,nonatomic) NSString *birthDate;
+@property (strong,nonatomic) NSString *image;
+@property (strong,nonatomic) NSString *password;
+@property (strong,nonatomic) NSString *passwordConfirm;
 
 
 
