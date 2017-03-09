@@ -93,7 +93,8 @@
                      offer.OfferStatus = [dict3 objectForKey:@"status"];
                      offer.OfferImage = [dict3 objectForKey:@"images"];
                      [commerce.CommerceOffers addObject:offer];
-                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
+//                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
+                     [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                      
 //                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                      

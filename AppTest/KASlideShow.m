@@ -16,6 +16,7 @@
 // limitations under the License.
 
 #import "KASlideShow.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 #define kSwipeTransitionDuration 0.25
 
@@ -109,9 +110,30 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) addImagesFromResources:(NSArray *) names
 {
-    for(NSString * name in names){
-        [self addImage:[UIImage imageNamed:name]];
-    }
+//    for(NSString * name in names){
+//        [self addImage:[UIImage imageNamed:name]];
+//    }
+                     for (int i =0; i<names.count; i++) {
+                         NSURL *url = [NSURL URLWithString:[names objectAtIndex:i]];
+                         SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                         [manager downloadImageWithURL:url
+                                               options:0
+                                              progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                  // progression tracking code
+                                              }
+                                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                 if (image) {
+                                                     //[imageArray addObject:image];
+                                                     [self addImage:image];
+                                                     //[urlArray removeObjectAtIndex:0];
+                                                     // [self downloadImage];
+                                                 }
+                                                 else {
+                                                     //  [self downloadImage]; //try download once again
+                                                 }
+                                             }];
+                     }
+
 }
 
 - (void) addImage:(UIImage*) image
