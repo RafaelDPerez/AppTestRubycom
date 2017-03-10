@@ -124,6 +124,28 @@
     return section == 0 ? 1 : 2;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+//    if ([segue.identifier isEqualToString:@"ViewOffer"]) {
+//        OfferViewController *offerViewController = [segue destinationViewController];
+//        //     [cell getCurrentIndex];
+//        offerViewController.hola= [recipeImages objectAtIndex:index];
+//        offerViewController.Offer = [commerceClicked.CommerceOffers objectAtIndex:index];
+//        
+//    }
+    if ([segue.identifier isEqualToString:@"callHomeFromMap"]) {
+        
+        //     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //        ProfileViewController *leftMenu = (ProfileViewController*)[storyboard instantiateViewControllerWithIdentifier: @"LeftMenuViewController"];
+        //        [SlideNavigationController sharedInstance].leftMenu = leftMenu;
+        //        [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
+    }
+    if ([segue.identifier isEqualToString:@"callMap"]) {
+        [self removeFromParentViewController];
+    }
+    
+}
+
 -(VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // This solution is provided for DEMO propose only
@@ -192,6 +214,8 @@
 {
     if (indexPath.row ==0) {
         [self performSegueWithIdentifier:@"callHomeFromMap" sender:self];
+        [self removeFromParentViewController];
+        [self.view removeFromSuperview];
     }
     if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"callMap" sender:self];

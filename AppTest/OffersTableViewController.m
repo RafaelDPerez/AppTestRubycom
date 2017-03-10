@@ -20,7 +20,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
-@interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource>{
+@interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource, UIAlertViewDelegate>{
     NSMutableArray *recipeImages;
     KASlideShow *slideshow;
     NSArray *imgs;
@@ -294,13 +294,32 @@
     }
     if (indexPath.row ==2) {
         [self performSegueWithIdentifier:@"callMap" sender:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self removeFromParentViewController];
+        [self.view removeFromSuperview];
     }
     if (indexPath.row ==4) {
-        [self logOut:self];
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Salir"
+                              message: @"Está seguro que desea salir de BIXI?"
+                              delegate: self
+                              cancelButtonTitle:@"NO"
+                              otherButtonTitles:@"SI",nil];
+        [alert show];
+        
     }
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
 }
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self logOut:self];
+    }
+    else {
+        
+    }
+}
 -(void)sideMenuDidShow:(VKSideMenu *)sideMenu
 {
     NSString *menu = @"";
@@ -377,7 +396,7 @@
         //        [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
     }
     if ([segue.identifier isEqualToString:@"callMap"]) {
-        
+        [self removeFromParentViewController];
     }
     
 }

@@ -119,11 +119,19 @@ Register1ViewController *hola;
                  NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:kNilOptions
                                                                         error:&error];
+                 NSNumber *sceResponseCode = [json objectForKey:@"sceResponseCode"];
                  NSString *sceResponseMsg = [json objectForKey:@"sceResponseMsg"];
                  
-                 NSLog(@"codigo: %@", sceResponseMsg);
-                 if ([sceResponseMsg isEqualToString:@"OK"]) {
+                 if ([sceResponseCode longLongValue]==0) {
                       [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
+                 }
+                 if ([sceResponseCode longLongValue]==1) {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Password"
+                                                                     message:sceResponseMsg
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil];
+                     [alert show];
                  }
                 
              }];
