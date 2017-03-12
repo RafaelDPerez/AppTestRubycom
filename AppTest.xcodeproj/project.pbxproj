@@ -69,6 +69,7 @@
 		45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F4740F1E3048A400DD3C47 /* Register2ViewController.m */; };
 		45F7A2791E396F0800A3235D /* BienvenidoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7A2781E396F0800A3235D /* BienvenidoViewController.m */; };
 		45F7A27D1E3972FF00A3235D /* ACFloatingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */; };
+		45F807511E759A21005DB3A4 /* FilteredOffersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F807501E759A21005DB3A4 /* FilteredOffersTableViewController.m */; };
 		83349CB109212375B7905AC6 /* libPods-AppTestUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA71AE2AFB459F655F9A16A8 /* libPods-AppTestUITests.a */; };
 		97E9429F88885DD0421773F7 /* libPods-AppTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBECB606A5EEAE7E47721D7 /* libPods-AppTestTests.a */; };
 		9C0194C4BAECDFFB2FB2204E /* libPods-AppTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 252F063C7F2F76F96EEF6D44 /* libPods-AppTest.a */; };
@@ -187,6 +188,8 @@
 		45F7A2781E396F0800A3235D /* BienvenidoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BienvenidoViewController.m; sourceTree = "<group>"; };
 		45F7A27B1E3972FF00A3235D /* ACFloatingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACFloatingTextField.h; sourceTree = "<group>"; };
 		45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACFloatingTextField.m; sourceTree = "<group>"; };
+		45F8074F1E759A21005DB3A4 /* FilteredOffersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredOffersTableViewController.h; sourceTree = "<group>"; };
+		45F807501E759A21005DB3A4 /* FilteredOffersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredOffersTableViewController.m; sourceTree = "<group>"; };
 		6E45FA9D8B4DA65FF6C3F021 /* Pods-AppTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppTest/Pods-AppTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E3AE3F0010470451DE6B903B /* Pods-AppTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTestUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppTestUITests/Pods-AppTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE4FF6F6A36A678578058D93 /* Pods-AppTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTestUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppTestUITests/Pods-AppTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 				45E152271E4D55B200F5E9EF /* SearchViewController.m */,
 				456637A41E6E6DC90072F477 /* ProfileViewController.h */,
 				456637A51E6E6DC90072F477 /* ProfileViewController.m */,
+				45F8074F1E759A21005DB3A4 /* FilteredOffersTableViewController.h */,
+				45F807501E759A21005DB3A4 /* FilteredOffersTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 				45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */,
 				45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */,
 				450349051E7253770021E7FA /* CommerceType.m in Sources */,
+				45F807511E759A21005DB3A4 /* FilteredOffersTableViewController.m in Sources */,
 				456637A61E6E6DC90072F477 /* ProfileViewController.m in Sources */,
 				459F00D21D90E5E70078736F /* OfferViewController.m in Sources */,
 				456637A31E6E44680072F477 /* Commerce.m in Sources */,

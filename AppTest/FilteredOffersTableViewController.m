@@ -1,13 +1,12 @@
 //
-//  OffersTableViewController.m
+//  FilteredOffersTableViewController.m
 //  AppTest
 //
-//  Created by Rafael Perez on 2/9/17.
+//  Created by Rafael Perez on 3/12/17.
 //  Copyright © 2017 Rafael Perez. All rights reserved.
 //
 
-#import "OffersTableViewController.h"
-#import "FDKeychain.h"
+#import "FilteredOffersTableViewController.h"#import "FDKeychain.h"
 #import "OfferViewController.h"
 #import "KITableViewCell.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -20,7 +19,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
-@interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource, UIAlertViewDelegate>{
+@interface FilteredOffersTableViewController () <VKSideMenuDelegate, VKSideMenuDataSource, UIAlertViewDelegate>{
     NSMutableArray *recipeImages;
     KASlideShow *slideshow;
     NSArray *imgs;
@@ -31,7 +30,7 @@
 @property (nonatomic, strong) VKSideMenu *menuLeft;
 @end
 
-@implementation OffersTableViewController
+@implementation FilteredOffersTableViewController
 @synthesize commercesArray, commerceSelected, commerceClicked, urlArray, imageArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +47,7 @@
     [rq setHTTPMethod:@"POST"];
     NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
     [rq setHTTPBody:jsonData];
-   // [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+    // [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
     
     [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     //        [rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
@@ -78,7 +77,7 @@
                  commerce.CommerceName = [dict objectForKey:@"commerce_name"];
                  commerce.CommerceOffers = [[NSMutableArray alloc]init];
                  NSArray *offers = [dict objectForKey:@"products"];
-               //  NSArray *dict2 = [offers objectAtIndex:0];
+                 //  NSArray *dict2 = [offers objectAtIndex:0];
                  for (int j=0; j<=offers.count -1; j++) {
                      Offer *offer = [[Offer alloc]init];
                      NSDictionary *dict3 = [offers objectAtIndex:j];
@@ -93,35 +92,35 @@
                      offer.OfferStatus = [dict3 objectForKey:@"status"];
                      offer.OfferImage = [dict3 objectForKey:@"images"];
                      [commerce.CommerceOffers addObject:offer];
-//                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
+                     //                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
                      [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                      
-//                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                     //                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                      
                  }
-
-//                 for (int i =0; i<urlArray.count; i++) {
-//                     NSURL *url = [NSURL URLWithString:[self.urlArray firstObject]];
-//                     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-//                     [manager downloadImageWithURL:url
-//                                           options:0
-//                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//                                              // progression tracking code
-//                                          }
-//                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//                                             if (image) {
-//                                                 [imageArray addObject:image];
-//                                                 //[urlArray removeObjectAtIndex:0];
-//                                                 // [self downloadImage];
-//                                             }
-//                                             else {
-//                                                 //  [self downloadImage]; //try download once again
-//                                             }
-//                                         }];
-//                 }
-//                 commerce.CommerceOffersImages = imageArray;
+                 
+                 //                 for (int i =0; i<urlArray.count; i++) {
+                 //                     NSURL *url = [NSURL URLWithString:[self.urlArray firstObject]];
+                 //                     SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                 //                     [manager downloadImageWithURL:url
+                 //                                           options:0
+                 //                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                 //                                              // progression tracking code
+                 //                                          }
+                 //                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                 //                                             if (image) {
+                 //                                                 [imageArray addObject:image];
+                 //                                                 //[urlArray removeObjectAtIndex:0];
+                 //                                                 // [self downloadImage];
+                 //                                             }
+                 //                                             else {
+                 //                                                 //  [self downloadImage]; //try download once again
+                 //                                             }
+                 //                                         }];
+                 //                 }
+                 //                 commerce.CommerceOffersImages = imageArray;
                  //[imageArray removeAllObjects];
-                // [urlArray removeAllObjects];
+                 // [urlArray removeAllObjects];
                  [commercesArray addObject:commerce];
                  
                  [self.tableView reloadData];
@@ -140,7 +139,7 @@
     [self.menuLeft addSwipeGestureRecognition:self.view];
     self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     
-   // NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
+    // NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
     NSString *loggedin = [FDKeychain itemForKey:@"loggedin" forService:@"BIXI" error:nil];
     NSLog(@"token:%@", token);
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
@@ -157,9 +156,9 @@
              @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen2.png",
              @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png"
              ];
-
-  
-
+    
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -170,15 +169,15 @@
 
 //- (BOOL)canPerformUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender {
 //    [fromViewController dismissViewControllerAnimated:YES completion:nil];
-//    
+//
 //    return YES;
-//    
+//
 //}
 //
 //
 //-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
-//    
-//    
+//
+//
 //}
 
 
@@ -195,16 +194,16 @@
                                 if (image) {
                                     [imageArray addObject:image];
                                     //[urlArray removeObjectAtIndex:0];
-                                   // [self downloadImage];
+                                    // [self downloadImage];
                                 }
                                 else {
-                                  //  [self downloadImage]; //try download once again
+                                    //  [self downloadImage]; //try download once again
                                 }
                             }];
     }
-
-    }
     
+}
+
 //    if (urlArray.count > 0) {
 //        }
 
@@ -307,9 +306,9 @@
     }
     if (indexPath.row ==2) {
         [self performSegueWithIdentifier:@"callMap" sender:self];
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        [self removeFromParentViewController];
-//        [self.view removeFromSuperview];
+        //        [self dismissViewControllerAnimated:YES completion:nil];
+        //        [self removeFromParentViewController];
+        //        [self.view removeFromSuperview];
     }
     if (indexPath.row ==4) {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -339,7 +338,7 @@
     
     if (sideMenu == self.menuLeft)
         menu = @"LEFT";
-
+    
     
     NSLog(@"%@ VKSideMenue did show", menu);
 }
@@ -350,7 +349,7 @@
     
     if (sideMenu == self.menuLeft)
         menu = @"LEFT";
-
+    
     
     NSLog(@"%@ VKSideMenue did hide", menu);
 }
@@ -390,14 +389,14 @@
 }
 
 -(void)callLogIn{
-//[self performSegueWithIdentifier:@"backLogIn" sender:self];
+    //[self performSegueWithIdentifier:@"backLogIn" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"ViewOffer"]) {
         OfferViewController *offerViewController = [segue destinationViewController];
-   //     [cell getCurrentIndex];
+        //     [cell getCurrentIndex];
         offerViewController.hola= [recipeImages objectAtIndex:index];
         offerViewController.Offer = [commerceClicked.CommerceOffers objectAtIndex:index];
         
@@ -430,10 +429,10 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
+    cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
     
-
-            
+    
+    
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
     [cell setSlideShow:commerceSelected.CommerceOffersImages];
@@ -445,64 +444,64 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     commerceClicked = [commercesArray objectAtIndex:indexPath.row];
+    commerceClicked = [commercesArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"ViewOffer" sender:self];
-
+    
     
 }
 
 /*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+ 
+ // Configure the cell...
+ 
+ return cell;
+ }
+ */
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

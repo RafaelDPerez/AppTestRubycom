@@ -8,22 +8,23 @@
 
 #import "SearchViewController.h"
 #import "ACFloatingTextField.h"
-#import "CommerceType.h"
 #import "FDKeyChain.h"
+
 
 @interface SearchViewController ()<UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtCommerceId;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtLocation;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOrderBy;
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIPickerView *orderBypickerView;
 @end
 NSMutableArray *commerceTypeArray;
 NSMutableArray *orderByList;
-@implementation SearchViewController
 
+@implementation SearchViewController
+@synthesize commerceTypeSelected;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    commerceTypeSelected = [[CommerceType alloc]init];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
@@ -36,12 +37,7 @@ NSMutableArray *orderByList;
     _txtCommerceId.selectedPlaceHolderColor = [UIColor whiteColor];
     _txtCommerceId.lineColor = [UIColor whiteColor];
     
-    [_txtLocation setTextFieldPlaceholderText:@"ubicación"];
-    _txtLocation.selectedLineColor = [UIColor whiteColor];
-    _txtLocation.placeHolderColor = [UIColor whiteColor];
-    [_txtLocation setTextColor:[UIColor whiteColor]];
-    _txtLocation.selectedPlaceHolderColor = [UIColor whiteColor];
-    _txtLocation.lineColor = [UIColor whiteColor];
+
     
     [_txtOrderBy setTextFieldPlaceholderText:@"ordenar por:"];
     _txtOrderBy.selectedLineColor = [UIColor whiteColor];
@@ -53,6 +49,9 @@ NSMutableArray *orderByList;
     self.pickerView.delegate = self;     //#2
     self.pickerView.dataSource = self;   //#2
     _txtCommerceId.inputView = self.pickerView;
+    
+    _sldBIXIPoints.maximumValue = 300.0f;
+    _sldBIXIPoints.minimumValue = 10.0f;
     
     self.orderBypickerView = [[UIPickerView alloc] init];
     self.orderBypickerView.delegate = self;     //#2
@@ -132,6 +131,14 @@ NSMutableArray *orderByList;
     return 0;
 }
 
+-(IBAction)searchOffers:(id)sender{
+    NSLog(@"sider value:%d y %@ y %@ y %@",(int)(_sldBIXIPoints.value),_txtOrderBy.text,commerceTypeSelected.CommerceTypeID, _txtSearch.text);
+    
+    [self performSegueWithIdentifier:@"callFilteredOffers" sender:nil];
+
+}
+
+
 #pragma mark - UIPickerViewDelegate
 
 // #5
@@ -153,7 +160,8 @@ NSMutableArray *orderByList;
     if (pickerView == self.pickerView) {
         CommerceType *selected = [[CommerceType alloc]init];
         selected = [commerceTypeArray objectAtIndex:row];
-        self.txtCommerceId.text = selected.CommerceTypeID;
+        self.txtCommerceId.text = selected.CommerceType;
+        commerceTypeSelected = selected;
     }
     if (pickerView == self.orderBypickerView) {
         self.txtOrderBy.text = orderByList[row];
