@@ -21,6 +21,7 @@
 @property (strong,nonatomic) NSString *image;
 @property (strong,nonatomic) NSString *password;
 @property (strong,nonatomic) NSString *passwordConfirm;
+@property (strong,nonatomic) NSString *balancePoints;
 
 
 

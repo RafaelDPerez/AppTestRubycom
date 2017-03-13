@@ -9,10 +9,13 @@
 #import "ProfileViewController.h"
 #import "VKSideMenu.h"
 #import "UIViewController+SLPhotoSelection.h"
+#import "FDKeyChain.h"
+#import "User.h"
 
 @interface ProfileViewController ()<VKSideMenuDelegate, VKSideMenuDataSource>
 @property (nonatomic, strong) VKSideMenu *menuLeft;
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) User *user;
 @end
 
 @implementation ProfileViewController
@@ -22,14 +25,65 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
-    
+     _user = [[User alloc]init];
      self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
      self.menuLeft.dataSource = self;
      self.menuLeft.delegate   = self;
      [self.menuLeft addSwipeGestureRecognition:self.view];
       self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
-//    _ProfilePicture.layer.cornerRadius = 25;
-//    _ProfilePicture.layer.masksToBounds = YES;
+    NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
+
+    //**REGISTER**
+        NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/user/"];
+        NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+        [rq setHTTPMethod:@"GET"];
+    
+     
+        [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [NSURLConnection sendAsynchronousRequest:rq
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response,
+                                                   NSData *data, NSError *connectionError)
+         {
+             NSError* error;
+             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                  options:kNilOptions
+                                                                    error:&error];
+             NSArray *sceResponseCode = [json objectForKey:@"sceResponseCode"];
+    
+             NSLog(@"codigo: %@", sceResponseCode);
+             NSString *message = [json objectForKey:@"sceResponseMsg"];
+             NSArray *result = [json objectForKey:@"result"];
+             NSDictionary *holis = [json objectForKey:@"result"];
+             NSLog(@"%@",result);
+             if ([message isEqualToString:@"OK"]) {
+                 
+                     _user.firstName = [holis objectForKey:@"first_name"];
+                     _user.lastName = [holis objectForKey:@"last_name"];
+                     _user.phone1 = [holis objectForKey:@"phone1"];
+                     _user.phone2 = [holis objectForKey:@"phone2"];
+                     _user.documentId = [holis objectForKey:@"document_id"];
+                     _user.address = [holis objectForKey:@"address"];
+                     _user.gender = [holis objectForKey:@"gender"];
+                     _user.email = [holis objectForKey:@"email"];
+                     _user.birthDate = [holis objectForKey:@"birth_date"];
+                     _user.image = [holis objectForKey:@"image"];
+                     _user.balancePoints = [holis objectForKey:@"balance_points"];
+                 _lblUserName.text = [NSString stringWithFormat:@"%@ %@",_user.firstName, _user.lastName];
+                 _lblPoints.text = _user.balancePoints;
+       
+                 
+                 
+                 NSLog(@"codigo: %@", result);
+             }
+
+             
+         }];
+    
+    
+    
 }
 
 -(IBAction)buttonMenuLeft:(id)sender

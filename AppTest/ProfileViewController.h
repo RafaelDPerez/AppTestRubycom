@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserInformation;
 
+
 @end
