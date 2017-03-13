@@ -447,18 +447,18 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLy-IV-XJe" customClass="ACFloatingTextField">
-                                <rect key="frame" x="28" y="233" width="319" height="36"/>
+                                <rect key="frame" x="28" y="233" width="319" height="37"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="f0a-KP-znC" id="Fvq-Da-rNv"/>
                                 </connections>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-n3-Bbl">
-                                <rect key="frame" x="44" y="354" width="291" height="31"/>
+                                <rect key="frame" x="44" y="355" width="291" height="31"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rango de BIXIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZw-3E-Jk2">
-                                <rect key="frame" x="30" y="305" width="319" height="32"/>
+                                <rect key="frame" x="30" y="306" width="319" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="xrU-vi-vJZ"/>
                                 </constraints>
@@ -467,7 +467,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ2-Mr-WwO">
-                                <rect key="frame" x="30" y="383" width="42" height="21"/>
+                                <rect key="frame" x="30" y="384" width="42" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="0qm-sL-7xK"/>
                                 </constraints>
@@ -476,7 +476,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfN-8o-2CB">
-                                <rect key="frame" x="305" y="383" width="42" height="21"/>
+                                <rect key="frame" x="305" y="384" width="42" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="pQJ-Lr-mQo"/>
                                 </constraints>
@@ -530,7 +530,7 @@
                         <outlet property="txtCommerceId" destination="kGC-T2-dAh" id="TJH-UQ-6PB"/>
                         <outlet property="txtOrderBy" destination="FLy-IV-XJe" id="v1H-EV-TBq"/>
                         <outlet property="txtSearch" destination="i4S-kp-S5a" id="qJG-Qp-ZZm"/>
-                        <segue destination="9Yv-cR-c1U" kind="modal" identifier="callFilteredOffers" id="UnF-g3-iZl"/>
+                        <segue destination="s6b-sC-saE" kind="modal" identifier="callFilteredOffers" id="VlW-lC-5kP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cip-g9-WCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -679,7 +679,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m3k-dj-FTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2081" y="-294"/>
+            <point key="canvasLocation" x="-1560" y="-287"/>
         </scene>
         <!--Bienvenido View Controller-->
         <scene sceneID="NzW-EV-peg">
@@ -1165,15 +1165,15 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="267"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AXE-l9-6Pw" id="CuN-ar-Dfk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="266.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j4x-V3-EgJ" customClass="KASlideShow">
-                                            <rect key="frame" x="-3" y="-2" width="375" height="207"/>
+                                            <rect key="frame" x="-4" y="-2" width="376" height="207"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbi-n8-MuH">
-                                                    <rect key="frame" x="331" y="38" width="33" height="127"/>
+                                                    <rect key="frame" x="331" y="37" width="33" height="127"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="Forward Filled-50"/>
@@ -1190,7 +1190,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrO-fS-GRe">
-                                                    <rect key="frame" x="6" y="38" width="35" height="127"/>
+                                                    <rect key="frame" x="6" y="37" width="35" height="127"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="Back Filled-50"/>
@@ -1256,6 +1256,22 @@
             </objects>
             <point key="canvasLocation" x="-2220.5" y="-1610.5"/>
         </scene>
+        <!--Filtered Offers Navigation View Controller-->
+        <scene sceneID="cAE-dO-PKf">
+            <objects>
+                <navigationController id="s6b-sC-saE" customClass="FilteredOffersNavigationViewController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="phj-Z9-ILr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9Yv-cR-c1U" kind="relationship" relationship="rootViewController" id="ukB-0X-fPa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gH3-tH-mKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2294" y="-664"/>
+        </scene>
         <!--Filtered Offers Table View Controller-->
         <scene sceneID="jff-eT-JBc">
             <objects>
@@ -1269,15 +1285,15 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="267"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="78T-um-OcH" id="Hgt-R7-ICV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="266.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6S9-84-fg1" customClass="KASlideShow">
-                                            <rect key="frame" x="-3" y="-2" width="375" height="207"/>
+                                            <rect key="frame" x="-3" y="-3" width="374" height="208"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6U-mt-x3Z">
-                                                    <rect key="frame" x="331" y="38" width="33" height="127"/>
+                                                    <rect key="frame" x="330" y="37" width="33" height="127"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="Forward Filled-50"/>
@@ -1294,7 +1310,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7k-9O-UId">
-                                                    <rect key="frame" x="6" y="38" width="35" height="127"/>
+                                                    <rect key="frame" x="6" y="37" width="35" height="127"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="Back Filled-50"/>
@@ -1349,7 +1365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6O-OO-LUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2290" y="-623"/>
+            <point key="canvasLocation" x="-1864" y="-665"/>
         </scene>
     </scenes>
     <resources>

@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *sldBIXIPoints;
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (strong, nonatomic) CommerceType *commerceTypeSelected;
-@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+@property (strong, nonatomic) IBOutlet UITextField *txtSearch;
 
 
 @end

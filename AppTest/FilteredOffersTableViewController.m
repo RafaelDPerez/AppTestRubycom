@@ -45,7 +45,10 @@
     NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/search_products/"];
     NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
     [rq setHTTPMethod:@"POST"];
-    NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
+  //  NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *jsonData = [[NSString stringWithFormat:@"{\"type_commerce_id\":\"%@\",\"search\":\"%@\",\"order_by\":\"%@\",\"is_offer\":\"%@\",\"start\":\"%d\",\"distance\":\"%d\",\"lat\":\"%d\",\"lng\":\"%d\"}", self.commerceType, self.location, self.orderBy, @"SI", 0 , 10, 10, 10] dataUsingEncoding:NSUTF8StringEncoding];
+    
     [rq setHTTPBody:jsonData];
     // [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
     
@@ -63,72 +66,75 @@
          NSString *message = [json objectForKey:@"sceResponseMsg"];
          NSArray *result = [json objectForKey:@"result"];
          NSLog(@"%@",result);
-         if ([message isEqualToString:@"OK"]) {
-             NSArray *result = [json objectForKey:@"result"];
-             for (int i = 0; i<= result.count - 1; i++) {
-                 //now let's dig out each and every json object
-                 Commerce *commerce = [[Commerce alloc]init];
-                 commerce.CommerceOffersImages = [[NSMutableArray alloc]init];
-                 NSDictionary *dict = [result objectAtIndex:i];
-                 commerce.CommerceAddress = [dict objectForKey:@"commerce_address"];
-                 commerce.CommerceID = [dict objectForKey:@"commerce_id"];
-                 commerce.CommerceLat = [dict objectForKey:@"commerce_lat"];
-                 commerce.CommerceLng = [dict objectForKey:@"commerce_lng"];
-                 commerce.CommerceName = [dict objectForKey:@"commerce_name"];
-                 commerce.CommerceOffers = [[NSMutableArray alloc]init];
-                 NSArray *offers = [dict objectForKey:@"products"];
-                 //  NSArray *dict2 = [offers objectAtIndex:0];
-                 for (int j=0; j<=offers.count -1; j++) {
-                     Offer *offer = [[Offer alloc]init];
-                     NSDictionary *dict3 = [offers objectAtIndex:j];
-                     offer.OfferExpirationDate = [dict3 objectForKey:@"date_expires"];
-                     offer.OfferDescription = [dict3 objectForKey:@"description"];
-                     offer.OfferImage = [dict3 objectForKey:@"images"];
-                     offer.IsOffer = [dict3 objectForKey:@"is_offer"];
-                     offer.OfferName = [dict3 objectForKey:@"name"];
-                     offer.OfferPoints = [dict3 objectForKey:@"points"];
-                     offer.OfferID = [dict3 objectForKey:@"product_id"];
-                     offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
-                     offer.OfferStatus = [dict3 objectForKey:@"status"];
-                     offer.OfferImage = [dict3 objectForKey:@"images"];
-                     [commerce.CommerceOffers addObject:offer];
-                     //                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
-                     [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+         if ([result count]!=0) {
+             if ([message isEqualToString:@"OK"]) {
+                 NSArray *result = [json objectForKey:@"result"];
+                 for (int i = 0; i<= result.count - 1; i++) {
+                     //now let's dig out each and every json object
+                     Commerce *commerce = [[Commerce alloc]init];
+                     commerce.CommerceOffersImages = [[NSMutableArray alloc]init];
+                     NSDictionary *dict = [result objectAtIndex:i];
+                     commerce.CommerceAddress = [dict objectForKey:@"commerce_address"];
+                     commerce.CommerceID = [dict objectForKey:@"commerce_id"];
+                     commerce.CommerceLat = [dict objectForKey:@"commerce_lat"];
+                     commerce.CommerceLng = [dict objectForKey:@"commerce_lng"];
+                     commerce.CommerceName = [dict objectForKey:@"commerce_name"];
+                     commerce.CommerceOffers = [[NSMutableArray alloc]init];
+                     NSArray *offers = [dict objectForKey:@"products"];
+                     //  NSArray *dict2 = [offers objectAtIndex:0];
+                     for (int j=0; j<=offers.count -1; j++) {
+                         Offer *offer = [[Offer alloc]init];
+                         NSDictionary *dict3 = [offers objectAtIndex:j];
+                         offer.OfferExpirationDate = [dict3 objectForKey:@"date_expires"];
+                         offer.OfferDescription = [dict3 objectForKey:@"description"];
+                         offer.OfferImage = [dict3 objectForKey:@"images"];
+                         offer.IsOffer = [dict3 objectForKey:@"is_offer"];
+                         offer.OfferName = [dict3 objectForKey:@"name"];
+                         offer.OfferPoints = [dict3 objectForKey:@"points"];
+                         offer.OfferID = [dict3 objectForKey:@"product_id"];
+                         offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
+                         offer.OfferStatus = [dict3 objectForKey:@"status"];
+                         offer.OfferImage = [dict3 objectForKey:@"images"];
+                         [commerce.CommerceOffers addObject:offer];
+                         //                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
+                         [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                         
+                         //                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                         
+                     }
                      
-                     //                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                     //                 for (int i =0; i<urlArray.count; i++) {
+                     //                     NSURL *url = [NSURL URLWithString:[self.urlArray firstObject]];
+                     //                     SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                     //                     [manager downloadImageWithURL:url
+                     //                                           options:0
+                     //                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                     //                                              // progression tracking code
+                     //                                          }
+                     //                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                     //                                             if (image) {
+                     //                                                 [imageArray addObject:image];
+                     //                                                 //[urlArray removeObjectAtIndex:0];
+                     //                                                 // [self downloadImage];
+                     //                                             }
+                     //                                             else {
+                     //                                                 //  [self downloadImage]; //try download once again
+                     //                                             }
+                     //                                         }];
+                     //                 }
+                     //                 commerce.CommerceOffersImages = imageArray;
+                     //[imageArray removeAllObjects];
+                     // [urlArray removeAllObjects];
+                     [commercesArray addObject:commerce];
+                     
+                     [self.tableView reloadData];
+                     //commerce.CommerceImage = [dict objectForKey:@"image"];
                      
                  }
                  
-                 //                 for (int i =0; i<urlArray.count; i++) {
-                 //                     NSURL *url = [NSURL URLWithString:[self.urlArray firstObject]];
-                 //                     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-                 //                     [manager downloadImageWithURL:url
-                 //                                           options:0
-                 //                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                 //                                              // progression tracking code
-                 //                                          }
-                 //                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                 //                                             if (image) {
-                 //                                                 [imageArray addObject:image];
-                 //                                                 //[urlArray removeObjectAtIndex:0];
-                 //                                                 // [self downloadImage];
-                 //                                             }
-                 //                                             else {
-                 //                                                 //  [self downloadImage]; //try download once again
-                 //                                             }
-                 //                                         }];
-                 //                 }
-                 //                 commerce.CommerceOffersImages = imageArray;
-                 //[imageArray removeAllObjects];
-                 // [urlArray removeAllObjects];
-                 [commercesArray addObject:commerce];
-                 
-                 [self.tableView reloadData];
-                 //commerce.CommerceImage = [dict objectForKey:@"image"];
-                 
+                 NSLog(@"codigo: %@", result);
              }
-             
-             NSLog(@"codigo: %@", result);
+
          }
          
      }];

@@ -9,6 +9,8 @@
 #import "SearchViewController.h"
 #import "ACFloatingTextField.h"
 #import "FDKeyChain.h"
+#import "FilteredOffersTableViewController.h"
+#import "FilteredOffersNavigationViewController.h"
 
 
 @interface SearchViewController ()<UIPickerViewDelegate>
@@ -134,10 +136,28 @@ NSMutableArray *orderByList;
 -(IBAction)searchOffers:(id)sender{
     NSLog(@"sider value:%d y %@ y %@ y %@",(int)(_sldBIXIPoints.value),_txtOrderBy.text,commerceTypeSelected.CommerceTypeID, _txtSearch.text);
     
+
+    
     [self performSegueWithIdentifier:@"callFilteredOffers" sender:nil];
 
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"callFilteredOffers"]) {
+        FilteredOffersNavigationViewController *navController = [segue destinationViewController];
+        
+        FilteredOffersTableViewController *filteredviewController = navController.topViewController;
+        //     [cell getCurrentIndex];
+        filteredviewController.location = _txtSearch.text;
+        filteredviewController.orderBy = _txtOrderBy.text;
+        filteredviewController.commerceType = commerceTypeSelected.CommerceTypeID;
+        filteredviewController.BIXIPoints = [NSString stringWithFormat:@"%d",(int)(_sldBIXIPoints.value)];
+      
+    }
+
+    
+}
 
 #pragma mark - UIPickerViewDelegate
 
