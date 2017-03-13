@@ -8,9 +8,11 @@
 
 #import "ProfileViewController.h"
 #import "VKSideMenu.h"
+#import "UIViewController+SLPhotoSelection.h"
 
 @interface ProfileViewController ()<VKSideMenuDelegate, VKSideMenuDataSource>
 @property (nonatomic, strong) VKSideMenu *menuLeft;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @end
 
 @implementation ProfileViewController
@@ -26,13 +28,26 @@
      self.menuLeft.delegate   = self;
      [self.menuLeft addSwipeGestureRecognition:self.view];
       self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
-    _ProfilePicture.layer.cornerRadius = 25;
-    _ProfilePicture.layer.masksToBounds = YES;
+//    _ProfilePicture.layer.cornerRadius = 25;
+//    _ProfilePicture.layer.masksToBounds = YES;
 }
 
 -(IBAction)buttonMenuLeft:(id)sender
 {
     [self.menuLeft show:self.navigationController.view];
+}
+
+#pragma mark - SLPhotoSelection methods
+
+- (IBAction)addImageView:(id)sender
+{
+    __weak UIImageView *imageView = self.imageView;
+    
+    [self addPhotoWithCompletionHandler:^(BOOL success, UIImage *image) {
+        if (success) {
+            imageView.image = image;
+        }
+    }];
 }
 
 #pragma mark - VKSideMenuDataSource
