@@ -11,6 +11,7 @@
 #import "UIViewController+SLPhotoSelection.h"
 #import "FDKeyChain.h"
 #import "User.h"
+#import "ChangePasswordViewController.h"
 
 @interface ProfileViewController ()<VKSideMenuDelegate, VKSideMenuDataSource>
 @property (nonatomic, strong) VKSideMenu *menuLeft;
@@ -72,7 +73,17 @@
                      _user.image = [holis objectForKey:@"image"];
                      _user.balancePoints = [holis objectForKey:@"balance_points"];
                  _lblUserName.text = [NSString stringWithFormat:@"%@ %@",_user.firstName, _user.lastName];
-                 _lblPoints.text = _user.balancePoints;
+                 _lblPoints.text = [NSString stringWithFormat:@"%@ B", _user.balancePoints ];
+                 _lblEmail.text = _user.email;
+                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                 NSDate *orignalDate   =  [dateFormatter dateFromString:_user.birthDate];
+                 
+                 [dateFormatter setDateFormat:@"MMMM dd, yyyy"];
+                 NSString *finalString = [dateFormatter stringFromDate:orignalDate];
+                 _lblBirthDate.text = finalString;
+                 _lblGender.text = _user.gender;
+                 _lblPhone1.text = _user.phone1;
        
                  
                  
@@ -85,6 +96,20 @@
     
     
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"callNewPassword"]) {
+        ChangePasswordViewController *changePassViewController = [segue destinationViewController];
+        //     [cell getCurrentIndex];
+        changePassViewController.user= self.user;
+        
+    }
+    
+    
+}
+
 
 -(IBAction)buttonMenuLeft:(id)sender
 {
@@ -99,9 +124,15 @@
     
     [self addPhotoWithCompletionHandler:^(BOOL success, UIImage *image) {
         if (success) {
+            NSString *imagen = [self encodeToBase64String:image];
+            NSLog(@"%@",imagen);
             imageView.image = image;
         }
     }];
+}
+
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
 
 #pragma mark - VKSideMenuDataSource

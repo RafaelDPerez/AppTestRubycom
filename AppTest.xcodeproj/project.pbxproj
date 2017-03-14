@@ -72,6 +72,7 @@
 		45F7A2791E396F0800A3235D /* BienvenidoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7A2781E396F0800A3235D /* BienvenidoViewController.m */; };
 		45F7A27D1E3972FF00A3235D /* ACFloatingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */; };
 		45F807511E759A21005DB3A4 /* FilteredOffersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F807501E759A21005DB3A4 /* FilteredOffersTableViewController.m */; };
+		45FF1EC01E778703004E955D /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FF1EBF1E778703004E955D /* ChangePasswordViewController.m */; };
 		83349CB109212375B7905AC6 /* libPods-AppTestUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA71AE2AFB459F655F9A16A8 /* libPods-AppTestUITests.a */; };
 		97E9429F88885DD0421773F7 /* libPods-AppTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBECB606A5EEAE7E47721D7 /* libPods-AppTestTests.a */; };
 		9C0194C4BAECDFFB2FB2204E /* libPods-AppTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 252F063C7F2F76F96EEF6D44 /* libPods-AppTest.a */; };
@@ -196,6 +197,8 @@
 		45F7A27C1E3972FF00A3235D /* ACFloatingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACFloatingTextField.m; sourceTree = "<group>"; };
 		45F8074F1E759A21005DB3A4 /* FilteredOffersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredOffersTableViewController.h; sourceTree = "<group>"; };
 		45F807501E759A21005DB3A4 /* FilteredOffersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredOffersTableViewController.m; sourceTree = "<group>"; };
+		45FF1EBE1E778703004E955D /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		45FF1EBF1E778703004E955D /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		6E45FA9D8B4DA65FF6C3F021 /* Pods-AppTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppTest/Pods-AppTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E3AE3F0010470451DE6B903B /* Pods-AppTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTestUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppTestUITests/Pods-AppTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE4FF6F6A36A678578058D93 /* Pods-AppTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTestUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppTestUITests/Pods-AppTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				45F807501E759A21005DB3A4 /* FilteredOffersTableViewController.m */,
 				45A864FF1E76309E00C30958 /* FilteredOffersNavigationViewController.h */,
 				45A865001E76309E00C30958 /* FilteredOffersNavigationViewController.m */,
+				45FF1EBE1E778703004E955D /* ChangePasswordViewController.h */,
+				45FF1EBF1E778703004E955D /* ChangePasswordViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -792,6 +797,7 @@
 				45D4F25F1E2EE1DC00619E7F /* Register1ViewController.m in Sources */,
 				45A865051E764AC600C30958 /* UIViewController+SLPhotoSelection.m in Sources */,
 				45D4F2651E2EE39E00619E7F /* User.m in Sources */,
+				45FF1EC01E778703004E955D /* ChangePasswordViewController.m in Sources */,
 				45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */,
 				45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */,
 				450349051E7253770021E7FA /* CommerceType.m in Sources */,
