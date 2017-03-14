@@ -124,9 +124,39 @@
     
     [self addPhotoWithCompletionHandler:^(BOOL success, UIImage *image) {
         if (success) {
+             NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
             NSString *imagen = [self encodeToBase64String:image];
             NSLog(@"%@",imagen);
             imageView.image = image;
+            
+            NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/user/"];
+            NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+            [rq setHTTPMethod:@"POST"];
+            
+            NSData *jsonData = [[NSString stringWithFormat:@"{\"first_name\":\"%@\",\"last_name\":\"%@\",\"document_id\":\"%@\",\"phone1\":\"%@\",\"phone2\":\"%@\",\"address\":\"%@\",\"gender\":\"%@\",\"email\":\"%@\",\"birth_date\":\"%@\",\"image\":\"%@\",\"old_password\":\"radapepi030291\"}", self.user.firstName, self.user.lastName, self.user.documentId, self.user.phone1, self.user.phone2, self.user.address, self.user.gender, self.user.email,self.user.birthDate, imagen] dataUsingEncoding:NSUTF8StringEncoding];
+            [rq setHTTPBody:jsonData];
+            
+            [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+            [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+            [NSURLConnection sendAsynchronousRequest:rq
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:^(NSURLResponse *response,
+                                                       NSData *data, NSError *connectionError)
+             {
+                 NSError* error;
+                 NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                      options:kNilOptions
+                                                                        error:&error];
+                 NSNumber *sceResponseCode = [json objectForKey:@"sceResponseCode"];
+                 NSString *sceResponseMsg = [json objectForKey:@"sceResponseMsg"];
+                 
+                 if ([sceResponseCode longLongValue]==0) {
+                     
+                 
+                 }
+             }];
+
         }
     }];
 }
