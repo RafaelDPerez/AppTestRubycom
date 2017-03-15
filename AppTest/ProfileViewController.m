@@ -126,16 +126,23 @@
         if (success) {
              NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
             NSString *imagen = [self encodeToBase64String:image];
-            NSLog(@"%@",imagen);
+            NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                                            NULL,
+                                                                                                            (CFStringRef)imagen,
+                                                                                                            NULL,
+                                                                                                            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                                            kCFStringEncodingUTF8 ));
+            //NSLog(@"%@",imagen);
             imageView.image = image;
+            //imagen = [imagen stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
             
             NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/user/"];
             NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
             [rq setHTTPMethod:@"POST"];
             
-            NSData *jsonData = [[NSString stringWithFormat:@"{\"first_name\":\"%@\",\"last_name\":\"%@\",\"document_id\":\"%@\",\"phone1\":\"%@\",\"phone2\":\"%@\",\"address\":\"%@\",\"gender\":\"%@\",\"email\":\"%@\",\"birth_date\":\"%@\",\"image\":\"%@\",\"old_password\":\"radapepi030291\"}", self.user.firstName, self.user.lastName, self.user.documentId, self.user.phone1, self.user.phone2, self.user.address, self.user.gender, self.user.email,self.user.birthDate, imagen] dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *jsonData = [[NSString stringWithFormat:@"{\"first_name\":\"%@\",\"last_name\":\"%@\",\"document_id\":\"%@\",\"phone1\":\"%@\",\"phone2\":\"%@\",\"address\":\"%@\",\"gender\":\"%@\",\"email\":\"%@\",\"birth_date\":\"%@\",\"image\":\"%@\",\"old_password\":\"radapepi030291\"}", self.user.firstName, self.user.lastName, self.user.documentId, self.user.phone1, self.user.phone2, self.user.address, self.user.gender, self.user.email,self.user.birthDate, encodedString] dataUsingEncoding:NSUTF8StringEncoding];
             [rq setHTTPBody:jsonData];
-            
+            [rq setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Data-Type"];
             [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
             [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             //[rq setValue:[NSString stringWithFormat:@"%ld", (long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];

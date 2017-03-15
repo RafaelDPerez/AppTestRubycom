@@ -47,7 +47,7 @@
     [rq setHTTPMethod:@"POST"];
   //  NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *jsonData = [[NSString stringWithFormat:@"{\"type_commerce_id\":\"%@\",\"search\":\"%@\",\"order_by\":\"%@\",\"is_offer\":\"%@\",\"start\":\"%d\",\"distance\":\"%d\",\"lat\":\"%d\",\"lng\":\"%d\"}", self.commerceType, self.location, self.orderBy, @"SI", 0 , 10, 10, 10] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[NSString stringWithFormat:@"{\"type_commerce_id\":\"%@\",\"search\":\"%@\",\"order_by\":\"%@\",\"is_offer\":\"%@\",\"start\":\"%d\",\"point_from\":\"%d\",\"point_to\":\"%@\",\"distance\":\"%d\",\"lat\":\"%d\",\"lng\":\"%d\"}", self.commerceType, self.location, self.orderBy, @"SI", 0 ,10,self.BIXIPoints, 10, 10, 10] dataUsingEncoding:NSUTF8StringEncoding];
     
     [rq setHTTPBody:jsonData];
     // [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];

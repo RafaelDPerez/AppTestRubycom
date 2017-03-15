@@ -11,8 +11,8 @@
 
 
 @interface SearchViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UISlider *sldBIXIPoints;
-@property (weak, nonatomic) IBOutlet UIButton *btnSearch;
+@property (strong, nonatomic) IBOutlet UISlider *sldBIXIPoints;
+@property (strong, nonatomic) IBOutlet UIButton *btnSearch;
 @property (strong, nonatomic) CommerceType *commerceTypeSelected;
 @property (strong, nonatomic) IBOutlet UITextField *txtSearch;
 
