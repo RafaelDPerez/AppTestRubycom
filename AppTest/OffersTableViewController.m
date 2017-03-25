@@ -18,6 +18,9 @@
 #import "Commerce.h"
 #import "Offer.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MapsViewController.h"
+#import "MapNavigationViewController.h"
+
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
 
 @interface OffersTableViewController() <VKSideMenuDelegate, VKSideMenuDataSource, UIAlertViewDelegate>{
@@ -124,11 +127,11 @@
                 // [urlArray removeAllObjects];
                  [commercesArray addObject:commerce];
                  
-                 [self.tableView reloadData];
+                 //[self.tableView reloadData];
                  //commerce.CommerceImage = [dict objectForKey:@"image"];
                  
              }
-             
+             [self.tableView reloadData];
              NSLog(@"codigo: %@", result);
          }
          
@@ -137,7 +140,7 @@
     self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
     self.menuLeft.dataSource = self;
     self.menuLeft.delegate   = self;
-    [self.menuLeft addSwipeGestureRecognition:self.view];
+    [self.menuLeft addSwipeGestureRecognition:self.navigationController.view];
     self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     
    // NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
@@ -259,7 +262,7 @@
                 break;
                 
             case 3:
-                item.title = @"Configuración";
+                item.title = @"Ofertas cerca de mí";
                 item.icon  = [UIImage imageNamed:@"ic_option_4"];
                 break;
                 
@@ -306,11 +309,16 @@
         [self performSegueWithIdentifier:@"callProfile" sender:self];
     }
     if (indexPath.row ==2) {
-        [self performSegueWithIdentifier:@"callMap" sender:self];
-//        [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"callFavorites" sender:self];
+        
+        //        [self dismissViewControllerAnimated:YES completion:nil];
 //        [self removeFromParentViewController];
 //        [self.view removeFromSuperview];
     }
+    if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"callMap" sender:self];
+    }
+    
     if (indexPath.row ==4) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle: @"Salir"
@@ -409,7 +417,10 @@
         //        [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
     }
     if ([segue.identifier isEqualToString:@"callMap"]) {
-        [self removeFromParentViewController];
+        MapNavigationViewController *navController = [segue destinationViewController];
+        MapsViewController *hola = navController.topViewController;
+        hola.commercesArray = commercesArray;
+      //  [self removeFromParentViewController];
     }
     
 }

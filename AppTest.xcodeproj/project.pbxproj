@@ -17,6 +17,8 @@
 		4515E89F1E5A4CC300E3736F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4515E89E1E5A4CC300E3736F /* GoogleService-Info.plist */; };
 		451EE6FB1E6CEAF7006CF063 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 451EE6FA1E6CEAF7006CF063 /* VKSideMenu.m */; };
 		4560AFE81D8BA50E00E341CD /* OffersCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4560AFE71D8BA50E00E341CD /* OffersCollectionViewController.m */; };
+		456364491E86C258003756D5 /* LikedOffersCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456364481E86C258003756D5 /* LikedOffersCollectionViewController.m */; };
+		4563644C1E86DB2C003756D5 /* FavoritesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4563644B1E86DB2C003756D5 /* FavoritesCollectionViewCell.m */; };
 		456637A31E6E44680072F477 /* Commerce.m in Sources */ = {isa = PBXBuildFile; fileRef = 456637A21E6E44680072F477 /* Commerce.m */; };
 		456637A61E6E6DC90072F477 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456637A51E6E6DC90072F477 /* ProfileViewController.m */; };
 		4599E0541E3AF13D00C5C92C /* menu-button_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4599E0531E3AF13D00C5C92C /* menu-button_white@2x.png */; };
@@ -42,6 +44,7 @@
 		45A415FC1D767FDC0038CD4D /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45A415EC1D767FDC0038CD4D /* white_chocolate_donut.jpg */; };
 		45A865011E76309E00C30958 /* FilteredOffersNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A865001E76309E00C30958 /* FilteredOffersNavigationViewController.m */; };
 		45A865051E764AC600C30958 /* UIViewController+SLPhotoSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A865041E764AC600C30958 /* UIViewController+SLPhotoSelection.m */; };
+		45B7FC6A1E7A25E100B20A9A /* MapNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B7FC691E7A25E100B20A9A /* MapNavigationViewController.m */; };
 		45C2BCC51E3E5E7E004F1C09 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C2BCC41E3E5E7E004F1C09 /* LogInViewController.m */; };
 		45C2BCC91E3E68E4004F1C09 /* UIUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C2BCC81E3E68E4004F1C09 /* UIUnderlinedButton.m */; };
 		45C2BCCD1E3E6FFA004F1C09 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C2BCCC1E3E6FFA004F1C09 /* ForgotPasswordViewController.m */; };
@@ -114,6 +117,10 @@
 		45572A701E1DE17C00CDA25A /* HelveticaLTStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaLTStd-Light.otf"; sourceTree = "<group>"; };
 		4560AFE61D8BA50E00E341CD /* OffersCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersCollectionViewController.h; sourceTree = "<group>"; };
 		4560AFE71D8BA50E00E341CD /* OffersCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersCollectionViewController.m; sourceTree = "<group>"; };
+		456364471E86C258003756D5 /* LikedOffersCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikedOffersCollectionViewController.h; sourceTree = "<group>"; };
+		456364481E86C258003756D5 /* LikedOffersCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikedOffersCollectionViewController.m; sourceTree = "<group>"; };
+		4563644A1E86DB2C003756D5 /* FavoritesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesCollectionViewCell.h; sourceTree = "<group>"; };
+		4563644B1E86DB2C003756D5 /* FavoritesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesCollectionViewCell.m; sourceTree = "<group>"; };
 		456637A11E6E44680072F477 /* Commerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commerce.h; sourceTree = "<group>"; };
 		456637A21E6E44680072F477 /* Commerce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commerce.m; sourceTree = "<group>"; };
 		456637A41E6E6DC90072F477 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -146,6 +153,8 @@
 		45A865001E76309E00C30958 /* FilteredOffersNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredOffersNavigationViewController.m; sourceTree = "<group>"; };
 		45A865031E764AC600C30958 /* UIViewController+SLPhotoSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SLPhotoSelection.h"; sourceTree = "<group>"; };
 		45A865041E764AC600C30958 /* UIViewController+SLPhotoSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SLPhotoSelection.m"; sourceTree = "<group>"; };
+		45B7FC681E7A25E100B20A9A /* MapNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigationViewController.h; sourceTree = "<group>"; };
+		45B7FC691E7A25E100B20A9A /* MapNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNavigationViewController.m; sourceTree = "<group>"; };
 		45C2BCC31E3E5E7E004F1C09 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		45C2BCC41E3E5E7E004F1C09 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		45C2BCC71E3E68E4004F1C09 /* UIUnderlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUnderlinedButton.h; sourceTree = "<group>"; };
@@ -296,6 +305,10 @@
 				45A865001E76309E00C30958 /* FilteredOffersNavigationViewController.m */,
 				45FF1EBE1E778703004E955D /* ChangePasswordViewController.h */,
 				45FF1EBF1E778703004E955D /* ChangePasswordViewController.m */,
+				45B7FC681E7A25E100B20A9A /* MapNavigationViewController.h */,
+				45B7FC691E7A25E100B20A9A /* MapNavigationViewController.m */,
+				456364471E86C258003756D5 /* LikedOffersCollectionViewController.h */,
+				456364481E86C258003756D5 /* LikedOffersCollectionViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -320,6 +333,8 @@
 			children = (
 				45E1520C1E4D3A3E00F5E9EF /* KITableViewCell.h */,
 				45E1520D1E4D3A3E00F5E9EF /* KITableViewCell.m */,
+				4563644A1E86DB2C003756D5 /* FavoritesCollectionViewCell.h */,
+				4563644B1E86DB2C003756D5 /* FavoritesCollectionViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -794,15 +809,18 @@
 				459F00CF1D90E47A0078736F /* Offer.m in Sources */,
 				45F7A27D1E3972FF00A3235D /* ACFloatingTextField.m in Sources */,
 				45E1520E1E4D3A3E00F5E9EF /* KITableViewCell.m in Sources */,
+				456364491E86C258003756D5 /* LikedOffersCollectionViewController.m in Sources */,
 				45D4F25F1E2EE1DC00619E7F /* Register1ViewController.m in Sources */,
 				45A865051E764AC600C30958 /* UIViewController+SLPhotoSelection.m in Sources */,
 				45D4F2651E2EE39E00619E7F /* User.m in Sources */,
 				45FF1EC01E778703004E955D /* ChangePasswordViewController.m in Sources */,
 				45F26EB41D7526AA006C6D9E /* ViewController.m in Sources */,
+				4563644C1E86DB2C003756D5 /* FavoritesCollectionViewCell.m in Sources */,
 				45F474101E3048A400DD3C47 /* Register2ViewController.m in Sources */,
 				450349051E7253770021E7FA /* CommerceType.m in Sources */,
 				45F807511E759A21005DB3A4 /* FilteredOffersTableViewController.m in Sources */,
 				456637A61E6E6DC90072F477 /* ProfileViewController.m in Sources */,
+				45B7FC6A1E7A25E100B20A9A /* MapNavigationViewController.m in Sources */,
 				459F00D21D90E5E70078736F /* OfferViewController.m in Sources */,
 				456637A31E6E44680072F477 /* Commerce.m in Sources */,
 				45E152121E4D3AB400F5E9EF /* KASlideShow.m in Sources */,

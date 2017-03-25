@@ -12,6 +12,7 @@
 #import "FDKeyChain.h"
 #import "User.h"
 #import "ChangePasswordViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface ProfileViewController ()<VKSideMenuDelegate, VKSideMenuDataSource>
 @property (nonatomic, strong) VKSideMenu *menuLeft;
@@ -34,7 +35,7 @@
       self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
 
-    //**REGISTER**
+    //**GET USER**
         NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/index.php/restserver/user/"];
         NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
         [rq setHTTPMethod:@"GET"];
@@ -90,7 +91,8 @@
                  NSLog(@"codigo: %@", result);
              }
 
-             
+             [_imageView sd_setImageWithURL:[NSURL URLWithString:self.user.image]
+                                 placeholderImage:[UIImage imageNamed:@"Garage-50"]];
          }];
     
     

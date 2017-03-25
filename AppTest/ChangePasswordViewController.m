@@ -99,6 +99,14 @@
                  //[self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
                  [self.navigationController popToRootViewControllerAnimated:YES];
              }
+             if ([sceResponseCode longLongValue]==1) {
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:sceResponseMsg
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+                 [alert show];
+             }
          }];
     
 

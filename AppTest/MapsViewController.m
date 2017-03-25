@@ -8,6 +8,8 @@
 
 #import "MapsViewController.h"
 #import "VKSideMenu.h"
+#import "Commerce.h"
+#import "ProfileViewController.h"
 
 @interface MapsViewController (){
     NSArray *recipeImages;
@@ -29,8 +31,18 @@
     [self.menuLeft addSwipeGestureRecognition:self.view];
     self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
 
+    recipeImages = [[NSMutableArray alloc]init];
+    recipeImages = [NSMutableArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
+    _slideshow = [[KASlideShow alloc]init];
+    _slideshow.delegate = self;
+    [_slideshow setDelay:1]; // Delay between transitions
+    [_slideshow setTransitionDuration:1]; // Transition duration
+    [_slideshow setTransitionType:KASlideShowTransitionSlide]; // Choose a transition type (fade or slide)
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
+    [_slideshow addImagesFromResources:recipeImages]; // Add images from resources
     
-//    CLLocationCoordinate2D location;
+    NSLog(@"%@",[self.commercesArray objectAtIndex:0]);
+    CLLocationCoordinate2D location;
 //    
 //    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
 //    NSString *lat = @"6.469438";
@@ -99,6 +111,17 @@
     //CLLocationCoordinate2D LagosCoord = CLLocationCoordinate2DMake(6.524379, 3.379206);
     
    // MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(LagosCoord, 8000, 8000);
+    for (Commerce *x in self.commercesArray) {
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+            NSString *lat = x.CommerceLat;
+            NSString *longitude = x.CommerceLng;
+            location.latitude = lat.doubleValue;
+            location.longitude = longitude.doubleValue;
+            point.coordinate = CLLocationCoordinate2DMake(lat.doubleValue, longitude.doubleValue);
+            point.title = x.CommerceName;
+            [self.mapView addAnnotation:point];
+    }
+    self.mapView.showsUserLocation=YES;
     [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
     //[self.mapView setRegion:region animated:YES];
     
@@ -276,7 +299,7 @@
 }
 
 
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 //    static NSString *identifier = @"MyLocation";
 //    //MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView ];
 //    MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
@@ -286,7 +309,87 @@
 //    annotationView.image = [UIImage imageNamed:@"tag"];
 //    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    return annotationView;
+    MKAnnotationView *pinView = nil;
+    if(annotation != mapView.userLocation)
+    {
+        static NSString *defaultPinID = @"com.invasivecode.pin";
+        pinView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+        if ( pinView == nil )
+            pinView = [[MKAnnotationView alloc]
+                       initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+        
+        //pinView.pinColor = MKPinAnnotationColorGreen;
+        //pinView.canShowCallout = YES;
+        //pinView.animatesDrop = YES;
+        pinView.image = [UIImage imageNamed:@"Google Filled-50"];    //as suggested by Squatch
+        pinView.canShowCallout = YES;
+        
+        //instatiate a detail-disclosure button and set it to appear on right side of annotation
+        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        pinView.rightCalloutAccessoryView = infoButton;
+    }
+    else {
+        [mapView.userLocation setTitle:@"I am here"];
+    }
+    return pinView;
+
+                                       
+                                       
+}
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+
+
+    [view addSubview:_slideshow];
+//[view addSubview:_slideshow.center = CGPointMake(view.bounds.size.width*0.5f, -self.visibleCalloutView.bounds.size.height*0.5f)];
+
+
+
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    
+     [view addSubview:_slideshow];
+//    [mapView deselectAnnotation:view.annotation animated:YES];
+//    
+//    YourContentViewController *ycvc = [[YourContentViewController alloc] init...
+//                                       UIPopoverController *poc = [[UIPopoverController alloc] initWithContentViewController:ycvc];
+//                                       [ycvc release];
+//                                       
+//                                       //hold ref to popover in an ivar
+//                                       self.annotationPopoverController = poc;
+//                                       
+//                                       //size as needed
+//                                       poc.popoverContentSize = CGSizeMake(320, 400);
+//                                       
+//                                       //show the popover next to the annotation view (pin)
+//                                       [poc presentPopoverFromRect:view.bounds inView:view 
+//                                          permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//                                       
+//                                       [poc release];
+    
+}
+
+//
+//- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+//    [mapView deselectAnnotation:view.annotation animated:YES];
+//    
+//    ProfileViewController *ycvc = [[ProfileViewController alloc] init];
+//    UIPopoverController *poc = [[UIPopoverController alloc] initWithContentViewController:ycvc];
+//    
+//    
+//    //hold ref to popover in an ivar
+//    //     self.annotationPopoverController = poc;
+//    
+//    //size as needed
+//    poc.popoverContentSize = CGSizeMake(320, 400);
+//    
+//    //show the popover next to the annotation view (pin)
+//    [poc presentPopoverFromRect:view.bounds inView:view
+//       permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 //}
+
 //
 //- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 //    //MyLocation *location = (MyLocation*)view.annotation;
@@ -313,6 +416,30 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - KASlideShow delegate
+
+- (void) kaSlideShowDidNext:(KASlideShow *)slideShow
+{
+    NSLog(@"kaSlideShowDidNext, index : %d",slideShow.currentIndex);
+}
+
+-(void)kaSlideShowDidPrevious:(KASlideShow *)slideShow
+{
+    NSLog(@"kaSlideShowDidPrevious, index : %d",slideShow.currentIndex);
+}
+
+#pragma mark - Button methods
+
+- (IBAction)previous:(id)sender
+{
+    [_slideshow previous];
+}
+
+- (IBAction)next:(id)sender
+{
+    [_slideshow next];
 }
 
 /*
