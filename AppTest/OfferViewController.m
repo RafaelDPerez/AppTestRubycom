@@ -24,10 +24,23 @@
   self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"atrás"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack:)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     _imgOffer.image = [UIImage imageNamed:self.hola];
     _lblPoints.text = [NSString stringWithFormat:@"%@B",self.offer.OfferPoints ];
     _lblOfferName.text = self.offer.OfferName;
     _lblOfferDescription.text = self.offer.OfferDescription;
+}
+
+- (void)handleBack:(id)sender {
+    // pop to root view controller
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

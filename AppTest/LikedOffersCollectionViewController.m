@@ -133,21 +133,24 @@ static NSString * const reuseIdentifier = @"Cell";
 
     FavoritesCollectionViewCell *cell = [collectionView  dequeueReusableCellWithReuseIdentifier:@"CellFavorite"forIndexPath:indexPath]
     ;
+    if (offersArray.count>0) {
+        Offer *thisOffer = [[Offer alloc]init];
+        thisOffer = [offersArray objectAtIndex:indexPath.row];
+        
+        cell.lblOfferPoints.text = thisOffer.OfferPoints;
+        cell.lblOfferName.text = thisOffer.OfferName;
+        cell.btnDislike.tag = indexPath.row;
+        NSArray *images = thisOffer.OfferImage;
+        if (thisOffer.OfferImage.count >0) {
+            [cell.ivOfferImage sd_setImageWithURL:[NSURL URLWithString:images[0]]
+                                 placeholderImage:[UIImage imageNamed:@"logo_BIXI"]];
+        }
+        else{
+            [cell.ivOfferImage setImage:[UIImage imageNamed:@"green_tea.jpg"]];
+        }
+    }
 //    UIImageView *offerImageView = (UIImageView *)[cell viewWithTag:100];
-    Offer *thisOffer = [[Offer alloc]init];
-    thisOffer = [offersArray objectAtIndex:indexPath.row];
-
-    cell.lblOfferPoints.text = thisOffer.OfferPoints;
-    cell.lblOfferName.text = thisOffer.OfferName;
-    cell.btnDislike.tag = indexPath.row;
-    NSArray *images = thisOffer.OfferImage;
-    if (thisOffer.OfferImage.count >0) {
-        [cell.ivOfferImage sd_setImageWithURL:[NSURL URLWithString:images[0]]
-                             placeholderImage:[UIImage imageNamed:@"logo_BIXI"]];
-    }
-    else{
-        [cell.ivOfferImage setImage:[UIImage imageNamed:@"green_tea.jpg"]];
-    }
+   
         //cell.
     // Configure the cell
     
@@ -175,14 +178,44 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 -(IBAction)DislikeOffer:(UIButton*)sender{
-    //UIButton *dislikeButton = (UIButton *) sender;
-    //dislikeButton.tintColor = [UIColor redColor];
+    Offer *dislikedOffer = [[Offer alloc]init];
+    dislikedOffer = [offersArray objectAtIndex:sender.tag];
+    NSLog(@" Este es el sender: %ld",(long)sender.tag);
+    NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
+    NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/quit_favorites/"];
+    NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+    [rq setHTTPMethod:@"POST"];
+    [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+    NSData *jsonData = [[NSString stringWithFormat:@"{\"product_id\":\"%@\"}", dislikedOffer.OfferID] dataUsingEncoding:NSUTF8StringEncoding];
     
+    [rq setHTTPBody:jsonData];
+    
+    [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [NSURLConnection sendAsynchronousRequest:rq
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError)
+     {
+         NSError* error;
+         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:&error];
+         NSString *message = [json objectForKey:@"sceResponseMsg"];
+         NSArray *result = [json objectForKey:@"result"];
+        
+
+             if ([message isEqualToString:@"OK"]) {
+                 NSLog(@"it's deleted");
+         }
+         
+         }];
+
     
     [offersArray removeObject:[offersArray objectAtIndex:sender.tag]];
     NSIndexPath *indexPath =[NSIndexPath indexPathForRow:sender.tag inSection:0];
-  
     [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    [self.collectionView reloadItemsAtIndexPaths:[self.collectionView indexPathsForVisibleItems]];
+    [self.collectionView reloadData];
 
 }
 
