@@ -269,7 +269,7 @@
                 
             case 3:
                 item.title = @"Ofertas cerca de mí";
-                item.icon  = [UIImage imageNamed:@"ic_option_4"];
+                item.icon  = [UIImage imageNamed:@"Near Me-50"];
                 break;
                 
             case 4:
@@ -279,7 +279,7 @@
                 
             case 5:
                 item.title = @"Transacciones";
-                item.icon  = [UIImage imageNamed:@"Exit-50"];
+                item.icon  = [UIImage imageNamed:@"Transaction List-50"];
                 break;
                 
             default:
