@@ -21,5 +21,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *tenBtn;
 @property (weak, nonatomic) IBOutlet UIButton *clearBtn;
 @property (weak, nonatomic) IBOutlet UITextField *passTxt;
+@property (weak, nonatomic) NSString *points;
+@property (weak, nonatomic) NSString *pointsDescription;
+@property (weak, nonatomic) NSString *pin;
+@property (weak, nonatomic) NSString *productID;
+@property (weak, nonatomic) NSString *Type;
+@property (weak, nonatomic) NSString *Message;
 @end
 

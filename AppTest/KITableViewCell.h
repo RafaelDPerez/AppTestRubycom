@@ -14,6 +14,7 @@
 }
 @property(weak, nonatomic) IBOutlet UILabel *txtName;
 @property(weak, nonatomic) IBOutlet UILabel *txtAddress;
+@property(weak, nonatomic) IBOutlet UILabel *lblPoints;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property (strong,nonatomic) IBOutlet UIButton * btnPrev;
 @property (strong,nonatomic) IBOutlet UIButton * btnNext;

@@ -231,7 +231,7 @@
 -(NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
 {
     if (sideMenu == self.menuLeft)
-        return 5;
+        return 6;
     
     return section == 0 ? 1 : 2;
 }
@@ -268,6 +268,11 @@
                 
             case 4:
                 item.title = @"Salir";
+                item.icon  = [UIImage imageNamed:@"Exit-50"];
+                break;
+                
+            case 5:
+                item.title = @"Transacciones";
                 item.icon  = [UIImage imageNamed:@"Exit-50"];
                 break;
                 
@@ -328,6 +333,9 @@
                               otherButtonTitles:@"SI",nil];
         [alert show];
         
+    }
+    if (indexPath.row == 5) {
+        [self performSegueWithIdentifier:@"callTransactions" sender:self];
     }
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
 }
@@ -394,7 +402,39 @@
     [FBSDKAccessToken setCurrentAccessToken:nil];
     [self performSegueWithIdentifier:@"backLogIn" sender:self];
     [[GIDSignIn sharedInstance] signOut];
-    
+}
+
+-(IBAction)LikeOffer:(id)sender{
+    NSLog(@"Liking offer");
+    //    NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
+    //    NSURL *url = [NSURL URLWithString:@"http://rubycom.net/bocetos/DEMO-BIXI/restserver/add_favorites/"];
+    //    NSMutableURLRequest *rq = [NSMutableURLRequest requestWithURL:url];
+    //    [rq setHTTPMethod:@"POST"];
+    //    [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
+    ////    NSData *jsonData = [[NSString stringWithFormat:@"{\"product_id\":\"%@\"}", dislikedOffer.OfferID] dataUsingEncoding:NSUTF8StringEncoding];
+    //
+    //    [rq setHTTPBody:jsonData];
+    //
+    //    [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //    [NSURLConnection sendAsynchronousRequest:rq
+    //                                       queue:[NSOperationQueue mainQueue]
+    //                           completionHandler:^(NSURLResponse *response,
+    //                                               NSData *data, NSError *connectionError)
+    //     {
+    //         NSError* error;
+    //         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+    //                                                              options:kNilOptions
+    //                                                                error:&error];
+    //         NSString *message = [json objectForKey:@"sceResponseMsg"];
+    //         NSArray *result = [json objectForKey:@"result"];
+    //
+    //
+    //         if ([message isEqualToString:@"OK"]) {
+    //             NSLog(@"it's deleted");
+    //         }
+    //         
+    //     }];
+
 }
 
 -(void)callLogIn{

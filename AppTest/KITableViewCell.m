@@ -28,6 +28,7 @@
     _btnPrev = [(UIButton*) self.contentView viewWithTag:5];
     _btnNext = [(UIButton*) self.contentView viewWithTag:10];
     _btnLike = [(UIButton*) self.contentView viewWithTag:100];
+    _lblPoints = [(UILabel*) self.contentView viewWithTag:50];
     
     [self.contentView addSubview:_btnNext];
     [self.contentView bringSubviewToFront:_btnNext];
@@ -35,6 +36,9 @@
     [self.contentView bringSubviewToFront:_btnPrev];
     [self.contentView addSubview:_btnLike];
     [self.contentView bringSubviewToFront:_btnLike];
+    [self.contentView addSubview:_lblPoints];
+    [self.contentView bringSubviewToFront:_lblPoints];
+    
     _slideshow.delegate = self;
     [_slideshow setDelay:1]; // Delay between transitions
     [_slideshow setTransitionDuration:1]; // Transition duration

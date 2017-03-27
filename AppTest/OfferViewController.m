@@ -8,6 +8,7 @@
 
 #import "OfferViewController.h"
 #import "Offer.h"
+#import "ViewController.h"
 
 
 @interface OfferViewController ()
@@ -36,6 +37,20 @@
     _lblPoints.text = [NSString stringWithFormat:@"%@B",self.offer.OfferPoints ];
     _lblOfferName.text = self.offer.OfferName;
     _lblOfferDescription.text = self.offer.OfferDescription;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"callReclaim"]) {
+        ViewController *KeyboardViewController = [segue destinationViewController];
+        //     [cell getCurrentIndex];
+        KeyboardViewController.productID = _offer.OfferID;
+        KeyboardViewController.Message = @"La oferta ha sido reclamada!";
+        KeyboardViewController.Type = @"2";
+        
+    }
+    
+    
 }
 
 - (void)handleBack:(id)sender {
