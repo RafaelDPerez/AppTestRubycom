@@ -20,7 +20,9 @@
 @property (strong,nonatomic) IBOutlet UIButton * btnNext;
 @property (strong,nonatomic) IBOutlet UIButton * btnLike;
 @property (weak, nonatomic) KASlideShow *hola;
-
+@property (weak, nonatomic) NSMutableArray *Offers;
+@property int offerIndex;
 -(void)setSlideShow:(NSString*)img;
+-(void)receiveOffers:(NSMutableArray*)offers;
 -(void)getCurrentIndex;
 @end

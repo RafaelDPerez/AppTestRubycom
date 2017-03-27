@@ -9,6 +9,7 @@
 #import "OfferViewController.h"
 #import "Offer.h"
 #import "ViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 
 @interface OfferViewController ()
@@ -33,7 +34,10 @@
     
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    _imgOffer.image = [UIImage imageNamed:self.hola];
+  //  _imgOffer.image = [UIImage imageNamed:self.hola];
+    
+    [_imgOffer sd_setImageWithURL:[NSURL URLWithString:self.offer.OfferImage[0]]
+                  placeholderImage:[UIImage imageNamed:@"Garage-50"]];
     _lblPoints.text = [NSString stringWithFormat:@"%@B",self.offer.OfferPoints ];
     _lblOfferName.text = self.offer.OfferName;
     _lblOfferDescription.text = self.offer.OfferDescription;

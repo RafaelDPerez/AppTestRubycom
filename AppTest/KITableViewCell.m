@@ -10,6 +10,7 @@
 #import "FDKeychain.h"
 #import "OffersTableViewController.h"
 #import "OffersTableViewController.h"
+#import "Offer.h"
 
 @implementation KITableViewCell{
     KASlideShow *hola;
@@ -51,6 +52,13 @@
     
 }
 
+-(void)receiveOffers:(NSMutableArray*)offers{
+    _Offers = offers;
+    _offerIndex = 0;
+    
+}
+
+
 -(void)getCurrentIndex{
    tv = (UITableView *) self.superview.superview;
     hola = [self.contentView viewWithTag:1];
@@ -58,22 +66,38 @@
     tv = (UITableView *) self.superview.superview;
     vc = (UITableViewController *) tv.dataSource;
     vc->index = hola.currentIndex;
+  
+    
 }
 
 -(IBAction)NextImg:(id)sender{
+    Offer *hello = [[Offer alloc]init];
+//    if (_offerIndex == [_Offers count]-1) {
+//        _offerIndex = 0;
+//    }
+//    if (_offerIndex < [_Offers count]-1){
+//        _offerIndex = _offerIndex +1;
+//    }
+    
+
     hola = [self.contentView viewWithTag:1];
     [hola next];
     tv = (UITableView *) self.superview.superview;
     vc = (UITableViewController *) tv.dataSource;
     vc->index = hola.currentIndex;
+    hello = [_Offers objectAtIndex:(hola.currentIndex)];
+    _lblPoints.text = hello.OfferPoints;
 }
 
 -(IBAction)PrevImg:(id)sender{
-   hola = [self.contentView viewWithTag:1];
+    Offer *hello = [[Offer alloc]init];
+    hola = [self.contentView viewWithTag:1];
    [hola previous];
    tv = (UITableView *) self.superview.superview;
    vc = (UITableViewController *) tv.dataSource;
    vc->index = hola.currentIndex;
+    hello = [_Offers objectAtIndex:(hola.currentIndex)];
+    _lblPoints.text = hello.OfferPoints;
 }
 
 #pragma mark - KASlideShow delegate

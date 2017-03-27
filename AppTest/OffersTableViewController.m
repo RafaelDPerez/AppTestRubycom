@@ -94,10 +94,16 @@
                      offer.OfferID = [dict3 objectForKey:@"product_id"];
                      offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
                      offer.OfferStatus = [dict3 objectForKey:@"status"];
-                     offer.OfferImage = [dict3 objectForKey:@"images"];
+                     offer.OfferImage = [NSMutableArray arrayWithArray:[dict3 objectForKey:@"images"]];
+                     if ([offer.OfferImage count]==0) {
+                         [offer.OfferImage addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                         [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                     }
+                     else
+                         [commerce.CommerceOffersImages addObject:offer.OfferImage[0]];;
                      [commerce.CommerceOffers addObject:offer];
 //                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
-                     [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                     
                      
 //                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                      
@@ -484,12 +490,16 @@
    cell = (KITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"imgCell" forIndexPath:indexPath];
     
 
-            
+    
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
     [cell setSlideShow:commerceSelected.CommerceOffersImages];
+    [cell receiveOffers:commerceSelected.CommerceOffers];
     cell.txtName.text = commerceSelected.CommerceName;
     cell.txtAddress.text = commerceSelected.CommerceAddress;
+    Offer *hola = [[Offer alloc]init];
+    hola = [commerceSelected.CommerceOffers objectAtIndex:0];
+    cell.lblPoints.text = hola.OfferPoints;
     
     return cell;
 }
