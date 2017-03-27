@@ -9,6 +9,7 @@
 #import "TransactionsTableViewController.h"
 #import "Transaction.h"
 #import "FDKeyChain.h"
+#import "TransactionsTableViewCell.h"
 @interface TransactionsTableViewController ()
 
 @end
@@ -60,7 +61,7 @@
                  trans.TransactionDate = [dict3 objectForKey:@"cdate"];
                  trans.TransactionType = [dict3 objectForKey:@"type"];
                  [TransactionArray addObject:trans];
-                 
+                 [self.tableView reloadData];
              }
          }
                   
@@ -84,23 +85,33 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return [TransactionArray count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    TransactionsTableViewCell *cell = (TransactionsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"transCell" forIndexPath:indexPath];
+    Transaction *trans = [[Transaction alloc]init];
+    trans = [TransactionArray objectAtIndex:indexPath.row];
+    cell.lblOfferName.text = trans.TransactionCommerce;
+    cell.lblOfferdate.text = trans.TransactionDate;
+    if ([trans.TransactionType isEqualToString:@"DEBITO"]) {
+        cell.lblOfferPoints.text = [NSString stringWithFormat:@"-%@",trans.TransactionPoints];
+    }
+    else
+        cell.lblOfferPoints.text = [NSString stringWithFormat:@"+%@",trans.TransactionPoints];
+    cell.lblOfferDescription.text = trans.TransactionDescription;
+ 
+   
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

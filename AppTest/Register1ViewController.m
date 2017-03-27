@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet ACFloatingTextField *txtLastName;
 @property (strong, nonatomic) IBOutlet ACFloatingTextField *txtDocumentID;
 @property (strong, nonatomic) IBOutlet ACFloatingTextField *txtDateOfBirth;
-@property (strong, nonatomic) IBOutlet ACFloatingTextField *txtSex;
+@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtSex;
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong,nonatomic) NSArray *pickerNames;
 
