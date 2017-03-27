@@ -78,7 +78,11 @@ static NSString * const reuseIdentifier = @"Cell";
                      offer.OfferID = [dict3 objectForKey:@"product_id"];
                      offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
                      offer.OfferStatus = [dict3 objectForKey:@"status"];
-                     offer.OfferImage = [dict3 objectForKey:@"images"];
+                 offer.OfferImage = [NSMutableArray arrayWithArray:[dict3 objectForKey:@"images"]];
+                 if ([offer.OfferImage count]==0) {
+                     [offer.OfferImage addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                 }
+
                    //  offer.OfferImage = @"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg";
                  [offersArray addObject:offer];
                  
@@ -140,14 +144,10 @@ static NSString * const reuseIdentifier = @"Cell";
         cell.lblOfferPoints.text = thisOffer.OfferPoints;
         cell.lblOfferName.text = thisOffer.OfferName;
         cell.btnDislike.tag = indexPath.row;
-        NSArray *images = thisOffer.OfferImage;
-        if (thisOffer.OfferImage.count >0) {
-            [cell.ivOfferImage sd_setImageWithURL:[NSURL URLWithString:images[0]]
-                                 placeholderImage:[UIImage imageNamed:@"logo_BIXI"]];
-        }
-        else{
-            [cell.ivOfferImage setImage:[UIImage imageNamed:@"green_tea.jpg"]];
-        }
+        //NSArray *images = thisOffer.OfferImage;
+        
+        [cell.ivOfferImage sd_setImageWithURL:[NSURL URLWithString:[thisOffer.OfferImage objectAtIndex:0]]
+                     placeholderImage:[UIImage imageNamed:@"Garage-50"]];
     }
 //    UIImageView *offerImageView = (UIImageView *)[cell viewWithTag:100];
    
@@ -169,7 +169,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
         OfferViewController *offerViewController = [segue destinationViewController];
         //     [cell getCurrentIndex];
 //        offerViewController.hola= offerSelected.OfferImage;
-        offerViewController.hola= @"green_tea.jpg";
         offerViewController.offer = offerSelected;
         
     }

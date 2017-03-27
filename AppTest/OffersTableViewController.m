@@ -100,7 +100,7 @@
                          [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                      }
                      else
-                         [commerce.CommerceOffersImages addObject:offer.OfferImage[0]];;
+                         [commerce.CommerceOffersImages addObject:offer.OfferImage[0]];
                      [commerce.CommerceOffers addObject:offer];
 //                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
                      
@@ -506,7 +506,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     commerceClicked = [commercesArray objectAtIndex:indexPath.row];
+//    [self.tableView reloadData];
+//    //[self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleItems] ];
+//    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowActionStyleNormal];
+    KITableViewCell *hola = [[KITableViewCell alloc]init];
+    hola = [tableView cellForRowAtIndexPath:indexPath];
+    index = hola.slideshow.currentIndex;
+    commerceClicked = [commercesArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"ViewOffer" sender:self];
 
     

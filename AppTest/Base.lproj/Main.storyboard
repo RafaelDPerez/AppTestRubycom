@@ -1281,6 +1281,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="bm3-4H-ryX" kind="push" identifier="ViewOffer" id="Mea-cb-pQe"/>
+                        <segue destination="VnJ-UB-sNR" kind="modal" identifier="callHomeProfile" id="rbn-XJ-lHB"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Icp-sl-cUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1880,9 +1881,9 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5DV-Zb-faN"/>
-        <segue reference="eBk-wv-N18"/>
-        <segue reference="Pol-Ls-8kH"/>
+        <segue reference="rbn-XJ-lHB"/>
+        <segue reference="Mea-cb-pQe"/>
         <segue reference="VaL-Im-Su3"/>
+        <segue reference="Pol-Ls-8kH"/>
     </inferredMetricsTieBreakers>
 </document>
