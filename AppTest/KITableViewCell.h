@@ -16,9 +16,10 @@
 @property(weak, nonatomic) IBOutlet UILabel *txtAddress;
 @property(weak, nonatomic) IBOutlet UILabel *lblPoints;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
-@property (strong,nonatomic) IBOutlet UIButton * btnPrev;
-@property (strong,nonatomic) IBOutlet UIButton * btnNext;
-@property (strong,nonatomic) IBOutlet UIButton * btnLike;
+
+@property (strong,nonatomic) UIButton * btnPrev;
+@property (strong,nonatomic) UIButton * btnNext;
+@property (strong,nonatomic) UIButton * btnLike;
 @property (weak, nonatomic) KASlideShow *hola;
 @property (weak, nonatomic) NSMutableArray *Offers;
 @property int offerIndex;

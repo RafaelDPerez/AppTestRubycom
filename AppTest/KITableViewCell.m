@@ -26,19 +26,27 @@
 
 
 -(void)setSlideShow:(NSArray*)imgs{
-    _btnPrev = [(UIButton*) self.contentView viewWithTag:5];
-    _btnNext = [(UIButton*) self.contentView viewWithTag:10];
-    _btnLike = [(UIButton*) self.contentView viewWithTag:100];
-    _lblPoints = [(UILabel*) self.contentView viewWithTag:50];
+
     
-    [self.contentView addSubview:_btnNext];
-    [self.contentView bringSubviewToFront:_btnNext];
-    [self.contentView addSubview:_btnPrev];
-    [self.contentView bringSubviewToFront:_btnPrev];
+    _btnLike = [[UIButton alloc]init];
+    [_btnLike setImage:[UIImage imageNamed:@"Like-50"] forState:UIControlStateNormal];
+    _btnLike.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 10.0f, 50.0f, 35.0f);
+    //[_btnLike addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_btnLike];
-    [self.contentView bringSubviewToFront:_btnLike];
-    [self.contentView addSubview:_lblPoints];
-    [self.contentView bringSubviewToFront:_lblPoints];
+    
+    _btnPrev = [[UIButton alloc]init];
+    [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
+    _btnPrev.frame = CGRectMake(30, self.bounds.origin.y + 50.0f, 38.0f, 130.0f);
+    [_btnPrev addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_btnPrev];
+    
+    _btnNext = [[UIButton alloc]init];
+    [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
+    _btnNext.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 50.0f, 38.0f, 130.0f);
+    [_btnNext addTarget:self action:@selector(NextImg:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_btnNext];
+    
+
     
     _slideshow.delegate = self;
     [_slideshow setDelay:1]; // Delay between transitions

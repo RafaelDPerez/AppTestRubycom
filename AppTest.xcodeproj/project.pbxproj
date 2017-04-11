@@ -61,11 +61,6 @@
 		45E152161E4D3BD700F5E9EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152151E4D3BD700F5E9EF /* CoreGraphics.framework */; };
 		45E152181E4D3BE500F5E9EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152171E4D3BE500F5E9EF /* QuartzCore.framework */; };
 		45E1521A1E4D3BF100F5E9EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E152191E4D3BF100F5E9EF /* UIKit.framework */; };
-		45E152211E4D3D8D00F5E9EF /* 336D.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521C1E4D3D8D00F5E9EF /* 336D.jpg */; };
-		45E152221E4D3D8D00F5E9EF /* test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521D1E4D3D8D00F5E9EF /* test_1.jpg */; };
-		45E152231E4D3D8D00F5E9EF /* test_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521E1E4D3D8D00F5E9EF /* test_2.jpg */; };
-		45E152241E4D3D8D00F5E9EF /* test_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E1521F1E4D3D8D00F5E9EF /* test_3.jpg */; };
-		45E152251E4D3D8D00F5E9EF /* test_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E152201E4D3D8D00F5E9EF /* test_4.jpg */; };
 		45E152281E4D55B200F5E9EF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E152271E4D55B200F5E9EF /* SearchViewController.m */; };
 		45F26EAE1D7526AA006C6D9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EAD1D7526AA006C6D9E /* main.m */; };
 		45F26EB11D7526AA006C6D9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F26EB01D7526AA006C6D9E /* AppDelegate.m */; };
@@ -610,7 +605,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Rafael Perez";
 				TargetAttributes = {
 					45F26EA81D7526AA006C6D9E = {
@@ -653,25 +648,20 @@
 			files = (
 				45A415F01D767FDC0038CD4D /* full_breakfast.jpg in Resources */,
 				45F26EBC1D7526AA006C6D9E /* LaunchScreen.storyboard in Resources */,
-				45E152251E4D3D8D00F5E9EF /* test_4.jpg in Resources */,
 				45A415EE1D767FDC0038CD4D /* creme_brelee.jpg in Resources */,
 				45A415FB1D767FDC0038CD4D /* vegetable_curry.jpg in Resources */,
 				45A415FA1D767FDC0038CD4D /* thai_shrimp_cake.jpg in Resources */,
 				4599E0561E3AF1F100C5C92C /* menu-button_white.png in Resources */,
 				45F26EB91D7526AA006C6D9E /* Assets.xcassets in Resources */,
 				45A415FC1D767FDC0038CD4D /* white_chocolate_donut.jpg in Resources */,
-				45E152221E4D3D8D00F5E9EF /* test_1.jpg in Resources */,
 				45A415F51D767FDC0038CD4D /* instant_noodle_with_egg.jpg in Resources */,
 				4515E89F1E5A4CC300E3736F /* GoogleService-Info.plist in Resources */,
-				45E152231E4D3D8D00F5E9EF /* test_2.jpg in Resources */,
 				45A415F41D767FDC0038CD4D /* hamburger.jpg in Resources */,
 				45A415F81D767FDC0038CD4D /* noodle_with_bbq_pork.jpg in Resources */,
 				45A415ED1D767FDC0038CD4D /* angry_birds_cake.jpg in Resources */,
 				45F26EB71D7526AA006C6D9E /* Main.storyboard in Resources */,
-				45E152211E4D3D8D00F5E9EF /* 336D.jpg in Resources */,
 				45A415F21D767FDC0038CD4D /* ham_and_cheese_panini.jpg in Resources */,
 				45A415F11D767FDC0038CD4D /* green_tea.jpg in Resources */,
-				45E152241E4D3D8D00F5E9EF /* test_3.jpg in Resources */,
 				45A415F71D767FDC0038CD4D /* mushroom_risotto.jpg in Resources */,
 				45A415F91D767FDC0038CD4D /* starbucks_coffee.jpg in Resources */,
 				4599E0541E3AF13D00C5C92C /* menu-button_white@2x.png in Resources */,
@@ -927,8 +917,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -972,8 +964,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -38,11 +38,15 @@
 @synthesize commercesArray, commerceSelected, commerceClicked, urlArray, imageArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    index =0;
     recipeImages = [[NSMutableArray alloc]init];
     recipeImages = [NSMutableArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
     urlArray =[[NSMutableArray alloc] init];
     imageArray=[[NSMutableArray alloc] init];
     commercesArray = [[NSMutableArray alloc] init];
+    
+
+    NSLog(@"%@",[FBSDKAccessToken currentAccessToken].tokenString);
     // **GET PRODUCTS**
     NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
     NSLog(@"%@", token);
@@ -493,10 +497,14 @@
     
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
+    NSMutableArray *hello = [[NSMutableArray alloc]init];
+    hello = commerceSelected.CommerceOffers;
     [cell setSlideShow:commerceSelected.CommerceOffersImages];
     [cell receiveOffers:commerceSelected.CommerceOffers];
     cell.txtName.text = commerceSelected.CommerceName;
-    cell.txtAddress.text = commerceSelected.CommerceAddress;
+    Offer *hay = [[Offer alloc]init];
+    hay = [hello objectAtIndex:index];
+    cell.txtAddress.text = hay.OfferDescription;
     Offer *hola = [[Offer alloc]init];
     hola = [commerceSelected.CommerceOffers objectAtIndex:0];
     cell.lblPoints.text = hola.OfferPoints;
