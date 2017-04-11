@@ -181,6 +181,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+
 //- (BOOL)canPerformUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender {
 //    [fromViewController dismissViewControllerAnimated:YES completion:nil];
 //    
@@ -519,6 +521,7 @@
 //    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowActionStyleNormal];
     KITableViewCell *hola = [[KITableViewCell alloc]init];
     hola = [tableView cellForRowAtIndexPath:indexPath];
+    _indexPathCell = indexPath;
     index = hola.slideshow.currentIndex;
     commerceClicked = [commercesArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"ViewOffer" sender:self];

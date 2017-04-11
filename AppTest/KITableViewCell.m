@@ -15,6 +15,7 @@
 @implementation KITableViewCell{
     KASlideShow *hola;
     UITableView *tv;
+    KITableViewCell *tvc;
     OffersTableViewController *vc;
 }
 
@@ -27,24 +28,26 @@
 
 -(void)setSlideShow:(NSArray*)imgs{
 
-    
+    if ([imgs count]>1) {
+        _btnPrev = [[UIButton alloc]init];
+        [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
+        _btnPrev.frame = CGRectMake(30, self.bounds.origin.y + 50.0f, 38.0f, 130.0f);
+        [_btnPrev addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_btnPrev];
+        
+        _btnNext = [[UIButton alloc]init];
+        [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
+        _btnNext.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 50.0f, 38.0f, 130.0f);
+        [_btnNext addTarget:self action:@selector(NextImg:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_btnNext];
+    }
     _btnLike = [[UIButton alloc]init];
     [_btnLike setImage:[UIImage imageNamed:@"Like-50"] forState:UIControlStateNormal];
     _btnLike.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 10.0f, 50.0f, 35.0f);
     //[_btnLike addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_btnLike];
     
-    _btnPrev = [[UIButton alloc]init];
-    [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
-    _btnPrev.frame = CGRectMake(30, self.bounds.origin.y + 50.0f, 38.0f, 130.0f);
-    [_btnPrev addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_btnPrev];
     
-    _btnNext = [[UIButton alloc]init];
-    [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
-    _btnNext.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 50.0f, 38.0f, 130.0f);
-    [_btnNext addTarget:self action:@selector(NextImg:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_btnNext];
     
 
     
@@ -91,9 +94,20 @@
     hola = [self.contentView viewWithTag:1];
     [hola next];
     tv = (UITableView *) self.superview.superview;
+   
+//    UITableViewCell *cell = [tv cellForRowAtIndexPath:indexPath];
+//    NSArray *subviews = cell.subviews;
+//    for (UIView *subview in subviews) {
+//        if ([subview isKindOfClass:[UILabel class]] && subview.tag == 100) {
+//            UILabel *mylabel = (UILabel *)subview;
+//            //Update your lable here
+//        }
+//    }
     vc = (UITableViewController *) tv.dataSource;
     vc->index = hola.currentIndex;
     hello = [_Offers objectAtIndex:(hola.currentIndex)];
+    tvc = (KITableViewCell *) self;
+    tvc.txtAddress.text = hello.OfferDescription;
     _lblPoints.text = hello.OfferPoints;
 }
 
@@ -105,6 +119,8 @@
    vc = (UITableViewController *) tv.dataSource;
    vc->index = hola.currentIndex;
     hello = [_Offers objectAtIndex:(hola.currentIndex)];
+    tvc = (KITableViewCell *) self;
+    tvc.txtAddress.text = hello.OfferDescription;
     _lblPoints.text = hello.OfferPoints;
 }
 
