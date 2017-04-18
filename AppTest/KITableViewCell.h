@@ -12,8 +12,8 @@
 @interface KITableViewCell : UITableViewCell<KASlideShowDelegate,KASlideShowDataSource>{
 @public int selectedIndex;
 }
-@property(weak, nonatomic) IBOutlet UILabel *txtName;
-@property(weak, nonatomic) IBOutlet UILabel *txtAddress;
+@property(weak, nonatomic) IBOutlet UITextView *txtName;
+@property(weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property(weak, nonatomic) IBOutlet UILabel *lblPoints;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 

@@ -171,8 +171,8 @@
     
     
     UIImage *image = [[UIImage alloc] init];
-    image = [UIImage imageNamed:@"logo_BIXI"];
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-(image.size.width/2), 20, 50, 50)];
+    image = [UIImage imageNamed:@"LogoBixi2"];
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-(image.size.width/2), 20, 80, 80)];
     [iv setImage:image];
    [self.view addSubview:iv];
     // Setup content table view

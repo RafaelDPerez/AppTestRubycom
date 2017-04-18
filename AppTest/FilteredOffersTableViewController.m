@@ -443,7 +443,7 @@
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
     [cell setSlideShow:commerceSelected.CommerceOffersImages];
     cell.txtName.text = commerceSelected.CommerceName;
-    cell.txtAddress.text = commerceSelected.CommerceAddress;
+    cell.txtDescription.text = commerceSelected.CommerceAddress;
     
     return cell;
 }

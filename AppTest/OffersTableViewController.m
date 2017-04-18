@@ -156,7 +156,7 @@
    // NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
     NSString *loggedin = [FDKeychain itemForKey:@"loggedin" forService:@"BIXI" error:nil];
     NSLog(@"token:%@", token);
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2"]];
     self.tableView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
     
@@ -180,6 +180,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 
 
@@ -506,7 +507,7 @@
     cell.txtName.text = commerceSelected.CommerceName;
     Offer *hay = [[Offer alloc]init];
     hay = [hello objectAtIndex:index];
-    cell.txtAddress.text = hay.OfferDescription;
+    cell.txtDescription.text = hay.OfferDescription;
     Offer *hola = [[Offer alloc]init];
     hola = [commerceSelected.CommerceOffers objectAtIndex:0];
     cell.lblPoints.text = hola.OfferPoints;
