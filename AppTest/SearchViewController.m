@@ -9,17 +9,19 @@
 #import "SearchViewController.h"
 #import "ACFloatingTextField.h"
 #import "FDKeyChain.h"
+#import "VKSideMenu.h"
 #import "FilteredOffersTableViewController.h"
 #import "FilteredOffersNavigationViewController.h"
 
 
-@interface SearchViewController ()<UIPickerViewDelegate>
+@interface SearchViewController ()<UIPickerViewDelegate,VKSideMenuDelegate, VKSideMenuDataSource, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtCommerceId;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOrderBy;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOffer;
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIPickerView *orderBypickerView;
 @property (strong, nonatomic) UIPickerView *offerpickerView;
+@property (nonatomic, strong) VKSideMenu *menuLeft;
 @end
 NSMutableArray *commerceTypeArray;
 NSMutableArray *orderByList;
@@ -29,6 +31,11 @@ NSMutableArray *offerList;
 @synthesize commerceTypeSelected;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
+    self.menuLeft.dataSource = self;
+    self.menuLeft.delegate   = self;
+    [self.menuLeft addSwipeGestureRecognition:self.navigationController.view];
+    self.menuLeft.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     commerceTypeSelected = [[CommerceType alloc]init];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
@@ -123,6 +130,190 @@ NSMutableArray *offerList;
     
 }
 
+#pragma mark - VKSideMenuDataSource
+
+-(NSInteger)numberOfSectionsInSideMenu:(VKSideMenu *)sideMenu
+{
+    return (sideMenu == self.menuLeft) ? 1 : 2;
+}
+
+-(NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
+{
+    if (sideMenu == self.menuLeft)
+        return 6;
+    
+    return section == 0 ? 1 : 2;
+}
+
+-(VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // This solution is provided for DEMO propose only
+    // It's beter to store all items in separate arrays like you do it in your UITableView's. Right?
+    VKSideMenuItem *item = [VKSideMenuItem new];
+    
+    if (sideMenu == self.menuLeft) // All LEFT and TOP menu items
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                item.title = @"Inicio";
+                item.icon  = [UIImage imageNamed:@"Home-50"];
+                break;
+                
+            case 1:
+                item.title = @"Mi Perfil";
+                item.icon  = [UIImage imageNamed:@"ic_option_1"];
+                break;
+                
+            case 2:
+                item.title = @"Ofertas que me gustan";
+                item.icon  = [UIImage imageNamed:@"Like-50"];
+                break;
+                
+            case 3:
+                item.title = @"Ofertas cerca de mí";
+                item.icon  = [UIImage imageNamed:@"Near Me-50"];
+                break;
+                
+            case 4:
+                item.title = @"Salir";
+                item.icon  = [UIImage imageNamed:@"Exit-50"];
+                break;
+                
+            case 5:
+                item.title = @"Transacciones";
+                item.icon  = [UIImage imageNamed:@"Transaction List-50"];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else if (indexPath.section == 0) // RIGHT menu first section items
+    {
+        item.title = @"Login";
+    }
+    else // RIGHT menu second section items
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                item.title = @"Like";
+                break;
+                
+            case 1:
+                item.title = @"Share";
+                break;
+            default:
+                break;
+        }
+    }
+    
+    return item;
+}
+
+#pragma mark - VKSideMenuDelegate
+
+-(void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row ==0) {
+        [self performSegueWithIdentifier:@"callHomeSearch" sender:self];
+    }
+    if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"callProfile" sender:self];
+    }
+    if (indexPath.row ==2) {
+        [self performSegueWithIdentifier:@"callFavorites" sender:self];
+        
+        //        [self dismissViewControllerAnimated:YES completion:nil];
+        //        [self removeFromParentViewController];
+        //        [self.view removeFromSuperview];
+    }
+    if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"callMap" sender:self];
+    }
+    
+    if (indexPath.row ==4) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Salir"
+                              message: @"Está seguro que desea salir de BIXI?"
+                              delegate: self
+                              cancelButtonTitle:@"NO"
+                              otherButtonTitles:@"SI",nil];
+        [alert show];
+        
+    }
+    if (indexPath.row == 5) {
+        [self performSegueWithIdentifier:@"callTransactions" sender:self];
+    }
+    NSLog(@"SideMenu didSelectRow: %@", indexPath);
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self logOut:self];
+    }
+    else {
+        
+    }
+}
+
+-(IBAction)logOut:(id)sender{
+//    [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
+//    [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
+//    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//    [loginManager logOut];
+//    
+//    [FBSDKAccessToken setCurrentAccessToken:nil];
+//    [self performSegueWithIdentifier:@"backLogIn" sender:self];
+//    [[GIDSignIn sharedInstance] signOut];
+}
+
+-(void)sideMenuDidShow:(VKSideMenu *)sideMenu
+{
+    NSString *menu = @"";
+    
+    if (sideMenu == self.menuLeft)
+        menu = @"LEFT";
+    
+    
+    NSLog(@"%@ VKSideMenue did show", menu);
+}
+
+-(void)sideMenuDidHide:(VKSideMenu *)sideMenu
+{
+    NSString *menu = @"";
+    
+    if (sideMenu == self.menuLeft)
+        menu = @"LEFT";
+    
+    
+    NSLog(@"%@ VKSideMenue did hide", menu);
+}
+
+-(NSString *)sideMenu:(VKSideMenu *)sideMenu titleForHeaderInSection:(NSInteger)section
+{
+    if (sideMenu == self.menuLeft)
+        return nil;
+    
+    switch (section)
+    {
+        case 0:
+            return @"Profile";
+            break;
+            
+        case 1:
+            return @"Actions";
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+
 #pragma mark - UIPickerViewDataSource
 
 // #3
@@ -141,6 +332,12 @@ NSMutableArray *offerList;
     
     return 0;
 }
+
+-(IBAction)buttonMenuLeft:(id)sender
+{
+    [self.menuLeft show:self.navigationController.view];
+}
+
 
 // #4
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {

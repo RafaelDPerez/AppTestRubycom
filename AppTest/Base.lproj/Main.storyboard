@@ -713,6 +713,9 @@
                     <navigationItem key="navigationItem" id="5M1-9I-BeB">
                         <barButtonItem key="leftBarButtonItem" image="menu-button_white.png" id="e1r-zV-B2A">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="buttonMenuLeft:" destination="bNB-G4-D3b" id="NJf-vo-DDM"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -723,6 +726,7 @@
                         <outlet property="txtOrderBy" destination="FLy-IV-XJe" id="v1H-EV-TBq"/>
                         <outlet property="txtSearch" destination="i4S-kp-S5a" id="qJG-Qp-ZZm"/>
                         <segue destination="s6b-sC-saE" kind="modal" identifier="callFilteredOffers" id="VlW-lC-5kP"/>
+                        <segue destination="VnJ-UB-sNR" kind="modal" identifier="callHomeSearch" id="rXU-r2-9Hu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cip-g9-WCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1725,6 +1729,7 @@
                         <segue destination="eTz-yJ-3cc" kind="modal" identifier="callProfile" id="PTF-p5-OYS"/>
                         <segue destination="c7g-LZ-EUt" kind="modal" identifier="callFavorites" id="ZJg-7k-qev"/>
                         <segue destination="mK7-6K-HH6" kind="modal" identifier="callTransactions" id="Kd1-hZ-alB"/>
+                        <segue destination="O3q-zx-4gy" kind="modal" identifier="callRegisterHome" id="B3N-Kj-Pqv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xhm-3a-1zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1856,9 +1861,10 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hU9-Mi-Hgb"/>
-        <segue reference="1N2-lz-Oxx"/>
-        <segue reference="Ma5-qL-0p8"/>
+        <segue reference="rXU-r2-9Hu"/>
+        <segue reference="Pol-Ls-8kH"/>
+        <segue reference="eBk-wv-N18"/>
+        <segue reference="B3N-Kj-Pqv"/>
         <segue reference="VaL-Im-Su3"/>
     </inferredMetricsTieBreakers>
 </document>
