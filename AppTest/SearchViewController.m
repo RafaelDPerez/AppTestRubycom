@@ -19,9 +19,11 @@
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOffer;
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIPickerView *orderBypickerView;
+@property (strong, nonatomic) UIPickerView *offerpickerView;
 @end
 NSMutableArray *commerceTypeArray;
 NSMutableArray *orderByList;
+NSMutableArray *offerList;
 
 @implementation SearchViewController
 @synthesize commerceTypeSelected;
@@ -33,6 +35,7 @@ NSMutableArray *orderByList;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
     commerceTypeArray = [[NSMutableArray alloc]init];
     orderByList = [[NSMutableArray alloc]init];
+    offerList = [[NSMutableArray alloc]init];
     [_txtCommerceId setTextFieldPlaceholderText:@"tipo de establecimiento"];
     _txtCommerceId.selectedLineColor = [UIColor whiteColor];
     _txtCommerceId.placeHolderColor = [UIColor whiteColor];
@@ -69,6 +72,13 @@ NSMutableArray *orderByList;
     _txtOrderBy.inputView = self.orderBypickerView;
     orderByList = @[@"NAME-ASC", @"NAME-DESC", @"DESCRIPTION-ASC",
 				@"DESCRIPTION-DESC", @"TAG-ASC", @"AG-DESC", @"POINT-ASC", @"POINT-DESC"];
+    
+    
+    self.offerpickerView = [[UIPickerView alloc] init];
+    self.offerpickerView.delegate = self;     //#2
+    self.offerpickerView.dataSource = self;   //#2
+    _txtOffer.inputView = self.offerpickerView;
+    offerList = @[@"SI", @"NO", @"ULTIMO MINUTO"];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -125,6 +135,9 @@ NSMutableArray *orderByList;
         return 1;
     }
 
+    if (pickerView == self.offerpickerView) {
+        return 1;
+    }
     
     return 0;
 }
@@ -136,6 +149,9 @@ NSMutableArray *orderByList;
     }
     if (pickerView == self.orderBypickerView) {
         return [orderByList count];
+    }
+    if (pickerView == self.offerpickerView) {
+        return [offerList count];
     }
     
     return 0;
@@ -185,6 +201,10 @@ NSMutableArray *orderByList;
         return orderByList[row];
     }
     
+    if (pickerView == self.offerpickerView) {
+        return offerList[row];
+    }
+    
     return nil;
 }
 
@@ -199,12 +219,16 @@ NSMutableArray *orderByList;
     if (pickerView == self.orderBypickerView) {
         self.txtOrderBy.text = orderByList[row];
     }
+    if (pickerView == self.offerpickerView) {
+        self.txtOffer.text = offerList[row];
+    }
+
 }
 
 -(void)dismissKeyboard {
     [_txtCommerceId resignFirstResponder];
     [_txtOrderBy resignFirstResponder];
-    
+    [_txtOffer resignFirstResponder];
     
     
 }
