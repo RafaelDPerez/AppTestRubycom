@@ -444,10 +444,24 @@
             
         }
         if (indexPath.row == 1) {
-            [self performSegueWithIdentifier:@"callProfile" sender:self];
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            //[self performSegueWithIdentifier:@"callProfile" sender:self];
         }
         if (indexPath.row ==2) {
-            [self performSegueWithIdentifier:@"callFavorites" sender:self];
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            //[self performSegueWithIdentifier:@"callFavorites" sender:self];
             
             //        [self dismissViewControllerAnimated:YES completion:nil];
             //        [self removeFromParentViewController];
@@ -459,16 +473,23 @@
         
         if (indexPath.row ==4) {
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @"Salir"
-                                  message: @"Está seguro que desea salir de BIXI?"
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
                                   delegate: self
-                                  cancelButtonTitle:@"NO"
-                                  otherButtonTitles:@"SI",nil];
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
             [alert show];
             
         }
         if (indexPath.row == 5) {
-            [self performSegueWithIdentifier:@"callTransactions" sender:self];
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            //[self performSegueWithIdentifier:@"callTransactions" sender:self];
         }
         
         if (indexPath.row == 6) {
@@ -481,11 +502,21 @@
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView.title isEqualToString:@"BIXI"]) {
+        if (buttonIndex == 1) {
+           [self performSegueWithIdentifier:@"callRegisterHome" sender:self];
+        }
+        else {
+            
+        }
+    }
+    else{
     if (buttonIndex == 1) {
         [self logOut:self];
     }
     else {
         
+    }
     }
 }
 -(void)sideMenuDidShow:(VKSideMenu *)sideMenu
