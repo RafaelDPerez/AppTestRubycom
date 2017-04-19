@@ -16,6 +16,7 @@
 @interface SearchViewController ()<UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtCommerceId;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOrderBy;
+@property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOffer;
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIPickerView *orderBypickerView;
 @end
@@ -27,7 +28,7 @@ NSMutableArray *orderByList;
 - (void)viewDidLoad {
     [super viewDidLoad];
     commerceTypeSelected = [[CommerceType alloc]init];
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
     commerceTypeArray = [[NSMutableArray alloc]init];
@@ -40,6 +41,13 @@ NSMutableArray *orderByList;
     _txtCommerceId.lineColor = [UIColor whiteColor];
     
 
+    
+    [_txtOffer setTextFieldPlaceholderText:@"oferta"];
+    _txtOffer.selectedLineColor = [UIColor whiteColor];
+    _txtOffer.placeHolderColor = [UIColor whiteColor];
+    [_txtOffer setTextColor:[UIColor whiteColor]];
+    _txtOffer.selectedPlaceHolderColor = [UIColor whiteColor];
+    _txtOffer.lineColor = [UIColor whiteColor];
     
     [_txtOrderBy setTextFieldPlaceholderText:@"ordenar por:"];
     _txtOrderBy.selectedLineColor = [UIColor whiteColor];
@@ -151,7 +159,12 @@ NSMutableArray *orderByList;
         //     [cell getCurrentIndex];
         filteredviewController.location = _txtSearch.text;
         filteredviewController.orderBy = _txtOrderBy.text;
+        if (commerceTypeSelected.CommerceTypeID == nil) {
+            filteredviewController.commerceType = @"";
+        }
+        else {
         filteredviewController.commerceType = commerceTypeSelected.CommerceTypeID;
+        }
         filteredviewController.BIXIPoints = [NSString stringWithFormat:@"%d",(int)(_sldBIXIPoints.value)];
       
     }

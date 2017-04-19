@@ -47,7 +47,11 @@
     [rq setHTTPMethod:@"POST"];
   //  NSData *jsonData = [@"{\"search\":NULL }"dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *jsonData = [[NSString stringWithFormat:@"{\"type_commerce_id\":\"%@\",\"search\":\"%@\",\"order_by\":\"%@\",\"is_offer\":\"%@\",\"start\":\"%d\",\"point_from\":\"%d\",\"point_to\":\"%@\",\"distance\":\"%d\",\"lat\":\"%d\",\"lng\":\"%d\"}", self.commerceType, self.location, self.orderBy, @"SI", 0 ,10,self.BIXIPoints, 10, 10, 10] dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *jsonData = [[NSString stringWithFormat:@"{\"type_commerce_id\":\"%@\",\"search\":\"%@\",\"order_by\":\"%@\",\"is_offer\":\"%@\",\"start\":\"%d\",\"point_from\":\"%d\",\"point_to\":\"%@\",\"distance\":\"%d\",\"lat\":\"%d\",\"lng\":\"%d\"}", self.commerceType, self.location, self.orderBy, @"", 0 ,10,self.BIXIPoints, 10, 0, 0] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *jsonData = [[NSString stringWithFormat:@"{\"type_commerce_id\":\"%@\",\"search\":\"%@\",\"order_by\":\"%@\",\"is_offer\":\"%@\",\"start\":\"%d\",\"point_from\":\"%d\",\"point_to\":\"%@\"}", self.commerceType, self.location, self.orderBy, @"", 0 ,10,self.BIXIPoints] dataUsingEncoding:NSUTF8StringEncoding];
+    
+//    NSData *jsonData = [[NSString stringWithFormat:@"{\"search\":\"%@\"}",self.location] dataUsingEncoding:NSUTF8StringEncoding];
     
     [rq setHTTPBody:jsonData];
     // [rq setValue:token forHTTPHeaderField:@"X-Request-Id"];
@@ -94,11 +98,14 @@
                          offer.OfferID = [dict3 objectForKey:@"product_id"];
                          offer.OfferQuantity = [dict3 objectForKey:@"quantity"];
                          offer.OfferStatus = [dict3 objectForKey:@"status"];
-                         offer.OfferImage = [dict3 objectForKey:@"images"];
-                         [commerce.CommerceOffers addObject:offer];
-                         //                     [commerce.CommerceOffersImages addObject: [recipeImages objectAtIndex:j]];
-                         [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
-                         
+                         offer.OfferImage = [NSMutableArray arrayWithArray:[dict3 objectForKey:@"images"]];
+                         if ([offer.OfferImage count]==0) {
+                             [offer.OfferImage addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                             [commerce.CommerceOffersImages addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
+                         }
+                         else
+                             [commerce.CommerceOffersImages addObject:offer.OfferImage[0]];
+                          [commerce.CommerceOffers addObject:offer];
                          //                     [urlArray addObject:@"http://www.bestprintingonline.com/help_resources/Image/Ducky_Head_Web_Low-Res.jpg"];
                          
                      }
@@ -148,7 +155,7 @@
     // NSString *token = [FDKeychain itemForKey:@"usertoken" forService:@"BIXI" error:nil];
     NSString *loggedin = [FDKeychain itemForKey:@"loggedin" forService:@"BIXI" error:nil];
     NSLog(@"token:%@", token);
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_BIXI"]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2"]];
     self.tableView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
     
@@ -305,7 +312,7 @@
 -(void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row ==0) {
-        
+        [self performSegueWithIdentifier:@"callHomeFiltered" sender:self];
     }
     if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"callProfile" sender:self];
@@ -404,7 +411,7 @@
         OfferViewController *offerViewController = [segue destinationViewController];
         //     [cell getCurrentIndex];
         offerViewController.hola= [recipeImages objectAtIndex:index];
-        offerViewController.Offer = [commerceClicked.CommerceOffers objectAtIndex:index];
+        offerViewController.offer = [commerceClicked.CommerceOffers objectAtIndex:index];
         
     }
     if ([segue.identifier isEqualToString:@"backLogIn"]) {
@@ -439,11 +446,27 @@
     
     
     
+//    //cell.slideshow = slideshow;
+//    commerceSelected = [commercesArray objectAtIndex:indexPath.row];
+//    [cell setSlideShow:commerceSelected.CommerceOffersImages];
+//    cell.txtName.text = commerceSelected.CommerceName;
+//    cell.txtDescription.text = commerceSelected.CommerceAddress;
+//    
+//    return cell;
+    
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
+    NSMutableArray *hello = [[NSMutableArray alloc]init];
+    hello = commerceSelected.CommerceOffers;
     [cell setSlideShow:commerceSelected.CommerceOffersImages];
+    [cell receiveOffers:commerceSelected.CommerceOffers];
     cell.txtName.text = commerceSelected.CommerceName;
-    cell.txtDescription.text = commerceSelected.CommerceAddress;
+    Offer *hay = [[Offer alloc]init];
+    hay = [hello objectAtIndex:index];
+    cell.txtDescription.text = hay.OfferDescription;
+    Offer *hola = [[Offer alloc]init];
+    hola = [commerceSelected.CommerceOffers objectAtIndex:0];
+    cell.lblPoints.text = hola.OfferPoints;
     
     return cell;
 }

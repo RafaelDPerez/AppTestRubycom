@@ -44,7 +44,7 @@
     else{
         self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"OffersViewController"];
         self.window.rootViewController = vc;
         [self.window makeKeyAndVisible];
         
