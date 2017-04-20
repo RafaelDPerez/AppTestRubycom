@@ -130,6 +130,10 @@ NSMutableArray *offerList;
     
 }
 
+-(IBAction)Salir:(id)sender{
+    [self performSegueWithIdentifier:@"callHomeSearch" sender:self];
+}
+
 #pragma mark - VKSideMenuDataSource
 
 -(NSInteger)numberOfSectionsInSideMenu:(VKSideMenu *)sideMenu

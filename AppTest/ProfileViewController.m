@@ -380,6 +380,10 @@ NSString *loggedIn;
             [self performSegueWithIdentifier:@"callLikedOffersProfile" sender:self];
         }
         
+        if (indexPath.row == 4) {
+            [self performSegueWithIdentifier:@"callMapProfile" sender:self];
+        }
+        
         if (indexPath.row ==6) {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"Salir"

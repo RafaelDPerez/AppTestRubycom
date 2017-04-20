@@ -25,6 +25,7 @@
     NSArray *imgs;
     KITableViewCell *cell;
     //NSUInteger *index;
+    NSString *loggedInFiltered;
 }
 
 @property (nonatomic, strong) VKSideMenu *menuLeft;
@@ -240,7 +241,7 @@
 -(NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
 {
     if (sideMenu == self.menuLeft)
-        return 5;
+        return 7;
     
     return section == 0 ? 1 : 2;
 }
@@ -251,57 +252,142 @@
     // It's beter to store all items in separate arrays like you do it in your UITableView's. Right?
     VKSideMenuItem *item = [VKSideMenuItem new];
     
-    if (sideMenu == self.menuLeft) // All LEFT and TOP menu items
-    {
-        switch (indexPath.row)
+    loggedInFiltered = [FDKeychain itemForKey: @"loggedin"
+                           forService: @"BIXI"
+                                error: nil];
+    if ([loggedInFiltered isEqualToString:@"YES"]){
+        
+        if (sideMenu == self.menuLeft) // All LEFT and TOP menu items
         {
-            case 0:
-                item.title = @"Inicio";
-                item.icon  = [UIImage imageNamed:@"Home-50"];
-                break;
-                
-            case 1:
-                item.title = @"Mi Perfil";
-                item.icon  = [UIImage imageNamed:@"ic_option_1"];
-                break;
-                
-            case 2:
-                item.title = @"Ofertas que me gustan";
-                item.icon  = [UIImage imageNamed:@"Like-50"];
-                break;
-                
-            case 3:
-                item.title = @"Configuración";
-                item.icon  = [UIImage imageNamed:@"ic_option_4"];
-                break;
-                
-            case 4:
-                item.title = @"Salir";
-                item.icon  = [UIImage imageNamed:@"Exit-50"];
-                break;
-                
-            default:
-                break;
+            switch (indexPath.row)
+            {
+                case 0:
+                    item.title = @"Inicio";
+                    item.icon  = [UIImage imageNamed:@"Home-50"];
+                    break;
+                    
+                case 1:
+                    item.title = @"Mi Perfil";
+                    item.icon  = [UIImage imageNamed:@"ic_option_1"];
+                    break;
+                    
+                case 2:
+                    item.title = @"Agregar Puntos";
+                    item.icon  = [UIImage imageNamed:@"Add-50"];
+                    
+                    break;
+                    
+                case 3:
+                    item.title = @"Ofertas que me gustan";
+                    item.icon  = [UIImage imageNamed:@"Like-50"];
+                    break;
+                    
+                case 4:
+                    item.title = @"Ofertas cerca de mí";
+                    item.icon  = [UIImage imageNamed:@"Near Me-50"];
+                    break;
+                    
+                case 5:
+                    item.title = @"Transacciones";
+                    item.icon  = [UIImage imageNamed:@"Transaction List-50"];
+                    
+                    break;
+                    
+                case 6:
+                    item.title = @"Salir";
+                    item.icon  = [UIImage imageNamed:@"Exit-50"];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        else if (indexPath.section == 0) // RIGHT menu first section items
+        {
+            item.title = @"Login";
+        }
+        else // RIGHT menu second section items
+        {
+            switch (indexPath.row)
+            {
+                case 0:
+                    item.title = @"Like";
+                    break;
+                    
+                case 1:
+                    item.title = @"Share";
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    else if (indexPath.section == 0) // RIGHT menu first section items
-    {
-        item.title = @"Login";
-    }
-    else // RIGHT menu second section items
-    {
-        switch (indexPath.row)
+    else{
+        if (sideMenu == self.menuLeft) // All LEFT and TOP menu items
         {
-            case 0:
-                item.title = @"Like";
-                break;
-                
-            case 1:
-                item.title = @"Share";
-                break;
-            default:
-                break;
+            switch (indexPath.row)
+            {
+                case 0:
+                    item.title = @"Inicio";
+                    item.icon  = [UIImage imageNamed:@"Home-50"];
+                    break;
+                    
+                case 1:
+                    item.title = @"Mi Perfil";
+                    item.icon  = [UIImage imageNamed:@"ic_option_1"];
+                    break;
+                    
+                case 2:
+                    item.title = @"Agregar Puntos";
+                    item.icon  = [UIImage imageNamed:@"Add-50"];
+                    
+                    break;
+                    
+                case 3:
+                    item.title = @"Ofertas que me gustan";
+                    item.icon  = [UIImage imageNamed:@"Like-50"];
+                    break;
+                    
+                case 4:
+                    item.title = @"Ofertas cerca de mí";
+                    item.icon  = [UIImage imageNamed:@"Near Me-50"];
+                    break;
+                    
+                case 5:
+                    item.title = @"Transacciones";
+                    item.icon  = [UIImage imageNamed:@"Transaction List-50"];
+                    
+                    break;
+                    
+                case 6:
+                    item.title = @"Iniciar Sesión";
+                    item.icon  = [UIImage imageNamed:@"Circled User Male-50"];
+                    break;
+                    
+                default:
+                    break;
+            }
         }
+        else if (indexPath.section == 0) // RIGHT menu first section items
+        {
+            item.title = @"Login";
+        }
+        else // RIGHT menu second section items
+        {
+            switch (indexPath.row)
+            {
+                case 0:
+                    item.title = @"Like";
+                    break;
+                    
+                case 1:
+                    item.title = @"Share";
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
     
     return item;
@@ -311,40 +397,163 @@
 
 -(void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row ==0) {
-        [self performSegueWithIdentifier:@"callHomeFiltered" sender:self];
+//    if (indexPath.row ==0) {
+//        [self performSegueWithIdentifier:@"callHomeFiltered" sender:self];
+//    }
+//    if (indexPath.row == 1) {
+//        [self performSegueWithIdentifier:@"callProfile" sender:self];
+//    }
+//    if (indexPath.row ==2) {
+//        [self performSegueWithIdentifier:@"callMap" sender:self];
+//        //        [self dismissViewControllerAnimated:YES completion:nil];
+//        //        [self removeFromParentViewController];
+//        //        [self.view removeFromSuperview];
+//    }
+//    if (indexPath.row ==4) {
+//        UIAlertView *alert = [[UIAlertView alloc]
+//                              initWithTitle: @"Salir"
+//                              message: @"Está seguro que desea salir de BIXI?"
+//                              delegate: self
+//                              cancelButtonTitle:@"NO"
+//                              otherButtonTitles:@"SI",nil];
+//        [alert show];
+//        
+//    }
+//    NSLog(@"SideMenu didSelectRow: %@", indexPath);
+    
+    loggedInFiltered = [FDKeychain itemForKey: @"loggedin"
+                           forService: @"BIXI"
+                                error: nil];
+    if ([loggedInFiltered isEqualToString:@"YES"]){
+        if (indexPath.row ==0) {
+            [self performSegueWithIdentifier:@"callHomeFiltered" sender:self];
+        }
+        if (indexPath.row == 1) {
+            [self performSegueWithIdentifier:@"callProfileFiltered" sender:self];
+        }
+        if (indexPath.row ==2) {
+            [self performSegueWithIdentifier:@"callAddPointsFiltered" sender:self];
+            
+            //        [self dismissViewControllerAnimated:YES completion:nil];
+            //        [self removeFromParentViewController];
+            //        [self.view removeFromSuperview];
+        }
+        if (indexPath.row == 3) {
+            [self performSegueWithIdentifier:@"callFavoritesFiltered" sender:self];
+        }
+        
+        if (indexPath.row == 4) {
+            [self performSegueWithIdentifier:@"callMapFiltered" sender:self];
+        }
+        
+        if (indexPath.row ==6) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Salir"
+                                  message: @"Está seguro que desea salir de BIXI?"
+                                  delegate: self
+                                  cancelButtonTitle:@"NO"
+                                  otherButtonTitles:@"SI",nil];
+            [alert show];
+            
+        }
+        if (indexPath.row == 5) {
+            [self performSegueWithIdentifier:@"callTransactionsFiltered" sender:self];
+        }
+        NSLog(@"SideMenu didSelectRow: %@", indexPath);
     }
-    if (indexPath.row == 1) {
-        [self performSegueWithIdentifier:@"callProfile" sender:self];
-    }
-    if (indexPath.row ==2) {
-        [self performSegueWithIdentifier:@"callMap" sender:self];
-        //        [self dismissViewControllerAnimated:YES completion:nil];
-        //        [self removeFromParentViewController];
-        //        [self.view removeFromSuperview];
-    }
-    if (indexPath.row ==4) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Salir"
-                              message: @"Está seguro que desea salir de BIXI?"
-                              delegate: self
-                              cancelButtonTitle:@"NO"
-                              otherButtonTitles:@"SI",nil];
-        [alert show];
+    else{
+        if (indexPath.row ==0) {
+            [self performSegueWithIdentifier:@"callHomeFiltered" sender:self];
+        }
+        if (indexPath.row == 1) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            //[self performSegueWithIdentifier:@"callProfile" sender:self];
+        }
+        if (indexPath.row ==2) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            //[self performSegueWithIdentifier:@"callFavorites" sender:self];
+            
+            //        [self dismissViewControllerAnimated:YES completion:nil];
+            //        [self removeFromParentViewController];
+            //        [self.view removeFromSuperview];
+        }
+        if (indexPath.row == 4) {
+            [self performSegueWithIdentifier:@"callMap" sender:self];
+        }
+        
+        if (indexPath.row ==3) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            
+        }
+        if (indexPath.row == 5) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"BIXI"
+                                  message: @"Debe iniciar sesión o registrarse"
+                                  delegate: self
+                                  cancelButtonTitle:@"Cancelar"
+                                  otherButtonTitles:@"Aceptar",nil];
+            [alert show];
+            //[self performSegueWithIdentifier:@"callTransactions" sender:self];
+        }
+        
+        if (indexPath.row == 6) {
+            [self performSegueWithIdentifier:@"callRegisterHome" sender:self];
+        }
+        NSLog(@"SideMenu didSelectRow: %@", indexPath);
         
     }
-    NSLog(@"SideMenu didSelectRow: %@", indexPath);
+
 }
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        [self logOut:self];
+    if ([alertView.title isEqualToString:@"BIXI"]) {
+        if (buttonIndex == 1) {
+            [self performSegueWithIdentifier:@"callRegisterHome" sender:self];
+        }
+        else {
+            
+        }
     }
-    else {
-        
+    else{
+        if (buttonIndex == 1) {
+            [self logOut:self];
+        }
+        else {
+            
+        }
     }
 }
+
+-(IBAction)logOut:(id)sender{
+    [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
+    [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+    
+    [FBSDKAccessToken setCurrentAccessToken:nil];
+    //[self performSegueWithIdentifier:@"backLogIn" sender:self];
+    [[GIDSignIn sharedInstance] signOut];
+}
+
 -(void)sideMenuDidShow:(VKSideMenu *)sideMenu
 {
     NSString *menu = @"";
@@ -389,17 +598,17 @@
 }
 
 
--(IBAction)logOut:(id)sender{
-    [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
-    [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
-    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-    [loginManager logOut];
-    
-    [FBSDKAccessToken setCurrentAccessToken:nil];
-    [self performSegueWithIdentifier:@"backLogIn" sender:self];
-    [[GIDSignIn sharedInstance] signOut];
-    
-}
+//-(IBAction)logOut:(id)sender{
+//    [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
+//    [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
+//    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//    [loginManager logOut];
+//    
+//    [FBSDKAccessToken setCurrentAccessToken:nil];
+//    [self performSegueWithIdentifier:@"backLogIn" sender:self];
+//    [[GIDSignIn sharedInstance] signOut];
+//    
+//}
 
 -(void)callLogIn{
     //[self performSegueWithIdentifier:@"backLogIn" sender:self];
