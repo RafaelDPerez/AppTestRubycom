@@ -27,7 +27,7 @@
     
 
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"cancelar"
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"salir"
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(handleBack:)];
@@ -44,8 +44,10 @@
 
 - (void)handleBack:(id)sender {
     // pop to root view controller
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"callHomeAddPoints" sender:self];
 }
+
 
 -(void)dismissKeyboard {
     [_txtDescription resignFirstResponder];

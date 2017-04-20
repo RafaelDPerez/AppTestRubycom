@@ -414,7 +414,7 @@
         [self performSegueWithIdentifier:@"callProfile" sender:self];
     }
     if (indexPath.row ==2) {
-        [self performSegueWithIdentifier:@"callFavorites" sender:self];
+        [self performSegueWithIdentifier:@"callAddPointsHome" sender:self];
         
         //        [self dismissViewControllerAnimated:YES completion:nil];
 //        [self removeFromParentViewController];

@@ -610,6 +610,8 @@
 				TargetAttributes = {
 					45F26EA81D7526AA006C6D9E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 3P4PDD6A69;
+						ProvisioningStyle = Automatic;
 					};
 					45F26EC11D7526AA006C6D9E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -996,6 +998,8 @@
 			baseConfigurationReference = 6E45FA9D8B4DA65FF6C3F021 /* Pods-AppTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3P4PDD6A69;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1003,7 +1007,7 @@
 				INFOPLIST_FILE = AppTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelperez.AppTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bixi.bixi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1014,6 +1018,8 @@
 			baseConfigurationReference = F1F16918C36809986DA16AFC /* Pods-AppTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3P4PDD6A69;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1021,7 +1027,7 @@
 				INFOPLIST_FILE = AppTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelperez.AppTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bixi.bixi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
