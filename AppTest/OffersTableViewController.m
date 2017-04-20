@@ -423,6 +423,10 @@
     if (indexPath.row == 3) {
         [self performSegueWithIdentifier:@"callFavorites" sender:self];
     }
+        
+        if (indexPath.row == 4) {
+            [self performSegueWithIdentifier:@"callMap" sender:self];
+        }
     
     if (indexPath.row ==6) {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -467,11 +471,11 @@
             //        [self removeFromParentViewController];
             //        [self.view removeFromSuperview];
         }
-        if (indexPath.row == 3) {
+        if (indexPath.row == 4) {
             [self performSegueWithIdentifier:@"callMap" sender:self];
         }
         
-        if (indexPath.row ==4) {
+        if (indexPath.row ==3) {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"BIXI"
                                   message: @"Debe iniciar sesión o registrarse"
@@ -609,6 +613,19 @@
 
 -(void)callLogIn{
 //[self performSegueWithIdentifier:@"backLogIn" sender:self];
+    
+//    KITableViewCell *hola = [[KITableViewCell alloc]init];
+//    hola = [tableView cellForRowAtIndexPath:indexPath];
+//    _indexPathCell = indexPath;
+//    index = hola.slideshow.currentIndex;
+//    commerceClicked = [commercesArray objectAtIndex:indexPath.row];
+//    Offer *offerLiked = [[Offer alloc]init];
+//    offerLiked = [commerceClicked.CommerceOffers objectAtIndex:index];
+//    
+//    NSLog(@"liking %@", offerLiked.OfferName);
+    
+    
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -617,7 +634,7 @@
         OfferViewController *offerViewController = [segue destinationViewController];
    //     [cell getCurrentIndex];
         offerViewController.hola= [recipeImages objectAtIndex:index];
-        offerViewController.Offer = [commerceClicked.CommerceOffers objectAtIndex:index];
+        offerViewController.offer = [commerceClicked.CommerceOffers objectAtIndex:index];
         
     }
     if ([segue.identifier isEqualToString:@"backLogIn"]) {

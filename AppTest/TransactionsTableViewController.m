@@ -275,6 +275,9 @@ NSString *loggedInTransactions;
         if (indexPath.row == 3) {
             [self performSegueWithIdentifier:@"callFavoritesTransactions" sender:self];
         }
+        if (indexPath.row == 4) {
+            [self performSegueWithIdentifier:@"callMapTransactions" sender:self];
+        }
         
         if (indexPath.row ==6) {
             UIAlertView *alert = [[UIAlertView alloc]

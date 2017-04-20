@@ -307,11 +307,13 @@
                         <segue destination="c7g-LZ-EUt" kind="modal" identifier="callFavoritesTransactions" id="ECP-N3-E7c"/>
                         <segue destination="VnJ-UB-sNR" kind="modal" identifier="callHomeTransactions" id="AYg-kg-YXo"/>
                         <segue destination="IEA-h5-1gN" kind="modal" identifier="callAddPointsTransactions" id="Bch-ud-t02"/>
+                        <segue destination="eTz-yJ-3cc" kind="modal" identifier="callProfileTransactions" id="837-3K-1k0"/>
+                        <segue destination="7zN-7W-M8s" kind="modal" identifier="callMapTransactions" id="TJW-ta-eAT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNL-8H-u8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2247" y="-2773"/>
+            <point key="canvasLocation" x="-2544" y="-3415"/>
         </scene>
         <!--Near Me-->
         <scene sceneID="jX4-S3-7IG">
@@ -954,7 +956,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15E-35-p2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-824" y="-1539"/>
+            <point key="canvasLocation" x="-1160" y="-1625"/>
         </scene>
         <!--Register2 View Controller-->
         <scene sceneID="U2D-WB-FyL">
@@ -1214,7 +1216,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keQ-Db-Zhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1785" y="-2539"/>
+            <point key="canvasLocation" x="-2094" y="-2380"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cr4-OO-rDk">
@@ -1341,7 +1343,11 @@
                     </navigationItem>
                     <connections>
                         <segue destination="bm3-4H-ryX" kind="push" identifier="ViewOffer" id="Mea-cb-pQe"/>
-                        <segue destination="VnJ-UB-sNR" kind="modal" identifier="callHomeProfile" id="rbn-XJ-lHB"/>
+                        <segue destination="VnJ-UB-sNR" kind="modal" identifier="callHomeLiked" id="rbn-XJ-lHB"/>
+                        <segue destination="7zN-7W-M8s" kind="modal" identifier="callMapLiked" id="rQn-1r-EeJ"/>
+                        <segue destination="mK7-6K-HH6" kind="modal" identifier="callTransactionsLiked" id="jYU-lU-Qga"/>
+                        <segue destination="eTz-yJ-3cc" kind="modal" identifier="callProfileLiked" id="Ecz-qU-N1n"/>
+                        <segue destination="IEA-h5-1gN" kind="modal" identifier="callAddPointsLiked" id="4Lv-fY-4Pa"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Icp-sl-cUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1924,13 +1930,15 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Bch-ud-t02"/>
-        <segue reference="AUq-GY-X9F"/>
-        <segue reference="AYg-kg-YXo"/>
+        <segue reference="4Lv-fY-4Pa"/>
+        <segue reference="plC-85-cry"/>
+        <segue reference="Ecz-qU-N1n"/>
+        <segue reference="jYU-lU-Qga"/>
+        <segue reference="rQn-1r-EeJ"/>
+        <segue reference="rbn-XJ-lHB"/>
+        <segue reference="Mea-cb-pQe"/>
         <segue reference="Pol-Ls-8kH"/>
         <segue reference="B3N-Kj-Pqv"/>
-        <segue reference="ECP-N3-E7c"/>
-        <segue reference="Mea-cb-pQe"/>
         <segue reference="fpX-N9-faN"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,7 +44,7 @@
     _btnLike = [[UIButton alloc]init];
     [_btnLike setImage:[UIImage imageNamed:@"Like-50"] forState:UIControlStateNormal];
     _btnLike.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 20.0f, 50.0f, 35.0f);
-    //[_btnLike addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnLike addTarget:self action:@selector(Like:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_btnLike];
     
     
@@ -129,6 +129,8 @@
     _lblPoints.text = hello.OfferPoints;
 }
 
+
+
 #pragma mark - KASlideShow delegate
 
 - (void) kaSlideShowDidNext:(KASlideShow *)slideShow
@@ -155,10 +157,18 @@
 
 - (IBAction)Like:(id)sender
 {
-    [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
-    [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
-    OffersTableViewController *hola = [[OffersTableViewController alloc]init];
-    [hola callLogIn];
+//    [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
+//    [FDKeychain deleteItemForKey:@"usertoken" forService:@"BIXI" error:nil];
+   // Offer *hello = [[Offer alloc]init];
+//    NSNumber hey = self.contentView.;
+//    NSLog(@"hey",%@);
+//    hola = [self.contentView viewWithTag:1];
+//   // [hola previous];
+//    tv = (UITableView *) self.superview.superview;
+//    vc = (UITableViewController *) tv.dataSource;
+//    vc->index = hola.currentIndex;
+//    OffersTableViewController *holis = [[OffersTableViewController alloc]init];
+//    [holis callLogIn];
 
 }
 
