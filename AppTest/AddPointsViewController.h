@@ -10,6 +10,6 @@
 
 @interface AddPointsViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *txtPoints;
-@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
+@property (strong, nonatomic) IBOutlet UITextView *txtDescription;
 
 @end

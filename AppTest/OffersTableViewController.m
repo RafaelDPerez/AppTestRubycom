@@ -421,7 +421,7 @@
 //        [self.view removeFromSuperview];
     }
     if (indexPath.row == 3) {
-        [self performSegueWithIdentifier:@"callMap" sender:self];
+        [self performSegueWithIdentifier:@"callFavorites" sender:self];
     }
     
     if (indexPath.row ==6) {
