@@ -28,19 +28,20 @@
 
 -(void)setSlideShow:(NSArray*)imgs{
 
-    if ([imgs count]>1) {
-        _btnPrev = [[UIButton alloc]init];
-        [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
-        _btnPrev.frame = CGRectMake(10, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
-        [_btnPrev addTarget:self action:@selector(PrevImg:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:_btnPrev];
-        
-        _btnNext = [[UIButton alloc]init];
-        [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
-        _btnNext.frame = CGRectMake(self.bounds.size.width - 48, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
-        [_btnNext addTarget:self action:@selector(NextImg:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:_btnNext];
-    }
+//    if ([imgs count]>1) {
+//        _btnPrev = [[UIButton alloc]init];
+//        [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
+//        _btnPrev.frame = CGRectMake(10, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
+//        [_btnPrev addTarget:self action:@selector(PrevImg) forControlEvents:UIControlEventTouchUpInside];
+//        [self.contentView addSubview:_btnPrev];
+//        
+//        _btnNext = [[UIButton alloc]init];
+//        [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
+//        _btnNext.frame = CGRectMake(self.bounds.size.width - 48, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
+//        [_btnNext addTarget:self action:@selector(NextImg) forControlEvents:UIControlEventTouchUpInside];
+//        [self.contentView addSubview:_btnNext];
+//    }
+    
     _btnLike = [[UIButton alloc]init];
     [_btnLike setImage:[UIImage imageNamed:@"Like-50"] forState:UIControlStateNormal];
     _btnLike.frame = CGRectMake(self.bounds.size.width - 68, self.bounds.origin.y + 20.0f, 50.0f, 35.0f);
@@ -57,9 +58,38 @@
     [_slideshow setTransitionType:KASlideShowTransitionSlide]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addImagesFromResources:imgs]; // Add images from resources
+    [_slideshow addGesture:KASlideShowGestureSwipe];
     [_slideshow setTag:1];
     selectedIndex = 0;
 
+    if (_slideshow.currentIndex ==0) {
+        
+    }
+    else{
+        if ([imgs count]>1) {
+            _btnPrev = [[UIButton alloc]init];
+            [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
+            _btnPrev.frame = CGRectMake(10, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
+            [_btnPrev addTarget:self action:@selector(PrevImg) forControlEvents:UIControlEventTouchUpInside];
+            _btnPrev.tag = 33;
+            [self.contentView addSubview:_btnPrev];
+        }
+    }
+    
+    if (_slideshow.currentIndex == [_Offers count]-1) {
+        
+    }
+    else{
+        if ([imgs count]>1) {
+                    _btnNext = [[UIButton alloc]init];
+                    [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
+                    _btnNext.frame = CGRectMake(self.bounds.size.width - 48, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
+                    [_btnNext addTarget:self action:@selector(NextImg) forControlEvents:UIControlEventTouchUpInside];
+                    _btnNext.tag = 44;
+                    [self.contentView addSubview:_btnNext];
+        }
+    }
+    
     
 }
 
@@ -75,29 +105,21 @@
 }
 
 
--(void)getCurrentIndex{
-   tv = (UITableView *) self.superview.superview;
-    hola = [self.contentView viewWithTag:1];
-    [hola NextNoNext];
-    tv = (UITableView *) self.superview.superview;
-    vc = (UITableViewController *) tv.dataSource;
-    vc->index = hola.currentIndex;
-  
+-(int)getCurrentIndex{
+//   tv = (UITableView *) self.superview.superview;
+//    hola = [self.contentView viewWithTag:1];
+//    [hola NextNoNext];
+//    tv = (UITableView *) self.superview.superview;
+//    vc = (UITableViewController *) tv.dataSource;
+//    vc->index = hola.currentIndex;
+    return (int)_slideshow.currentIndex;
     
 }
 
--(IBAction)NextImg:(id)sender{
+-(void)NextImg{
     Offer *hello = [[Offer alloc]init];
-//    if (_offerIndex == [_Offers count]-1) {
-//        _offerIndex = 0;
-//    }
-//    if (_offerIndex < [_Offers count]-1){
-//        _offerIndex = _offerIndex +1;
-//    }
-    
-
     hola = [self.contentView viewWithTag:1];
-    [hola next];
+    
     tv = (UITableView *) self.superview.superview;
    
 //    UITableViewCell *cell = [tv cellForRowAtIndexPath:indexPath];
@@ -108,24 +130,67 @@
 //            //Update your lable here
 //        }
 //    }
+    if (hola.currentIndex == [_Offers count]-1) {
+    }
+    else{
+        [hola next];
+       
+    }
+    _btnPrev = [[UIButton alloc]init];
+    [_btnPrev setImage:[UIImage imageNamed:@"Back Filled-50"] forState:UIControlStateNormal];
+    _btnPrev.frame = CGRectMake(10, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
+    [_btnPrev addTarget:self action:@selector(PrevImg) forControlEvents:UIControlEventTouchUpInside];
+    _btnPrev.tag = 33;
+    [self.contentView addSubview:_btnPrev];
+    
+    if (_slideshow.currentIndex == [_Offers count]-1) {
+        [[self.contentView viewWithTag:44] removeFromSuperview];
+    }
+    
+    
+    // vc->index = hola.currentIndex;
     vc = (UITableViewController *) tv.dataSource;
     vc->index = hola.currentIndex;
     hello = [_Offers objectAtIndex:(hola.currentIndex)];
     tvc = (KITableViewCell *) self;
-    tvc.txtDescription.text = hello.OfferDescription;
+    
+    tvc.txtDescription.text = hello.OfferName;
     _lblPoints.text = hello.OfferPoints;
+    
 }
 
--(IBAction)PrevImg:(id)sender{
+-(void)PrevImg{
+
+   
+    
     Offer *hello = [[Offer alloc]init];
     hola = [self.contentView viewWithTag:1];
-   [hola previous];
+   
    tv = (UITableView *) self.superview.superview;
    vc = (UITableViewController *) tv.dataSource;
-   vc->index = hola.currentIndex;
+    if (hola.currentIndex == 0) {
+    }
+    else{
+    [hola previous];
+   
+    }
+    if (_slideshow.currentIndex == 0) {
+        [[self.contentView viewWithTag:33] removeFromSuperview];
+    }
+
+    if (_slideshow.currentIndex < [_Offers count]-1) {
+                _btnNext = [[UIButton alloc]init];
+                [_btnNext setImage:[UIImage imageNamed:@"Forward Filled-50"] forState:UIControlStateNormal];
+                _btnNext.frame = CGRectMake(self.bounds.size.width - 48, self.bounds.size.height/2 - 90, 38.0f, 130.0f);
+                [_btnNext addTarget:self action:@selector(NextImg) forControlEvents:UIControlEventTouchUpInside];
+                _btnNext.tag = 44;
+                [self.contentView addSubview:_btnNext];
+    }
+    vc->index = hola.currentIndex;
+    
     hello = [_Offers objectAtIndex:(hola.currentIndex)];
     tvc = (KITableViewCell *) self;
-    tvc.txtDescription.text = hello.OfferDescription;
+    tvc.txtDescription.text = hello.OfferName;
     _lblPoints.text = hello.OfferPoints;
 }
 

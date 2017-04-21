@@ -17,6 +17,7 @@
 
 #import "KASlideShow.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "KITableViewCell.h"
 
 #define kSwipeTransitionDuration 0.25
 
@@ -31,6 +32,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @property (strong,nonatomic) UIImageView * topImageView;
 @property (strong,nonatomic) UIImageView * bottomImageView;
 
+
 @end
 
 @implementation KASlideShow
@@ -40,6 +42,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @synthesize transitionDuration;
 @synthesize transitionType;
 @synthesize images;
+KITableViewCell *cellTB;
+UITableView *tv;
 
 - (void)awakeFromNib
 {
@@ -401,15 +405,22 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     UISwipeGestureRecognizer *gesture = (UISwipeGestureRecognizer *)sender;
     
     float oldTransitionDuration = self.transitionDuration;
+    cellTB = (UITableViewCell *) self.superview.superview;
+    //vc = (UITableViewController *) tv.dataSource;
+    
+//    cellTB
+//    cellTB = [self.superview viewWithTag:111];
     
     self.transitionDuration = kSwipeTransitionDuration;
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
     {
-        [self next];
+        [cellTB NextImg];
+       // [self next];
     }
     else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
     {
-        [self previous];
+       [cellTB PrevImg];
+        // [self previous];
     }
     
     self.transitionDuration = oldTransitionDuration;

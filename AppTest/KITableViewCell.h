@@ -25,5 +25,7 @@
 @property int offerIndex;
 -(void)setSlideShow:(NSString*)img;
 -(void)receiveOffers:(NSMutableArray*)offers;
--(void)getCurrentIndex;
+-(int)getCurrentIndex;
+-(void)NextImg;
+-(void)PrevImg;
 @end

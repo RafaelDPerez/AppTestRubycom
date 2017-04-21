@@ -14,7 +14,7 @@
 #import "FilteredOffersNavigationViewController.h"
 
 
-@interface SearchViewController ()<UIPickerViewDelegate,VKSideMenuDelegate, VKSideMenuDataSource, UIAlertViewDelegate>
+@interface SearchViewController ()<UIPickerViewDelegate,VKSideMenuDelegate, VKSideMenuDataSource, UITextFieldDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtCommerceId;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOrderBy;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *txtOffer;
@@ -134,6 +134,13 @@ NSMutableArray *offerList;
     [self performSegueWithIdentifier:@"callHomeSearch" sender:self];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_txtSearch resignFirstResponder];
+    
+    return YES;
+}
+
 #pragma mark - VKSideMenuDataSource
 
 -(NSInteger)numberOfSectionsInSideMenu:(VKSideMenu *)sideMenu
@@ -148,6 +155,8 @@ NSMutableArray *offerList;
     
     return section == 0 ? 1 : 2;
 }
+
+
 
 -(VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -430,6 +439,7 @@ NSMutableArray *offerList;
     [_txtCommerceId resignFirstResponder];
     [_txtOrderBy resignFirstResponder];
     [_txtOffer resignFirstResponder];
+    [_txtSearch resignFirstResponder];
     
     
 }

@@ -674,14 +674,15 @@
     
     //cell.slideshow = slideshow;
     commerceSelected = [commercesArray objectAtIndex:indexPath.row];
+    int holis = [cell getCurrentIndex];
     NSMutableArray *hello = [[NSMutableArray alloc]init];
     hello = commerceSelected.CommerceOffers;
     [cell setSlideShow:commerceSelected.CommerceOffersImages];
     [cell receiveOffers:commerceSelected.CommerceOffers];
     cell.txtName.text = commerceSelected.CommerceName;
     Offer *hay = [[Offer alloc]init];
-    hay = [hello objectAtIndex:index];
-    cell.txtDescription.text = hay.OfferDescription;
+    hay = [hello objectAtIndex:holis];
+    cell.txtDescription.text = hay.OfferName;
     Offer *hola = [[Offer alloc]init];
     hola = [commerceSelected.CommerceOffers objectAtIndex:0];
     cell.lblPoints.text = hola.OfferPoints;

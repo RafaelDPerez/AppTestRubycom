@@ -20,5 +20,6 @@
 @property (strong, nonatomic) NSMutableArray *imageArray;
 @property (strong, nonatomic) NSIndexPath *indexPathCell;
 
+
 -(void)callLogIn;
 @end

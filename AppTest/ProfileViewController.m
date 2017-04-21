@@ -25,7 +25,7 @@
 NSString *loggedIn;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2ß"]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
      _user = [[User alloc]init];
@@ -54,13 +54,22 @@ NSString *loggedIn;
              NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                                   options:kNilOptions
                                                                     error:&error];
-             NSArray *sceResponseCode = [json objectForKey:@"sceResponseCode"];
-    
+             //NSArray *sceResponseCode = [json objectForKey:@"sceResponseCode"];
+             NSNumber *sceResponseCode = [json objectForKey:@"sceResponseCode"];
              NSLog(@"codigo: %@", sceResponseCode);
              NSString *message = [json objectForKey:@"sceResponseMsg"];
              NSArray *result = [json objectForKey:@"result"];
              NSDictionary *holis = [json objectForKey:@"result"];
              NSLog(@"%@",result);
+             if ([sceResponseCode longLongValue]==1) {
+                 UIAlertView *alert = [[UIAlertView alloc]
+                                       initWithTitle: @"BIXI"
+                                       message: @"Debe iniciar sesión o registrarse"
+                                       delegate: self
+                                       cancelButtonTitle:@"Cancelar"
+                                       otherButtonTitles:@"Aceptar",nil];
+                 [alert show];
+             }
              if ([message isEqualToString:@"OK"]) {
                  
                      _user.firstName = [holis objectForKey:@"first_name"];
@@ -91,6 +100,7 @@ NSString *loggedIn;
                  
                  NSLog(@"codigo: %@", result);
              }
+             
 
              [_imageView sd_setImageWithURL:[NSURL URLWithString:self.user.image]
                                  placeholderImage:[UIImage imageNamed:@"Garage-50"]];
@@ -168,10 +178,31 @@ NSString *loggedIn;
                      
                  
                  }
+                
              }];
 
         }
     }];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView.title isEqualToString:@"BIXI"]) {
+        if (buttonIndex == 1) {
+            [self performSegueWithIdentifier:@"callRegisterProfile" sender:self];
+        }
+        else {
+            
+        }
+    }
+    else{
+        if (buttonIndex == 1) {
+            [self logOut:self];
+        }
+        else {
+            
+        }
+    }
 }
 
 - (NSString *)encodeToBase64String:(UIImage *)image {
@@ -461,24 +492,24 @@ NSString *loggedIn;
 
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alertView.title isEqualToString:@"BIXI"]) {
-        if (buttonIndex == 1) {
-            [self performSegueWithIdentifier:@"callRegisterHome" sender:self];
-        }
-        else {
-            
-        }
-    }
-    else{
-        if (buttonIndex == 1) {
-            [self logOut:self];
-        }
-        else {
-            
-        }
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    if ([alertView.title isEqualToString:@"BIXI"]) {
+//        if (buttonIndex == 1) {
+//            [self performSegueWithIdentifier:@"callRegisterHome" sender:self];
+//        }
+//        else {
+//            
+//        }
+//    }
+//    else{
+//        if (buttonIndex == 1) {
+//            [self logOut:self];
+//        }
+//        else {
+//            
+//        }
+//    }
+//}
 
 -(IBAction)logOut:(id)sender{
     [FDKeychain saveItem:@"NO" forKey:@"loggedin" forService:@"BIXI" error:nil];
