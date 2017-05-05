@@ -22,7 +22,10 @@ NSString *loggedInTransactions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.view.center;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     self.menuLeft = [[VKSideMenu alloc] initWithSize:280 andDirection:VKSideMenuDirectionFromLeft];
     self.menuLeft.dataSource = self;
     self.menuLeft.delegate   = self;
@@ -53,18 +56,29 @@ NSString *loggedInTransactions;
          NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                               options:kNilOptions
                                                                 error:&error];
-         NSArray *sceResponseCode = [json objectForKey:@"sceResponseCode"];
-         
-         NSLog(@"codigo: %@", sceResponseCode);
+        // NSArray *sceResponseCode = [json objectForKey:@"sceResponseCode"];
+          NSNumber *sceResponseCode = [json objectForKey:@"sceResponseCode"];
+        // NSLog(@"codigo: %@", sceResponseCode);
          NSString *message = [json objectForKey:@"sceResponseMsg"];
          NSArray *result = [json objectForKey:@"result"];
          NSDictionary *holis = [json objectForKey:@"result"];
          NSLog(@"%@",result);
+         if ([sceResponseCode longLongValue]==1) {
+             UIAlertView *alert = [[UIAlertView alloc]
+                                   initWithTitle: @"BIXI"
+                                   message: @"Debe iniciar sesión o registrarse"
+                                   delegate: self
+                                   cancelButtonTitle:@"Cancelar"
+                                   otherButtonTitles:@"Aceptar",nil];
+             [alert show];
+         }
          if ([message isEqualToString:@"OK"]) {
              NSArray *result = [json objectForKey:@"result"];
+             if ([result count]>0) {
              for (int i = 0; i<= result.count - 1; i++) {
                  //now let's dig out each and every json object
                  Transaction *trans = [[Transaction alloc]init];
+                 
                  NSDictionary *dict3 = [result objectAtIndex:i];
                  trans.TransactionCommerce = [dict3 objectForKey:@"commerce_name"];
                  trans.TransactionDescription = [dict3 objectForKey:@"description"];
@@ -73,9 +87,13 @@ NSString *loggedInTransactions;
                  trans.TransactionType = [dict3 objectForKey:@"type"];
                  [TransactionArray addObject:trans];
                  [self.tableView reloadData];
+                 }
+                 
              }
+         [spinner stopAnimating];
          }
-                  
+         
+         
      }];
 
     
@@ -359,7 +377,7 @@ NSString *loggedInTransactions;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView.title isEqualToString:@"BIXI"]) {
         if (buttonIndex == 1) {
-            [self performSegueWithIdentifier:@"callRegisterHome" sender:self];
+            [self performSegueWithIdentifier:@"callRegisterTransaction" sender:self];
         }
         else {
             
@@ -452,6 +470,10 @@ NSString *loggedInTransactions;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
+    if ([TransactionArray count]==0) {
+        return 0;
+    }
+    else
     return [TransactionArray count];
 }
 

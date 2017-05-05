@@ -539,7 +539,7 @@ NSString *loggedInMaps;
         //pinView.pinColor = MKPinAnnotationColorGreen;
         //pinView.canShowCallout = YES;
         //pinView.animatesDrop = YES;
-        pinView.image = [UIImage imageNamed:@"Google Filled-50"];    //as suggested by Squatch
+        pinView.image = [UIImage imageNamed:@"tag"];    //as suggested by Squatch
         pinView.canShowCallout = YES;
         
         //instatiate a detail-disclosure button and set it to appear on right side of annotation

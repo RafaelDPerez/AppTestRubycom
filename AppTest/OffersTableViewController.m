@@ -29,6 +29,7 @@
     NSArray *imgs;
     KITableViewCell *cell;
     NSString *loggedIn;
+    UIRefreshControl *refreshControl;
     //NSUInteger *index;
 }
 
@@ -39,6 +40,10 @@
 @synthesize commercesArray, commerceSelected, commerceClicked, urlArray, imageArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
+     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.view.center;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     index =0;
     recipeImages = [[NSMutableArray alloc]init];
     recipeImages = [NSMutableArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
@@ -46,7 +51,9 @@
     imageArray=[[NSMutableArray alloc] init];
     commercesArray = [[NSMutableArray alloc] init];
     
-
+    refreshControl = [[UIRefreshControl alloc]init];
+    [self.tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     NSLog(@"%@",[FBSDKAccessToken currentAccessToken].tokenString);
     // **GET PRODUCTS**
     NSString *token =[FDKeychain itemForKey:@"usertoken" forService:@"BIXI" inAccessGroup:nil error:nil];
@@ -143,6 +150,7 @@
                  
              }
              [self.tableView reloadData];
+             [spinner stopAnimating];
              NSLog(@"codigo: %@", result);
          }
          
@@ -182,7 +190,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-
+-(void)refreshTable {
+    [self.tableView reloadData];
+    [refreshControl endRefreshing];
+}
 
 
 //- (BOOL)canPerformUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender {

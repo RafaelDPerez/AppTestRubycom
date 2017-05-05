@@ -394,8 +394,8 @@
 
 -(void)didSwap:(UISwipeGestureRecognizer*)gesture
 {
-    if (gesture.state == UIGestureRecognizerStateEnded && self.enableGestures)
-        [self showWithSize:self.size];
+    //if (gesture.state == UIGestureRecognizerStateEnded && self.enableGestures)
+       // [self showWithSize:self.size];
 }
 
 #pragma mark - Helpers

@@ -117,6 +117,16 @@
                                                                     error:&error];
              NSString *result = [json objectForKey:@"sceResponseMsg"];
              NSString *userToken = [json objectForKey:@"sceToken"];
+             NSNumber *sceResponseCode = [json objectForKey:@"sceResponseCode"];
+              if ([sceResponseCode longLongValue]==1) {
+             UIAlertView *alert = [[UIAlertView alloc]
+                                   initWithTitle: @"BIXI"
+                                   message:result
+                                   delegate: self
+                                   cancelButtonTitle:@"Aceptar"
+                                   otherButtonTitles:nil,nil];
+             [alert show];
+              }
              if ([result isEqualToString:@"OK"]) {
                  [FDKeychain saveItem: @"YES"
                                forKey: @"loggedin"

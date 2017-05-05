@@ -25,6 +25,10 @@
 NSString *loggedIn;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = self.view.center;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoBixi2"]];
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"fondo"]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"fondo"] forBarMetrics:UIBarMetricsDefault];
@@ -100,7 +104,7 @@ NSString *loggedIn;
                  
                  NSLog(@"codigo: %@", result);
              }
-             
+             [spinner stopAnimating];
 
              [_imageView sd_setImageWithURL:[NSURL URLWithString:self.user.image]
                                  placeholderImage:[UIImage imageNamed:@"Garage-50"]];

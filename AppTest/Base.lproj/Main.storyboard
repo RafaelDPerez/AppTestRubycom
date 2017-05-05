@@ -224,7 +224,7 @@
         <scene sceneID="Wpx-Cp-8dx">
             <objects>
                 <navigationController id="mK7-6K-HH6" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SQ0-81-ACv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SQ0-81-ACv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -309,11 +309,12 @@
                         <segue destination="IEA-h5-1gN" kind="modal" identifier="callAddPointsTransactions" id="Bch-ud-t02"/>
                         <segue destination="eTz-yJ-3cc" kind="modal" identifier="callProfileTransactions" id="837-3K-1k0"/>
                         <segue destination="7zN-7W-M8s" kind="modal" identifier="callMapTransactions" id="TJW-ta-eAT"/>
+                        <segue destination="O3q-zx-4gy" kind="modal" identifier="callRegisterTransaction" id="04m-T1-h9v"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNL-8H-u8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2544" y="-3415"/>
+            <point key="canvasLocation" x="-2594" y="-3616"/>
         </scene>
         <!--Near Me-->
         <scene sceneID="jX4-S3-7IG">
@@ -564,7 +565,7 @@
         <scene sceneID="G9P-E4-oBa">
             <objects>
                 <navigationController storyboardIdentifier="OffersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VnJ-UB-sNR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ekC-kg-XSc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ekC-kg-XSc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -582,7 +583,7 @@
         <scene sceneID="RXe-wf-x7R">
             <objects>
                 <navigationController id="Ud1-Jh-Toc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zZY-z6-hd6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zZY-z6-hd6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -857,7 +858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRr-Tf-3e3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-914" y="-2772"/>
+            <point key="canvasLocation" x="-2039" y="-3786"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="6FS-vb-1rQ">
@@ -956,7 +957,7 @@
         <scene sceneID="vRA-CJ-XEX">
             <objects>
                 <navigationController id="IEA-h5-1gN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pPV-nl-cQU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pPV-nl-cQU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1161,10 +1162,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iVR-rF-7kk" customClass="KASlideShow">
-                                <rect key="frame" x="0.0" y="20" width="375" height="257"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="213"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-SU-EvR">
-                                        <rect key="frame" x="0.0" y="200" width="81" height="37"/>
+                                        <rect key="frame" x="0.0" y="156" width="81" height="37"/>
                                         <color key="backgroundColor" red="0.27463480029585802" green="0.27330806213017755" blue="0.27596153846153848" alpha="0.57451508620689651" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="ATM-PH-tf7"/>
@@ -1216,7 +1217,7 @@
         <scene sceneID="JDA-68-KNM">
             <objects>
                 <navigationController id="7zN-7W-M8s" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jsw-RX-Fkk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Jsw-RX-Fkk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1232,7 +1233,7 @@
         <scene sceneID="cr4-OO-rDk">
             <objects>
                 <navigationController id="eTz-yJ-3cc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3gF-kf-CVN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3gF-kf-CVN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1248,7 +1249,7 @@
         <scene sceneID="w13-NH-Pk4">
             <objects>
                 <navigationController id="c7g-LZ-EUt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FVb-p6-SZY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FVb-p6-SZY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1264,7 +1265,7 @@
         <scene sceneID="X0e-Nq-LMC">
             <objects>
                 <collectionViewController id="WQ3-OZ-abZ" customClass="LikedOffersCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vWb-PP-b1I">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="vWb-PP-b1I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1821,7 +1822,7 @@
         <scene sceneID="cAE-dO-PKf">
             <objects>
                 <navigationController id="s6b-sC-saE" customClass="FilteredOffersNavigationViewController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="phj-Z9-ILr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="phj-Z9-ILr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1948,15 +1949,15 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="UIj-SX-bu4"/>
-        <segue reference="tGe-Ht-N5k"/>
-        <segue reference="rBt-jV-a73"/>
         <segue reference="eBk-wv-N18"/>
-        <segue reference="Pol-Ls-8kH"/>
-        <segue reference="PTF-p5-OYS"/>
-        <segue reference="ZJg-7k-qev"/>
-        <segue reference="8H7-mr-0Zd"/>
+        <segue reference="AYg-kg-YXo"/>
         <segue reference="Kd1-hZ-alB"/>
+        <segue reference="ECP-N3-E7c"/>
+        <segue reference="837-3K-1k0"/>
+        <segue reference="TJW-ta-eAT"/>
+        <segue reference="Bch-ud-t02"/>
+        <segue reference="04m-T1-h9v"/>
         <segue reference="fpX-N9-faN"/>
+        <segue reference="Pol-Ls-8kH"/>
     </inferredMetricsTieBreakers>
 </document>
